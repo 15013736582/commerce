@@ -1,0 +1,24 @@
+server:
+  port: 8080
+mybatis:
+    type-aliases-package: com.limitip.make.pojo
+    mapper-locations: classpath:com/mapper/xml/*.xml
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username:
+    password:
+    url: jdbc:mysql:///test_cbe_commerce?characterEncoding=UTF-8
+  jackson:
+    date-format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+    time-zone: GMT+8
+  devtools:
+    restart:
+      enabled: true
+#  resources:
+#    chain:
+#      cache: false
+
+logging:
+  level:
+    com.* : debug
