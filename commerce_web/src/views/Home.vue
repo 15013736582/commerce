@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div id="home" class="container-fluid">
       <Heander></Heander>
       <div class="row">
           <div class="col-md-2">
