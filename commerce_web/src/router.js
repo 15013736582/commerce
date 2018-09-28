@@ -50,7 +50,8 @@ export default new Router({
             path: '/register', name:'register', component:Register,
             children: [
                 {path:'mov', name : 'm_register',component:MovRegister},
-                {path:'bov', name : 'b_register',component:BovRegister}
+                {path:'bov', name : 'b_register',component:BovRegister},
+                {path:'test', name : 'test',component:BovInfo}
             ]
         },
         {path: '/',redirect: '/login'},
