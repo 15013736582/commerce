@@ -5,6 +5,7 @@ import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
 import BovRegister from '@/components/BovRegister.vue'
 import MovRegister from '@/components/MovRegister.vue'
+import BovInfo from '@/components/BovInfo.vue'
 
 Vue.use(Router)
 
@@ -30,7 +31,8 @@ export default new Router({
             path: '/register', name:'register', component:Register,
             children: [
                 {path:'mov', name : 'm_register',component:MovRegister},
-                {path:'bov', name : 'b_register',component:BovRegister}
+                {path:'bov', name : 'b_register',component:BovRegister},
+                {path:'test', name : 'test',component:BovInfo}
             ]
         },
         {path: '/',redirect: '/login'},

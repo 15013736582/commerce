@@ -1,10 +1,10 @@
 <template>
-    <div id="Register" class="conten">
-        <ul class="nav nav-pills form-signin">
-            <li role="presentation">
+    <div id="Register" class="conten mypadding">
+        <ul class="nav nav-pills form-signin mypadding" style="padding: 0px">
+            <li role="presentation" class="mypadding" >
                 <router-link :to="{name:'m_register'}">品牌商注册</router-link>
             </li>
-            <li role="presentation"><router-link :to="{name:'b_register'}">借卖商注册</router-link></li>
+            <li role="presentation" class="mypadding" ><router-link :to="{name:'b_register'}">借卖商注册</router-link></li>
         </ul>
         <router-view/>
     </div>
@@ -17,9 +17,13 @@
 </script>
 
 <style scoped>
+    .mypadding{
+        padding: 0px;
+        padding-bottom: 0px;
+    }
     .conten {
-        padding-top: 40px;
-        padding-bottom: 40px;
+        padding-top: 20px;
+        padding-bottom: 0px;
         background-color: #eee;
         height: 100vh
     }

@@ -1,31 +1,85 @@
 <template>
-    <div id="BovRegister">
-        <div class="container">
-            <form class="form-signin">
-                <h2 class="form-signin-heading">Please sign in</h2>
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="text" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
+    <div id="BovRegister" class="content" style="margin-top: 0px;padding: 0px">
+        <div id="main-content" class="clearfix" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body" style="max-height:none" >
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label">username<br>用户名</label>
+                                <div class="controls control-label">
+                                    <input type="text"  >
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">password<br>密码</label>
+                                <div class="controls control-label">
+                                    <input type="text"  >
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Company Name<br>公司名称(中)</label>
+                                <div class="controls control-label">
+                                    <input type="text"  >
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" >Email<br>邮箱</label>
+                                <div class="controls control-label">
+                                    <input type="text"  >
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" >GMC Report Type<br> 品牌商认证类型</label>
+                                <div class="controls control-label">
+                                    <input type="text" >
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label control-label">Phone<br>电话</label>
+                                <div class="controls control-label">
+                                    <input type="text" >
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btnsave">注册</button>
+                    </div>
                 </div>
-                <button class="btn  btn-primary btn-block" type="button">Register</button>
-            </form>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: "BovRegister"
+        name: "MovRegister"
     }
 </script>
 
 <style scoped>
-    .conten {
+    .control-label{
+        display: inline-block;
+        margin-right: 20px;
+        margin-top: 20px;
+        width: 160px;
+    }
+    #editor{
+        height: 200px;
+    }
+    #main-content{
+        margin-left: 60px;
+    }
+    #page-content {
+        margin: 0;
+        background: #FFF;
+        padding: 8px 20px 24px;
+    }
+    .modal-footer{
+        background: #fff;
+    }
+    .content {
         padding-top: 40px;
         padding-bottom: 40px;
         background-color: #eee;
