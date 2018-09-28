@@ -1,16 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <Heander></Heander>
+      <div class="row">
+          <div class="col-md-2">
+              <LeftNav></LeftNav>
+          </div>
+          <div class="col-md-10">
+              <router-view/>
+          </div>
+      </div>
+
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 
+import Heander from '@/components/Header'
+import LeftNav from '@/components/LeftNav'
 export default {
   name: 'home',
   components: {
+      Heander,
+      LeftNav,
   }
 }
 </script>
+
+<style scoped>
+    @import "../assets/css/ace.min.css";
+    @import "../assets/css/ace-skins.min.css";
+    @import "../assets/css/ace-responsive.min.css";
+</style>
