@@ -1,6 +1,75 @@
 <template>
     <div id="BovWish">
-        BovWish
+        <div id="page-content" class="clearfix" style="margin-top: 45px;">
+            <div class="page-header position-relative">
+                <h1 style="color: #2679b5;">借卖方<small><i class="icon-double-angle-right"></i> 心愿单</small></h1>
+            </div>
+            <button class="btn btn-success"><i class="icon-trash icon-4x icon-only">delete</i></button>
+            <ul>
+                <li class="imglist">
+
+                    <a href="bvo-goodsdetail.html">
+                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                        <img src="image/61X0zlgsL9L._SL1001_.jpg"  alt="" />
+                        <div class="right">
+                            <p>Glass Housing Multi-purpose 12L Portable Convection Oven</p>
+                            <span class="red">$16.00</span>
+                            <p>sku:GM08713</p>
+                            <input type="checkbox" />
+                        </div>
+                    </a>
+
+                </li>
+                <li class="imglist">
+                    <a href="bvo-goodsdetail.html">
+                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                        <img src="image/7145urh2rSL._SL1001_.jpg"  alt="" />
+                        <div class="right">
+                            <p>Glass Housing Multi-purpose 12L Portable Convection Oven</p>
+                            <span class="red">$16.00</span>
+                            <p>sku:GM08713</p>
+                            <input type="checkbox" />
+                        </div>
+                    </a>
+                </li>
+                <li class="imglist">
+                    <a href="bvo-goodsdetail.html">
+                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                        <img src="image/71vLlWAjOoL._SL1001_.jpg"  alt="" />
+                        <div class="right">
+                            <p>Glass Housing Multi-purpose 12L Portable Convection Oven</p>
+                            <span class="red">$16.00</span>
+                            <p>sku:GM08713</p>
+                            <input type="checkbox" />
+                        </div>
+                    </a>
+                </li>
+                <li class="imglist">
+                    <a href="bvo-goodsdetail.html">
+                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                        <img src="image/61X0zlgsL9L._SL1001_.jpg"  alt="" />
+                        <div class="right">
+                            <p>Glass Housing Multi-purpose 12L Portable Convection Oven</p>
+                            <span class="red">$16.00</span>
+                            <p>sku:GM08713</p>
+                            <input type="checkbox" />
+                        </div>
+                    </a>
+                </li>
+                <li class="imglist">
+                    <a href="bvo-goodsdetail.html">
+                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                        <img src="image/7145urh2rSL._SL1001_.jpg"  alt="" />
+                        <div class="right">
+                            <p>Glass Housing Multi-purpose 12L Portable Convection Oven</p>
+                            <span class="red">$16.00</span>
+                            <p>sku:GM08713</p>
+                            <input type="checkbox" />
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -11,5 +80,32 @@
 </script>
 
 <style scoped>
+    img{
+        width: 200px;
+        height: 200px;
+    }
+    .imglist{
+        width: 100%;
+        height: 250px;
+        list-style: none;
+        margin-left: 100px;
 
+    }
+    .imglist a{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .imglist img{
+        float: left;
+        margin-right: 20px;
+    }
+    .imglist .right,.imglist label{
+        float: left;
+    }
+    .imglist label{
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+    }
 </style>
