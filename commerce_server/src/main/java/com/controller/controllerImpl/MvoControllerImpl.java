@@ -1,4 +1,4 @@
-package com.controller;
+package com.controller.controllerImpl;
 
 import com.pojo.Mvo;
 import com.pojo.User;
@@ -16,7 +16,7 @@ import java.util.Map;
  **/
 @RestController
 @RequestMapping("api/mvo/mvo")
-public class MvoControllerImpl {
+public class MvoControllerImpl  {
 
     @Autowired
     MvoServiceImpl mvoService;
