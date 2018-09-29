@@ -69,6 +69,8 @@
         name: "MovRegister",
         methods:{
             doRegister(){
+                let data = $('#frm').serialize();
+                console.log(data);
                 alert("doRegister")
             }
         }

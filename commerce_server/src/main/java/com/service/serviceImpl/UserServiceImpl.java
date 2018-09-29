@@ -4,6 +4,7 @@ import com.mapper.UserMapper;
 import com.pojo.User;
 import com.pojo.UserExample;
 import com.service.UserService;
+import com.util.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,10 +37,8 @@ public class UserServiceImpl implements UserService {
      * @param user 用户信息
      * @return 返回插入后的主键
      */
-    public int add(User user){
-
-
-
+    public int add(User user) {
+        user.setPassword(PasswordUtil.passwordCreate(user.getPassword()));
         userMapper.insertSelective(user);
         return user.getId();
     }
