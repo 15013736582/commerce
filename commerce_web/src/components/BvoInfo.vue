@@ -1,5 +1,5 @@
 <template>
-    <div id="BovInfo">
+    <div id="BvoInfo">
 
             <div id="page-content" class="clearfix">
                 <div class="page-header position-relative">
@@ -21,7 +21,7 @@
 
 <script>
     export default {
-        name: "BovInfo"
+        name: "BvoInfo"
     }
 </script>
 

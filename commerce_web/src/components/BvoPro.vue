@@ -1,5 +1,5 @@
 <template>
-    <div id="BovPro" class="main">
+    <div id="BvoPro" class="main">
         <div>
             <h5 style="margin-top: 45px;">Feature Products</h5>
             <ul>
@@ -85,7 +85,7 @@
 
 <script>
     export default {
-        name: "BovPro"
+        name: "BvoPro"
     }
 </script>
 

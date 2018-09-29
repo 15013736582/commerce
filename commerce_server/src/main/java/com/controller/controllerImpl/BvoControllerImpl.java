@@ -2,7 +2,6 @@ package com.controller.controllerImpl;
 
 import com.controller.BvoController;
 import com.pojo.Bvo;
-import com.pojo.Role;
 import com.pojo.User;
 import com.service.serviceImpl.BvoServiceImpl;
 import com.service.serviceImpl.RoleServiceImpl;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,8 +32,8 @@ public class BvoControllerImpl implements BvoController {
     RoleServiceImpl roleService;
 
     @Autowired
-    public BvoControllerImpl(BvoServiceImpl bovService, UserServiceImpl userService, RoleServiceImpl roleService) {
-        this.bovService = bovService;
+    public BvoControllerImpl(BvoServiceImpl bvoService, UserServiceImpl userService, RoleServiceImpl roleService) {
+        this.bovService = bvoService;
         this.userService = userService;
         this.roleService = roleService;
     }
