@@ -11,7 +11,7 @@
 
                         <li class="light-blue user-profile">
                             <a class="user-menu dropdown-toggle" href="javascript:;" data-toggle="dropdown">
-                                <img alt="LRJ" src="@/assets/image/avatar.jpg" class="nav-user-photo">
+                                <img alt="LRJ" src="image/avatar.jpg" class="nav-user-photo">
                                 <span id="user_info"><small>Welcome</small> gmcbrand</span>
                                 <i class="icon-caret-down"></i>
                             </a>

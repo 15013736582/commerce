@@ -4,7 +4,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body" style="max-height:none" >
-                        <form id="frm" class="form-horizontal">
+                        <form class="form-horizontal">
                             <div class="control-group">
                                 <label class="control-label">username<br>用户名</label>
                                 <div class="controls control-label">
@@ -44,7 +44,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="btnsave" @click="doRegister">注册</button>
+                        <button type="button" class="btn btn-primary" id="btnsave">注册</button>
                     </div>
                 </div>
             </div>
@@ -54,33 +54,11 @@
 
 <script>
     export default {
-        name: "BovRegister",
-        methods:{
-            doRegister(){
-                let data = $('#frm').serialize();
-                console.log(data);
-                alert("doRegister")
-            }
-        }
+        name: "MovRegister"
     }
 </script>
 
 <style scoped>
-    .content{animation:rotateInUpLeft 0.5s ease 0s 1 normal both}
-    /* export keyframes  */
-    @keyframes rotateInUpLeft {
-        from {
-            transform-origin: left bottom;
-            transform: rotate3d(0, 0, 1, 45deg);
-            opacity: 0;
-        }
-
-        to {
-            transform-origin: left bottom;
-            transform: none;
-            opacity: 1;
-        }
-    }
     .control-label{
         display: inline-block;
         margin-right: 20px;
