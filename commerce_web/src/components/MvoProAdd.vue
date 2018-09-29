@@ -1,5 +1,5 @@
 <template>
-    <div id="MovProAdd">
+    <div id="MvoProAdd">
         <div id="page-content" class="clearfix">
 
 
@@ -126,7 +126,7 @@
 
 <script>
     export default {
-        name: "MovProAdd"
+        name: "MvoProAdd"
     }
 </script>
 

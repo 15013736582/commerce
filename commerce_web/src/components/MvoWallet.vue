@@ -1,5 +1,5 @@
 <template>
-    <div id="MovWallet">
+    <div id="MvoWallet">
         <div class=" position-relative" >
             <h4 style="color: #2679b5;text-align: center;margin-right: 100px">钱包注册</h4>
             <hr>
@@ -24,7 +24,7 @@
 
 <script>
     export default {
-        name: "MovWallet"
+        name: "MvoWallet"
     }
 </script>
 
