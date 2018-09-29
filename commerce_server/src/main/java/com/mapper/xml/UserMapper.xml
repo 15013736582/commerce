@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.pojo.User">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="role" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="add_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_name, password, role, add_date, sex, token
+    id, username, password, role, add_date, sex, token
   </sql>
   <select id="selectByExample" parameterType="com.pojo.UserExample" resultMap="BaseResultMap">
     select
@@ -108,10 +108,10 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into user (user_name, password, role, 
+    insert into user (username, password, role, 
       add_date, sex, token
       )
-    values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, 
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, 
       #{addDate,jdbcType=TIMESTAMP}, #{sex,jdbcType=INTEGER}, #{token,jdbcType=VARCHAR}
       )
   </insert>
@@ -121,8 +121,8 @@
     </selectKey>
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userName != null">
-        user_name,
+      <if test="username != null">
+        username,
       </if>
       <if test="password != null">
         password,
@@ -141,8 +141,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userName != null">
-        #{userName,jdbcType=VARCHAR},
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
@@ -173,8 +173,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.userName != null">
-        user_name = #{record.userName,jdbcType=VARCHAR},
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
@@ -199,7 +199,7 @@
   <update id="updateByExample" parameterType="map">
     update user
     set id = #{record.id,jdbcType=INTEGER},
-      user_name = #{record.userName,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       role = #{record.role,jdbcType=INTEGER},
       add_date = #{record.addDate,jdbcType=TIMESTAMP},
@@ -212,8 +212,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.pojo.User">
     update user
     <set>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
@@ -235,7 +235,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.pojo.User">
     update user
-    set user_name = #{userName,jdbcType=VARCHAR},
+    set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       role = #{role,jdbcType=INTEGER},
       add_date = #{addDate,jdbcType=TIMESTAMP},

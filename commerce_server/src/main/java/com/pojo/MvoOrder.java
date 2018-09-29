@@ -13,15 +13,15 @@ public class MvoOrder {
 
     private String number;
 
-    private Integer mId;
+    private Integer uId;
 
-    public MvoOrder(Integer id, String title, Double price, Date createDate, String number, Integer mId) {
+    public MvoOrder(Integer id, String title, Double price, Date createDate, String number, Integer uId) {
         this.id = id;
         this.title = title;
         this.price = price;
         this.createDate = createDate;
         this.number = number;
-        this.mId = mId;
+        this.uId = uId;
     }
 
     public MvoOrder() {
@@ -68,11 +68,11 @@ public class MvoOrder {
         this.number = number == null ? null : number.trim();
     }
 
-    public Integer getmId() {
-        return mId;
+    public Integer getuId() {
+        return uId;
     }
 
-    public void setmId(Integer mId) {
-        this.mId = mId;
+    public void setuId(Integer uId) {
+        this.uId = uId;
     }
 }
