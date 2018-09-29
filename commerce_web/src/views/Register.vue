@@ -1,12 +1,10 @@
 <template>
     <div id="Register" class="conten mypadding">
         <ul class="nav nav-pills form-signin mypadding" style="padding: 0px">
-            <li role="presentation" class="mypadding">
+            <li role="presentation" class="mypadding" >
                 <router-link :to="{name:'m_register'}">品牌商注册</router-link>
             </li>
-            <li role="presentation" class="mypadding">
-                <router-link :to="{name:'b_register'}">借卖商注册</router-link>
-            </li>
+            <li role="presentation" class="mypadding" ><router-link :to="{name:'b_register'}">借卖商注册</router-link></li>
         </ul>
         <router-view/>
     </div>
@@ -19,12 +17,10 @@
 </script>
 
 <style scoped>
-
-    .mypadding {
+    .mypadding{
         padding: 0px;
         padding-bottom: 0px;
     }
-
     .conten {
         padding-top: 20px;
         padding-bottom: 0px;
@@ -72,24 +68,4 @@
         border-top-left-radius: 0;
         border-top-right-radius: 0;
     }
-
-
-
-    .nav.nav-pills.form-signin.mypadding{animation:puffIn 0.5s 0s 1 both}
-    @keyframes puffIn {
-        0% {
-            opacity: 0;
-            transform-origin: 50% 50%;
-            transform: scale(2,2);
-            filter: blur(2px);
-        }
-
-        100% {
-            opacity: 1;
-            transform-origin: 50% 50%;
-            transform: scale(1,1);
-            filter: blur(0px);
-        }
-    }
-
 </style>

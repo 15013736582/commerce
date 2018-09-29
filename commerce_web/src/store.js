@@ -4,22 +4,13 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    state: {
-        user:{},
-    },
-    mutations: {
-        mUser(state, n){
+  state: {
 
-        }
-    },
-    actions: {
-        acLogin({commit}, n){
-            commit('mUser', n);
-        }
-    },
-    getters: {
-        user: (state) => {
-            return state.user;
-        },
-    },
+  },
+  mutations: {
+
+  },
+  actions: {
+
+  }
 })

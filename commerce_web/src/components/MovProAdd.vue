@@ -1,6 +1,126 @@
 <template>
     <div id="MovProAdd">
-        <p>MovProAdd</p>
+        <div id="page-content" class="clearfix">
+
+
+            <div class="page-header position-relative">
+                <h1 style="color: #2679b5;">品牌商<small><i class="icon-double-angle-right"></i> 商品信息录入</small></h1>
+            </div>
+            <form class="form-search">
+                商品标题：
+                <input type="text" class="input-medium search-query">
+                <button onclick="return false;" class="btn btn-purple btn-small">Search <i class="icon-search icon-on-right"></i></button>
+            </form>
+            <table id="table_bug_report" class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th class="center">
+                        <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
+                    </th>
+                    <th>商品标题</th>
+                    <th>商品价格</th>
+                    <th>库存</th>
+                    <th>sku</th>
+
+                    <th>操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td class="center">
+                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                    </td>
+                    <td><a href="#">ace.com</a></td>
+                    <td>$45</td>
+                    <td class="hidden-480">3,330</td>
+                    <td class="hidden-phone">GM001031</td>
+
+                    <td>
+                        <div class="inline position-relative" >
+                            <button class="btn btn-mini btn-info" onclick="gotoadd()"><i class="icon-edit"></i></button>
+                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="center">
+                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                    </td>
+                    <td><a href="#">base.com</a></td>
+                    <td>$35</td>
+                    <td class="hidden-480">2,595</td>
+                    <td class="hidden-phone">GM001031</td>
+
+                    <td>
+                        <div class="inline position-relative" >
+                            <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"><i class="icon-edit"></i></button>
+                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="center">
+                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                    </td>
+                    <td><a href="#">max.com</a></td>
+                    <td>$60</td>
+                    <td class="hidden-480">4,400</td>
+                    <td class="hidden-phone">GM001031</td>
+
+                    <td>
+                        <div class="inline position-relative" >
+                            <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"><i class="icon-edit"></i></button>
+                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="center">
+                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                    </td>
+                    <td><a href="#">best.com</a></td>
+                    <td>$75</td>
+                    <td class="hidden-480">6,500</td>
+                    <td class="hidden-phone">GM001031</td>
+
+                    <td>
+                        <div class="inline position-relative" >
+                            <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"><i class="icon-edit"></i></button>
+                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center">
+                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                    </td>
+                    <td><a href="#">pro.com</a></td>
+                    <td>$55</td>
+                    <td class="hidden-480">4,250</td>
+                    <td class="hidden-phone">GM001031</td>
+
+                    <td>
+                        <div class="inline position-relative" >
+                            <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"><i class="icon-edit"></i></button>
+                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <button class="btn btn-primary" onclick="gotoadd()">新增</button>
+
+        </div>
     </div>
 </template>
 

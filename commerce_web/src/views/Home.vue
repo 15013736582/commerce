@@ -1,5 +1,5 @@
 <template>
-  <div id="home" class="container-fluid">
+  <div class="home">
       <Heander></Heander>
       <div class="row">
           <div class="col-md-2">
@@ -30,4 +30,6 @@ export default {
     @import "../assets/css/ace.min.css";
     @import "../assets/css/ace-skins.min.css";
     @import "../assets/css/ace-responsive.min.css";
+    @import "../assets/css/font-awesome.min.css";
+    @import "../assets/css/bootstrap-responsive.min.css";
 </style>

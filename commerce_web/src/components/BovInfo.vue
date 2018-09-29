@@ -1,6 +1,6 @@
 <template>
     <div id="BovInfo">
-        <div id="main-content" class="clearfix">
+
             <div id="page-content" class="clearfix">
                 <div class="page-header position-relative">
                     <h1 style="color: #2679b5;">借卖方
@@ -16,7 +16,6 @@
                     <button class="btn  btn-pink" onclick="myshop()">My Stores</button>
                 </div>
             </div>
-        </div>
     </div>
 </template>
 

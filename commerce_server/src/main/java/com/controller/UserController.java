@@ -1,4 +1,27 @@
 package com.controller;
 
-public interface UserController {
+import com.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author: hokitlee
+ * @description:
+ * @create: 2018-09-27 13:00
+ **/
+@RestController
+@RequestMapping("/")
+public class UserController {
+    @Autowired
+    UserService userService;
+
+    @RequestMapping("test")
+    public String add(){
+        System.out.println( "!!!!!!!!!");
+        userService.add();
+        return "OK";
+    }
+
+
 }
