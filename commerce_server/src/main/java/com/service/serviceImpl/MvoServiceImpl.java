@@ -39,7 +39,7 @@ public class MvoServiceImpl implements MvoService {
 
     public Map register(User user,Mvo mvo){
         Map<String, Object> result = new HashMap<>();
-        List userList = userService.findByName(user.getUserName());
+        List userList = userService.findByName(user.getUsername());
         if (!userList.isEmpty()) {
             result.put("state",1);
             result.put("mes","用户名已存在");

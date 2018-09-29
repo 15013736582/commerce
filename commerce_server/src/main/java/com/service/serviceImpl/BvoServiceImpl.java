@@ -41,9 +41,14 @@ public class BvoServiceImpl {
         return bvo.getId();
     }
 
+    /**
+     * @param user
+     * @param bvo
+     * @return
+     */
     public Map register(User user, Bvo bvo){
         Map<String, Object> result = new HashMap<>();
-        List userList = userService.findByName(user.getUserName());
+        List userList = userService.findByName(user.getUsername());
         if (!userList.isEmpty()) {
             result.put("state",1);
             result.put("mes","用户名已存在");

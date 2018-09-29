@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     public List findByName(String userName) {
         UserExample ex = new UserExample();
         UserExample.Criteria criteria = ex.createCriteria();
-        criteria.andUserNameEqualTo(userName);
+        criteria.andUsernameEqualTo(userName);
         return userMapper.selectByExample(ex);
     }
 
