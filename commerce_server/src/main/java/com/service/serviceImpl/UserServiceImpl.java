@@ -2,17 +2,18 @@ package com.service.serviceImpl;
 
 import com.mapper.UserMapper;
 import com.pojo.User;
+import com.pojo.UserExample;
 import com.service.UserService;
+import com.util.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.net.NetworkInterface;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
- * @author: hokitlee
- * @description:
- * @create: 2018-09-27 13:00
  **/
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,10 +21,27 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
-    public Map find(User user){
-        Map<String, Object> result = new HashMap<>();
-        user.setUserName("!");
-        userMapper.insertSelective(user);
-        return result;
+    /**
+     * @param userName 用户名
+     * @return 查询到的user记录
+     */
+    public List findByName(String userName) {
+        UserExample ex = new UserExample();
+        UserExample.Criteria criteria = ex.createCriteria();
+        criteria.andUserNameEqualTo(userName);
+        return userMapper.selectByExample(ex);
     }
+
+
+    /**
+     * @param user 用户信息
+     * @return 返回插入后的主键
+     */
+    public int add(User user) {
+        user.setPassword(PasswordUtil.passwordCreate(user.getPassword()));
+        userMapper.insertSelective(user);
+        return user.getId();
+    }
+
+
 }
