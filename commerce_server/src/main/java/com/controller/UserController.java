@@ -12,16 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 @RequestMapping("/")
-public class UserController {
-    @Autowired
-    UserService userService;
-
-    @RequestMapping("test")
-    public String add(){
-        System.out.println( "!!!!!!!!!");
-        userService.add();
-        return "OK";
-    }
-
+public interface UserController {
 
 }
