@@ -42,7 +42,9 @@
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">Brief Introduction<br>公司简介<br><p>&nbsp</p><p>&nbsp</p></label>
+                                    <label class="control-label">
+                                        Brief Introduction<br>公司简介<p>&nbsp</p><p>&nbsp</p>
+                                    </label>
                                     <div class="controls control-label">
                                         <textarea rows="3" cols="30" aria-keyshortcuts=""></textarea>
                                         <!--<input type="textarea" style="height: 60px" rows="3">-->
@@ -54,7 +56,7 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="btnsave">注册</button>
+                            <button type="button" class="btn btn-primary" @click="doRegister">注册</button>
                         </div>
                     </div>
                 </div>
@@ -64,11 +66,32 @@
 
 <script>
     export default {
-        name: "MovRegister"
+        name: "MovRegister",
+        methods:{
+            doRegister(){
+                let data = $('#frm').serialize();
+                console.log(data);
+                alert("doRegister")
+            }
+        }
     }
 </script>
 
 <style scoped>
+    .content{animation:rotateInUpRight 0.5s 0s 1 both}
+    @keyframes rotateInUpRight {
+        from {
+            transform-origin: right bottom;
+            transform: rotate3d(0, 0, 1, -90deg);
+            opacity: 0;
+        }
+
+        to {
+            transform-origin: right bottom;
+            transform: none;
+            opacity: 1;
+        }
+    }
     .control-label{
         display: inline-block;
         margin-right: 20px;

@@ -11,14 +11,6 @@ import org.springframework.stereotype.Service;
  * @create: 2018-09-27 13:00
  **/
 @Service
-public class UserService {
+public interface UserService {
 
-    @Autowired
-    UserMapper userMapper;
-
-    public void  add(){
-        User user = new User();
-        user.setUserName("!");
-        userMapper.insertSelective(user);
-    }
 }
