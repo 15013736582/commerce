@@ -8,7 +8,7 @@
       <arg column="price" javaType="java.lang.Double" jdbcType="DOUBLE" />
       <arg column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="number" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="m_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="u_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, price, create_date, number, m_id
+    id, title, price, create_date, number, u_id
   </sql>
   <select id="selectByExample" parameterType="com.pojo.MvoOrderExample" resultMap="BaseResultMap">
     select
@@ -108,9 +108,9 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into mvo_order (title, price, create_date, 
-      number, m_id)
+      number, u_id)
     values (#{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{createDate,jdbcType=TIMESTAMP}, 
-      #{number,jdbcType=VARCHAR}, #{mId,jdbcType=INTEGER})
+      #{number,jdbcType=VARCHAR}, #{uId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.pojo.MvoOrder">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -130,8 +130,8 @@
       <if test="number != null">
         number,
       </if>
-      <if test="mId != null">
-        m_id,
+      <if test="uId != null">
+        u_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -147,8 +147,8 @@
       <if test="number != null">
         #{number,jdbcType=VARCHAR},
       </if>
-      <if test="mId != null">
-        #{mId,jdbcType=INTEGER},
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -176,8 +176,8 @@
       <if test="record.number != null">
         number = #{record.number,jdbcType=VARCHAR},
       </if>
-      <if test="record.mId != null">
-        m_id = #{record.mId,jdbcType=INTEGER},
+      <if test="record.uId != null">
+        u_id = #{record.uId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -191,7 +191,7 @@
       price = #{record.price,jdbcType=DOUBLE},
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
       number = #{record.number,jdbcType=VARCHAR},
-      m_id = #{record.mId,jdbcType=INTEGER}
+      u_id = #{record.uId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -211,8 +211,8 @@
       <if test="number != null">
         number = #{number,jdbcType=VARCHAR},
       </if>
-      <if test="mId != null">
-        m_id = #{mId,jdbcType=INTEGER},
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -223,7 +223,7 @@
       price = #{price,jdbcType=DOUBLE},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       number = #{number,jdbcType=VARCHAR},
-      m_id = #{mId,jdbcType=INTEGER}
+      u_id = #{uId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

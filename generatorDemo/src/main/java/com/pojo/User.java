@@ -5,7 +5,7 @@ import java.util.Date;
 public class User {
     private Integer id;
 
-    private String userName;
+    private String username;
 
     private String password;
 
@@ -17,9 +17,9 @@ public class User {
 
     private String token;
 
-    public User(Integer id, String userName, String password, Integer role, Date addDate, Integer sex, String token) {
+    public User(Integer id, String username, String password, Integer role, Date addDate, Integer sex, String token) {
         this.id = id;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.role = role;
         this.addDate = addDate;
@@ -39,12 +39,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
     public String getPassword() {

@@ -11,7 +11,6 @@ import java.sql.SQLOutput;
 public class CbeCommerceApplication {
 
     public static void main(String[] args) {
-        System.out.println("##############");
         SpringApplication.run(CbeCommerceApplication.class, args);
     }
 }
