@@ -6,8 +6,6 @@
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="phone" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="a_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="a_password" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -69,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, email, phone, a_name, a_password
+    id, email, phone
   </sql>
   <select id="selectByExample" parameterType="com.pojo.BvoExample" resultMap="BaseResultMap">
     select
@@ -106,10 +104,8 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into bvo (email, phone, a_name, 
-      a_password)
-    values (#{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{aName,jdbcType=VARCHAR}, 
-      #{aPassword,jdbcType=VARCHAR})
+    insert into bvo (email, phone)
+    values (#{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.pojo.Bvo">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -123,12 +119,6 @@
       <if test="phone != null">
         phone,
       </if>
-      <if test="aName != null">
-        a_name,
-      </if>
-      <if test="aPassword != null">
-        a_password,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="email != null">
@@ -136,12 +126,6 @@
       </if>
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="aName != null">
-        #{aName,jdbcType=VARCHAR},
-      </if>
-      <if test="aPassword != null">
-        #{aPassword,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -163,12 +147,6 @@
       <if test="record.phone != null">
         phone = #{record.phone,jdbcType=VARCHAR},
       </if>
-      <if test="record.aName != null">
-        a_name = #{record.aName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.aPassword != null">
-        a_password = #{record.aPassword,jdbcType=VARCHAR},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -178,9 +156,7 @@
     update bvo
     set id = #{record.id,jdbcType=INTEGER},
       email = #{record.email,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=VARCHAR},
-      a_name = #{record.aName,jdbcType=VARCHAR},
-      a_password = #{record.aPassword,jdbcType=VARCHAR}
+      phone = #{record.phone,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -194,21 +170,13 @@
       <if test="phone != null">
         phone = #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="aName != null">
-        a_name = #{aName,jdbcType=VARCHAR},
-      </if>
-      <if test="aPassword != null">
-        a_password = #{aPassword,jdbcType=VARCHAR},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.pojo.Bvo">
     update bvo
     set email = #{email,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      a_name = #{aName,jdbcType=VARCHAR},
-      a_password = #{aPassword,jdbcType=VARCHAR}
+      phone = #{phone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -17,6 +17,17 @@
 </script>
 
 <style scoped>
+    .nav.nav-pills.form-signin.mypadding{animation:scale-in-ver-center 1s 0s 1 both}
+    @Keyframes scale-in-ver-center {
+        0% {
+            transform: scaleY(0);
+            opacity: 1
+        }
+        to {
+            transform: scaleY(1);
+            opacity: 1
+        }
+    }
     .mypadding{
         padding: 0px;
         padding-bottom: 0px;

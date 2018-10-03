@@ -14,9 +14,8 @@
                     <div class="mydiv"><label class="green">账号:</label><input type="text"></div>
                     <div class="mydiv"><label class="green">邮箱:</label><input type="text"></div>
                     <div class="mydiv"><label class="green">密码:</label><input type="password"></div>
-                    <button class="btn  btn-success save" onclick="gotoWallet()">注册</button>
+                    <button class="btn  btn-success save" >注册</button>
                 </div>
-
             </div>
         </div>
     </div>

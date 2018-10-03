@@ -1,13 +1,25 @@
 package com.util;
 
+import com.pojo.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,6 +53,7 @@ public class JwtUtil {
                 .setIssuedAt(now)           //iat: jwt的签发时间
                 .setSubject(subject)        //sub(Subject)：代表这个JWT的主体，即它的所有人，这个是一个json格式的字符串，可以存放什么userid，roldid之类的，作为什么用户的唯一标志。
                 .signWith(key);//设置签名使用的签名算法和签名使用的秘钥
+//                .signWith(SignatureAlgorithm.HS512, "MyJwtSecret")
         if (ttlMillis >= 0) {
             long expMillis = nowMillis + ttlMillis;
             Date exp = new Date(expMillis);
@@ -78,5 +91,20 @@ public class JwtUtil {
                 .setSigningKey(key)         //设置签名的秘钥
                 .parseClaimsJws(jwt).getBody();//设置需要解析的jwt
         return claims;
+    }
+
+    static Authentication getAuthentication(HttpServletRequest request, User user,String authoritie ){
+
+        List<GrantedAuthority> authorities =  AuthorityUtils.commaSeparatedStringToAuthorityList((String) authoritie);
+        return user != null ?
+                new UsernamePasswordAuthenticationToken(user.getUsername(), null, authorities) :
+                null;
+    }
+
+    static void addAuthentication(HttpServletResponse response, String token) {
+        Cookie cookie = new javax.servlet.http.Cookie("token",token);
+        cookie.setMaxAge(60*30);
+        cookie.setPath("/");
+        response.addCookie(cookie);
     }
 }

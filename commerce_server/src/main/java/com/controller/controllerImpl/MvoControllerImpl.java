@@ -4,6 +4,7 @@ import com.pojo.Mvo;
 import com.pojo.User;
 import com.service.serviceImpl.MvoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,8 @@ import java.util.Map;
  * @description:
  * @create: 2018-09-28 21:43
  **/
+
+@PreAuthorize("hasRole('1')")
 @RestController
 @RequestMapping("api/mvo/mvo")
 public class MvoControllerImpl  {

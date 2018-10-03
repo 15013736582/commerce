@@ -18,7 +18,13 @@ public interface GvoMapper {
 
     List<Gvo> selectByExample(GvoExample example);
 
+    Gvo selectByPrimaryKey(Integer id);
+
     int updateByExampleSelective(@Param("record") Gvo record, @Param("example") GvoExample example);
 
     int updateByExample(@Param("record") Gvo record, @Param("example") GvoExample example);
+
+    int updateByPrimaryKeySelective(Gvo record);
+
+    int updateByPrimaryKey(Gvo record);
 }

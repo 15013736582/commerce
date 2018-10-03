@@ -305,123 +305,73 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andRoleIsNull() {
-            addCriterion("role is null");
+        public Criteria andNicknameIsNull() {
+            addCriterion("nickname is null");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIsNotNull() {
-            addCriterion("role is not null");
+        public Criteria andNicknameIsNotNull() {
+            addCriterion("nickname is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRoleEqualTo(Integer value) {
-            addCriterion("role =", value, "role");
+        public Criteria andNicknameEqualTo(String value) {
+            addCriterion("nickname =", value, "nickname");
             return (Criteria) this;
         }
 
-        public Criteria andRoleNotEqualTo(Integer value) {
-            addCriterion("role <>", value, "role");
+        public Criteria andNicknameNotEqualTo(String value) {
+            addCriterion("nickname <>", value, "nickname");
             return (Criteria) this;
         }
 
-        public Criteria andRoleGreaterThan(Integer value) {
-            addCriterion("role >", value, "role");
+        public Criteria andNicknameGreaterThan(String value) {
+            addCriterion("nickname >", value, "nickname");
             return (Criteria) this;
         }
 
-        public Criteria andRoleGreaterThanOrEqualTo(Integer value) {
-            addCriterion("role >=", value, "role");
+        public Criteria andNicknameGreaterThanOrEqualTo(String value) {
+            addCriterion("nickname >=", value, "nickname");
             return (Criteria) this;
         }
 
-        public Criteria andRoleLessThan(Integer value) {
-            addCriterion("role <", value, "role");
+        public Criteria andNicknameLessThan(String value) {
+            addCriterion("nickname <", value, "nickname");
             return (Criteria) this;
         }
 
-        public Criteria andRoleLessThanOrEqualTo(Integer value) {
-            addCriterion("role <=", value, "role");
+        public Criteria andNicknameLessThanOrEqualTo(String value) {
+            addCriterion("nickname <=", value, "nickname");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIn(List<Integer> values) {
-            addCriterion("role in", values, "role");
+        public Criteria andNicknameLike(String value) {
+            addCriterion("nickname like", value, "nickname");
             return (Criteria) this;
         }
 
-        public Criteria andRoleNotIn(List<Integer> values) {
-            addCriterion("role not in", values, "role");
+        public Criteria andNicknameNotLike(String value) {
+            addCriterion("nickname not like", value, "nickname");
             return (Criteria) this;
         }
 
-        public Criteria andRoleBetween(Integer value1, Integer value2) {
-            addCriterion("role between", value1, value2, "role");
+        public Criteria andNicknameIn(List<String> values) {
+            addCriterion("nickname in", values, "nickname");
             return (Criteria) this;
         }
 
-        public Criteria andRoleNotBetween(Integer value1, Integer value2) {
-            addCriterion("role not between", value1, value2, "role");
+        public Criteria andNicknameNotIn(List<String> values) {
+            addCriterion("nickname not in", values, "nickname");
             return (Criteria) this;
         }
 
-        public Criteria andAddDateIsNull() {
-            addCriterion("add_date is null");
+        public Criteria andNicknameBetween(String value1, String value2) {
+            addCriterion("nickname between", value1, value2, "nickname");
             return (Criteria) this;
         }
 
-        public Criteria andAddDateIsNotNull() {
-            addCriterion("add_date is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddDateEqualTo(Date value) {
-            addCriterion("add_date =", value, "addDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddDateNotEqualTo(Date value) {
-            addCriterion("add_date <>", value, "addDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddDateGreaterThan(Date value) {
-            addCriterion("add_date >", value, "addDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddDateGreaterThanOrEqualTo(Date value) {
-            addCriterion("add_date >=", value, "addDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddDateLessThan(Date value) {
-            addCriterion("add_date <", value, "addDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddDateLessThanOrEqualTo(Date value) {
-            addCriterion("add_date <=", value, "addDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddDateIn(List<Date> values) {
-            addCriterion("add_date in", values, "addDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddDateNotIn(List<Date> values) {
-            addCriterion("add_date not in", values, "addDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddDateBetween(Date value1, Date value2) {
-            addCriterion("add_date between", value1, value2, "addDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddDateNotBetween(Date value1, Date value2) {
-            addCriterion("add_date not between", value1, value2, "addDate");
+        public Criteria andNicknameNotBetween(String value1, String value2) {
+            addCriterion("nickname not between", value1, value2, "nickname");
             return (Criteria) this;
         }
 
@@ -482,6 +432,66 @@ public class UserExample {
 
         public Criteria andSexNotBetween(Integer value1, Integer value2) {
             addCriterion("sex not between", value1, value2, "sex");
+            return (Criteria) this;
+        }
+
+        public Criteria andWalletIdIsNull() {
+            addCriterion("wallet_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWalletIdIsNotNull() {
+            addCriterion("wallet_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWalletIdEqualTo(Integer value) {
+            addCriterion("wallet_id =", value, "walletId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWalletIdNotEqualTo(Integer value) {
+            addCriterion("wallet_id <>", value, "walletId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWalletIdGreaterThan(Integer value) {
+            addCriterion("wallet_id >", value, "walletId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWalletIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("wallet_id >=", value, "walletId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWalletIdLessThan(Integer value) {
+            addCriterion("wallet_id <", value, "walletId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWalletIdLessThanOrEqualTo(Integer value) {
+            addCriterion("wallet_id <=", value, "walletId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWalletIdIn(List<Integer> values) {
+            addCriterion("wallet_id in", values, "walletId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWalletIdNotIn(List<Integer> values) {
+            addCriterion("wallet_id not in", values, "walletId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWalletIdBetween(Integer value1, Integer value2) {
+            addCriterion("wallet_id between", value1, value2, "walletId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWalletIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("wallet_id not between", value1, value2, "walletId");
             return (Criteria) this;
         }
 
@@ -552,6 +562,66 @@ public class UserExample {
 
         public Criteria andTokenNotBetween(String value1, String value2) {
             addCriterion("token not between", value1, value2, "token");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateIsNull() {
+            addCriterion("add_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateIsNotNull() {
+            addCriterion("add_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateEqualTo(Date value) {
+            addCriterion("add_date =", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateNotEqualTo(Date value) {
+            addCriterion("add_date <>", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateGreaterThan(Date value) {
+            addCriterion("add_date >", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("add_date >=", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateLessThan(Date value) {
+            addCriterion("add_date <", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateLessThanOrEqualTo(Date value) {
+            addCriterion("add_date <=", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateIn(List<Date> values) {
+            addCriterion("add_date in", values, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateNotIn(List<Date> values) {
+            addCriterion("add_date not in", values, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateBetween(Date value1, Date value2) {
+            addCriterion("add_date between", value1, value2, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateNotBetween(Date value1, Date value2) {
+            addCriterion("add_date not between", value1, value2, "addDate");
             return (Criteria) this;
         }
     }

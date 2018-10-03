@@ -9,22 +9,25 @@ public class User {
 
     private String password;
 
-    private Integer role;
-
-    private Date addDate;
+    private String nickname;
 
     private Integer sex;
 
+    private Integer walletId;
+
     private String token;
 
-    public User(Integer id, String username, String password, Integer role, Date addDate, Integer sex, String token) {
+    private Date addDate;
+
+    public User(Integer id, String username, String password, String nickname, Integer sex, Integer walletId, String token, Date addDate) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.role = role;
-        this.addDate = addDate;
+        this.nickname = nickname;
         this.sex = sex;
+        this.walletId = walletId;
         this.token = token;
+        this.addDate = addDate;
     }
 
     public User() {
@@ -55,20 +58,12 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public Integer getRole() {
-        return role;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setRole(Integer role) {
-        this.role = role;
-    }
-
-    public Date getAddDate() {
-        return addDate;
-    }
-
-    public void setAddDate(Date addDate) {
-        this.addDate = addDate;
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
     }
 
     public Integer getSex() {
@@ -79,11 +74,27 @@ public class User {
         this.sex = sex;
     }
 
+    public Integer getWalletId() {
+        return walletId;
+    }
+
+    public void setWalletId(Integer walletId) {
+        this.walletId = walletId;
+    }
+
     public String getToken() {
         return token;
     }
 
     public void setToken(String token) {
         this.token = token == null ? null : token.trim();
+    }
+
+    public Date getAddDate() {
+        return addDate;
+    }
+
+    public void setAddDate(Date addDate) {
+        this.addDate = addDate;
     }
 }

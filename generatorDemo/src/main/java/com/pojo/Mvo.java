@@ -13,21 +13,15 @@ public class Mvo {
 
     private String reportUrl;
 
-    private String aName;
-
-    private String aPassword;
-
     private String email;
 
-    public Mvo(Integer id, String cName, String eName, String introduce, String reportType, String reportUrl, String aName, String aPassword, String email) {
+    public Mvo(Integer id, String cName, String eName, String introduce, String reportType, String reportUrl, String email) {
         this.id = id;
         this.cName = cName;
         this.eName = eName;
         this.introduce = introduce;
         this.reportType = reportType;
         this.reportUrl = reportUrl;
-        this.aName = aName;
-        this.aPassword = aPassword;
         this.email = email;
     }
 
@@ -81,22 +75,6 @@ public class Mvo {
 
     public void setReportUrl(String reportUrl) {
         this.reportUrl = reportUrl == null ? null : reportUrl.trim();
-    }
-
-    public String getaName() {
-        return aName;
-    }
-
-    public void setaName(String aName) {
-        this.aName = aName == null ? null : aName.trim();
-    }
-
-    public String getaPassword() {
-        return aPassword;
-    }
-
-    public void setaPassword(String aPassword) {
-        this.aPassword = aPassword == null ? null : aPassword.trim();
     }
 
     public String getEmail() {
