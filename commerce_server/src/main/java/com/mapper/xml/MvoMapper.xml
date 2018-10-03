@@ -9,8 +9,6 @@
       <arg column="introduce" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="report_type" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="report_url" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="a_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="a_password" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
@@ -73,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, c_name, e_name, introduce, report_type, report_url, a_name, a_password, email
+    id, c_name, e_name, introduce, report_type, report_url, email
   </sql>
   <select id="selectByExample" parameterType="com.pojo.MvoExample" resultMap="BaseResultMap">
     select
@@ -111,11 +109,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into mvo (c_name, e_name, introduce, 
-      report_type, report_url, a_name, 
-      a_password, email)
+      report_type, report_url, email
+      )
     values (#{cName,jdbcType=VARCHAR}, #{eName,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
-      #{reportType,jdbcType=VARCHAR}, #{reportUrl,jdbcType=VARCHAR}, #{aName,jdbcType=VARCHAR}, 
-      #{aPassword,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR})
+      #{reportType,jdbcType=VARCHAR}, #{reportUrl,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.pojo.Mvo">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -138,12 +136,6 @@
       <if test="reportUrl != null">
         report_url,
       </if>
-      <if test="aName != null">
-        a_name,
-      </if>
-      <if test="aPassword != null">
-        a_password,
-      </if>
       <if test="email != null">
         email,
       </if>
@@ -163,12 +155,6 @@
       </if>
       <if test="reportUrl != null">
         #{reportUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="aName != null">
-        #{aName,jdbcType=VARCHAR},
-      </if>
-      <if test="aPassword != null">
-        #{aPassword,jdbcType=VARCHAR},
       </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
@@ -202,12 +188,6 @@
       <if test="record.reportUrl != null">
         report_url = #{record.reportUrl,jdbcType=VARCHAR},
       </if>
-      <if test="record.aName != null">
-        a_name = #{record.aName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.aPassword != null">
-        a_password = #{record.aPassword,jdbcType=VARCHAR},
-      </if>
       <if test="record.email != null">
         email = #{record.email,jdbcType=VARCHAR},
       </if>
@@ -224,8 +204,6 @@
       introduce = #{record.introduce,jdbcType=VARCHAR},
       report_type = #{record.reportType,jdbcType=VARCHAR},
       report_url = #{record.reportUrl,jdbcType=VARCHAR},
-      a_name = #{record.aName,jdbcType=VARCHAR},
-      a_password = #{record.aPassword,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -249,12 +227,6 @@
       <if test="reportUrl != null">
         report_url = #{reportUrl,jdbcType=VARCHAR},
       </if>
-      <if test="aName != null">
-        a_name = #{aName,jdbcType=VARCHAR},
-      </if>
-      <if test="aPassword != null">
-        a_password = #{aPassword,jdbcType=VARCHAR},
-      </if>
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
@@ -268,8 +240,6 @@
       introduce = #{introduce,jdbcType=VARCHAR},
       report_type = #{reportType,jdbcType=VARCHAR},
       report_url = #{reportUrl,jdbcType=VARCHAR},
-      a_name = #{aName,jdbcType=VARCHAR},
-      a_password = #{aPassword,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -17,67 +17,67 @@
             </div><!-- #sidebar-shortcuts -->
             <ul class="nav nav-list">
                 <li>
-                    <router-link :to="{name:'movInfo'}">
+                    <router-link :to="{name:'mvoInfo'}">
                         <i class="icon-dashboard"></i>
                         <span>品牌商-我的信息</span>
                     </router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'movProAdd'}">
+                    <router-link :to="{name:'mvoProAdd'}">
                         <i class="icon-text-width"></i>
                         <span>品牌商-商品录入</span>
                     </router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'movProImg'}">
+                    <router-link :to="{name:'mvoProImg'}">
                         <i class="icon-text-width"></i>
                         <span>品牌商-商品主图</span>
                     </router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'movOrder'}" >
+                    <router-link :to="{name:'mvoOrder'}" >
                         <i class="icon-file"></i>
                         <span>品牌商-订单管理</span>
                     </router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'movWallet'}">
+                    <router-link :to="{name:'mvoWallet'}">
                         <i class="icon-desktop"></i>
                         <span>品牌商-钱包</span>
                     </router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'bovInfo'}">
+                    <router-link :to="{name:'bvoInfo'}">
                         <i class="icon-list"></i>
                         <span>借卖方-我的信息</span>
                     </router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'bovShop'}">
+                    <router-link :to="{name:'bvoShop'}">
                         <i class="icon-edit"></i>
                         <span>借卖方-店铺管理</span>
                     </router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'bovPro'}">
+                    <router-link :to="{name:'bvoPro'}">
                         <i class="icon-list-alt"></i>
                         <span>借卖方-商品浏览</span>
                     </router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'bovWish'}">
+                    <router-link :to="{name:'bvoWish'}">
                         <i class="icon-list-alt"></i>
                         <span>借卖方-心愿单</span>
                     </router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'bovOrder'}">
+                    <router-link :to="{name:'bvoOrder'}">
                         <i class="icon-calendar"></i>
                         <span>借卖方-订单管理</span>
                     </router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'bovWallet'}">
+                    <router-link :to="{name:'bvoWallet'}">
                         <i class="icon-calendar"></i>
                         <span>借卖方-我的钱包</span>
                     </router-link>

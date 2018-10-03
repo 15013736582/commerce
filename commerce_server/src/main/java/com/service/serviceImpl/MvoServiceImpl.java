@@ -5,7 +5,6 @@ import com.pojo.Mvo;
 import com.pojo.Role;
 import com.pojo.User;
 import com.service.MvoService;
-import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,26 +32,41 @@ public class MvoServiceImpl implements MvoService {
         this.roleService = roleService;
     }
 
-    public int add(Mvo mov ){
-        return  mvoMapper.insertSelective(mov);
-    }
 
+    /**
+     * @param user user信息
+     * @param mvo  mov信息
+     * @return  Map state,
+     */
     public Map register(User user,Mvo mvo){
         Map<String, Object> result = new HashMap<>();
-        List userList = userService.findByName(user.getUserName());
+        List userList = userService.findByName(user.getUsername());
         if (!userList.isEmpty()) {
             result.put("state",1);
             result.put("mes","用户名已存在");
             return result;
         }
-        user.setId(userService.add(user));
-        mvo.setId(add(mvo));
+        userService.add(user);
         Role role = new Role();
         role.setUserId(user.getId());
-        role.setUserInfoId(mvo.getId());
+        role.setUserInfoId(add(mvo));
         role.setRoleType(1);
         roleService.add(role);
         result.put("state",0);
         return result;
+    }
+
+
+    /**
+     * @param mov
+     * @return 插入后的主键
+     */
+    public int add(Mvo mov ){
+        mvoMapper.insertSelective(mov);
+        return  mov.getId();
+    }
+
+    public Mvo findById(int id){
+        return mvoMapper.selectByPrimaryKey(id);
     }
 }

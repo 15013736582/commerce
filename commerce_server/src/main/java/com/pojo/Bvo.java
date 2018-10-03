@@ -7,16 +7,10 @@ public class Bvo {
 
     private String phone;
 
-    private String aName;
-
-    private String aPassword;
-
-    public Bvo(Integer id, String email, String phone, String aName, String aPassword) {
+    public Bvo(Integer id, String email, String phone) {
         this.id = id;
         this.email = email;
         this.phone = phone;
-        this.aName = aName;
-        this.aPassword = aPassword;
     }
 
     public Bvo() {
@@ -45,21 +39,5 @@ public class Bvo {
 
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
-    }
-
-    public String getaName() {
-        return aName;
-    }
-
-    public void setaName(String aName) {
-        this.aName = aName == null ? null : aName.trim();
-    }
-
-    public String getaPassword() {
-        return aPassword;
-    }
-
-    public void setaPassword(String aPassword) {
-        this.aPassword = aPassword == null ? null : aPassword.trim();
     }
 }

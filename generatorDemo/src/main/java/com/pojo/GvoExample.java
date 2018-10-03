@@ -163,6 +163,76 @@ public class GvoExample {
             addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
+
+        public Criteria andDescribeIsNull() {
+            addCriterion("describe is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescribeIsNotNull() {
+            addCriterion("describe is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescribeEqualTo(String value) {
+            addCriterion("describe =", value, "describe");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescribeNotEqualTo(String value) {
+            addCriterion("describe <>", value, "describe");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescribeGreaterThan(String value) {
+            addCriterion("describe >", value, "describe");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescribeGreaterThanOrEqualTo(String value) {
+            addCriterion("describe >=", value, "describe");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescribeLessThan(String value) {
+            addCriterion("describe <", value, "describe");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescribeLessThanOrEqualTo(String value) {
+            addCriterion("describe <=", value, "describe");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescribeLike(String value) {
+            addCriterion("describe like", value, "describe");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescribeNotLike(String value) {
+            addCriterion("describe not like", value, "describe");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescribeIn(List<String> values) {
+            addCriterion("describe in", values, "describe");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescribeNotIn(List<String> values) {
+            addCriterion("describe not in", values, "describe");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescribeBetween(String value1, String value2) {
+            addCriterion("describe between", value1, value2, "describe");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescribeNotBetween(String value1, String value2) {
+            addCriterion("describe not between", value1, value2, "describe");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
