@@ -13,9 +13,7 @@
                     </label>
                 </div>
                 <button class="btn  btn-primary btn-block" type="button">登录</button>
-                <router-link>
-                    <button class="btn  btn-primary btn-block" type="button">注册</button>
-                </router-link>
+                <button class="btn  btn-primary btn-block" type="button">注册</button>
             </form>
 
         </div>
@@ -29,11 +27,25 @@
 </script>
 
 <style scoped>
-    .sr-only {
+    .form-signin{animation:pulse 1s 0s 1 both}
+    @keyframes pulse {
+        from {
+            transform: scale3d(1, 1, 1);
+        }
+
+        50% {
+            transform: scale3d(1.05, 1.05, 1.05);
+        }
+
+        to {
+            transform: scale3d(1, 1, 1);
+        }
+    }
+
+    .sr-only{
         padding-bottom: 50px;
 
     }
-
     .conten {
         padding-top: 40px;
         padding-bottom: 40px;
@@ -46,16 +58,13 @@
         padding: 15px;
         margin: 0 auto;
     }
-
     .form-signin .form-signin-heading,
     .form-signin .checkbox {
         margin-bottom: 10px;
     }
-
     .form-signin .checkbox {
         font-weight: normal;
     }
-
     .form-signin .form-control {
         position: relative;
         height: auto;
@@ -65,17 +74,14 @@
         padding: 10px;
         font-size: 16px;
     }
-
     .form-signin .form-control:focus {
         z-index: 2;
     }
-
     .form-signin input[type="email"] {
         margin-bottom: -1px;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
     }
-
     .form-signin input[type="password"] {
         margin-bottom: 10px;
         border-top-left-radius: 0;

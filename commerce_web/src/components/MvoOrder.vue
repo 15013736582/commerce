@@ -1,44 +1,39 @@
 <template>
-    <div id="BovOrder">
+    <div id="MvoOrder">
         <div id="page-content" class="clearfix">
 
             <div class="page-header position-relative">
-                <h1 style="color: #2679b5;">借卖方<small><i class="icon-double-angle-right"></i> 订单管理</small></h1>
+                <h1 style="color: #2679b5;">品牌商<small><i class="icon-double-angle-right"></i> 订单管理</small></h1>
             </div>
             <form class="form-search">
-                Title：
+                商品标题：
                 <input type="text" class="input-medium search-query">
                 <button onclick="return false;" class="btn btn-purple btn-small">Search <i class="icon-search icon-on-right"></i></button>
             </form>
-            <a href="#" class="btn  btn-success"  style="margin-bottom: 30px">
-                <i class="icon-refresh"></i>
-                Pull Orders
-            </a>
 
             <div class="tabbable">
                 <ul class="nav nav-tabs" id="myTab">
-                    <li class="active"><a data-toggle="tab" href="#AwaitingPayment"> Awaiting Payment</a></li>
-                    <li class=""><a data-toggle="tab" href="#AwaitingShipment"> Awaiting Shipment</a></li>
-                    <li class=""><a data-toggle="tab" href="#shipped">Shiped</a></li>
-                    <li class=""><a data-toggle="tab" href="#complete">Completed Orders</a></li>
-                    <li class=""><a data-toggle="tab" href="#canceled">Cancelled Orders</a></li>
+                    <li class="active"><a data-toggle="tab" href="#AwaitingPayment"> 待支付</a></li>
+                    <li class=""><a data-toggle="tab" href="#AwaitingShipment"> 待发货</a></li>
+                    <li class=""><a data-toggle="tab" href="#shipped">已发货</a></li>
+                    <li class=""><a data-toggle="tab" href="#complete">已完成</a></li>
+                    <li class=""><a data-toggle="tab" href="#canceled">已取消</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="AwaitingPayment" class="tab-pane active">
                         <p>
-                        <table id="table_bug_report" class="table table-striped table-bordered table-hover">
+                        <table  class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th class="center">
                                     <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
                                 </th>
-                                <th>Title</th>
-                                <th>Price</th>
-                                <th class="hidden-480">QTY</th>
-                                <th>Sku</th>
-                                <th class="hidden-480">Order No</th>
-                                <th class="hidden-480">Total</th>
-                                <th> </th>
+                                <th>商品标题</th>
+                                <th>价格</th>
+                                <th class="hidden-480">数量</th>
+                                <th>sku</th>
+                                <th class="hidden-480">订单编号</th>
+                                <th class="hidden-480">订单创建时间</th>
                             </tr>
                             </thead>
 
@@ -49,13 +44,13 @@
                                 </td>
                                 <td><a href="bvo-goodsdetail.html">max.com</a></td>
                                 <td>$60</td>
-                                <td class="hidden-480">400</td>
-                                <td class="hidden-phone">Q8976511</td>
-                                <td class="hidden-480">4,400</td>
-                                <td>$500</td>
+                                <td class="hidden-480">4</td>
+                                <td class="">GM100320</td>
+                                <td class="hidden-480">75684894</td>
                                 <td>
-                                    <a href="bvo-orderPayment.html">Pay Now</a>
+                                    2017-23-02 19:00:20
                                 </td>
+
                             </tr>
 
 
@@ -65,12 +60,65 @@
                                 </td>
                                 <td><a href="bvo-goodsdetail.html">best.com</a></td>
                                 <td>$75</td>
+                                <td class="hidden-480">6</td>
+                                <td class="hidden-phone">GM100320</td>
+                                <td class="hidden-480">75684894</td>
+                                <td>2017-23-02 19:00:20</td>
+
+                            </tr>
+
+
+                            <tr>
+                                <td class="center">
+                                    <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                                </td>
+                                <td><a href="bvo-goodsdetail.html">pro.com</a></td>
+                                <td>$55</td>
+                                <td>4</td>
+                                <td>GM100320</td>
+                                <td>75684894</td>
+                                <td>2017-23-02 19:00:20</td>
+
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        </p>
+                    </div>
+                    <div id="AwaitingShipment" class="tab-pane">
+                        <p>
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th class="center">
+                                    <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
+                                </th>
+                                <th>商品标题</th>
+                                <th>价格</th>
+                                <th class="hidden-480">数量</th>
+                                <th>sku</th>
+                                <th class="hidden-480">订单编号</th>
+                                <th class="hidden-480">订单创建时间</th>
+
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td class="center">
+                                    <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                                </td>
+                                <td><a href="bvo-goodsdetail.html">best.com</a></td>
+                                <td>$75</td>
                                 <td class="hidden-480">6,500</td>
-                                <td class="hidden-phone">GM9012203</td>
-                                <td class="hidden-480">OD23336500</td>
-                                <td>$5678</td>
+                                <td class="">Apr 03</td>
+                                <td class="hidden-480">75684894</td>
                                 <td>
-                                    <a href="bvo-orderPayment.html">Pay Now</a>
+
+                                </td>
+                                <td>
+                                    <button class="btn btn-minier btn-purple send-out">发货</button>
                                 </td>
                             </tr>
 
@@ -82,62 +130,14 @@
                                 <td><a href="bvo-goodsdetail.html">pro.com</a></td>
                                 <td>$55</td>
                                 <td class="hidden-480">4,250</td>
-                                <td class="hidden-phone">GM775332</td>
-                                <td class="hidden-480">T4536476250</td>
-                                <td>$6788</td>
+                                <td class="">Jan 21</td>
+                                <td class="hidden-480">75684894</td>
                                 <td>
-                                    <a href="bvo-orderPayment.html">Pay Now</a>
+
                                 </td>
-                            </tr>
-
-                            </tbody>
-                        </table>
-                        </p>
-                    </div>
-                    <div id="AwaitingShipment" class="tab-pane">
-                        <p>
-                        <table id="table_bug_report" class="table table-striped table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th class="center">
-                                    <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
-                                </th>
-                                <th>Title</th>
-                                <th>Price</th>
-                                <th class="hidden-480">QTY</th>
-                                <th>Sku</th>
-                                <th>Order No</th>
-                                <th class="hidden-480">Total</th>
-
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr>
-                                <td class="center">
-                                    <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                                <td>
+                                    <button class="btn btn-minier btn-purple send-out">发货</button>
                                 </td>
-                                <td><a href="bvo-goodsdetail.html">best.com</a></td>
-                                <td>$75</td>
-                                <td>500</td>
-                                <td>GM667747888</td>
-                                <td>565742</td>
-                                <td>$7000</td>
-
-                            </tr>
-
-
-                            <tr>
-                                <td class="center">
-                                    <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                                </td>
-                                <td><a href="bvo-goodsdetail.html">pro.com</a></td>
-                                <td>$55</td>
-                                <td>4,250</td>
-                                <td>GM667747888</td>
-                                <td>7897777</td>
-                                <td>$5788</td>
-
                             </tr>
 
                             </tbody>
@@ -152,14 +152,14 @@
                                 <th class="center">
                                     <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
                                 </th>
-                                <th>Title</th>
-                                <th>Price</th>
-                                <th>QTY</th>
-                                <th>Sku</th>
-                                <th>Total</th>
-                                <th>Order No</th>
-                                <th>Tracking No</th>
-
+                                <th>商品标题</th>
+                                <th>价格</th>
+                                <th class="hidden-480">数量</th>
+                                <th>sku</th>
+                                <th>订单编号</th>
+                                <th class="hidden-480">订单创建时间</th>
+                                <th class="hidden-480">物流跟踪号</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
 
@@ -167,19 +167,19 @@
 
                             <tr>
                                 <td class="center">
-                                    <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                                    <label><input type="checkbox" class="input" ><span class="lbl"></span></label>
                                 </td>
                                 <td><a href="bvo-goodsdetail.html">ace.com</a></td>
                                 <td>$45</td>
-                                <td>3</td>
-                                <td>sk0012</td>
-
-                                <td>$135</td>
+                                <td class="hidden-480">2</td>
+                                <td>GM100320</td>
                                 <td>
-                                    3562678989
+                                    52223566
                                 </td>
+                                <td>Feb 12</td>
+                                <td><a href="brand-ordertracking.html">46578990890</a></td>
                                 <td>
-                                    <a href="bvo-ordertracking.html">3534658889</a>
+                                    <button class="btn btn-minier btn-yellow cancel">取消</button>
                                 </td>
                             </tr>
 
@@ -189,16 +189,15 @@
                                     <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                                 </td>
                                 <td><a href="bvo-goodsdetail.html">base.com</a></td>
-                                <td>$45</td>
-                                <td>3</td>
-                                <td>sk0012</td>
+                                <td>$35</td>
+                                <td class="hidden-480">2,595</td>
+                                <td>GM100320</td>
+                                <td>8755765</td>
+                                <td>Feb 18</td>
+                                <td><a href="brand-ordertracking.html">75684894</a></td>
 
-                                <td>$135</td>
                                 <td>
-                                    3562678989
-                                </td>
-                                <td>
-                                    <a href="bvo-ordertracking.html">3534658889</a>
+                                    <button class="btn btn-minier btn-yellow cancel">取消</button>
                                 </td>
                             </tr>
 
@@ -208,16 +207,17 @@
                                     <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                                 </td>
                                 <td><a href="bvo-goodsdetail.html">max.com</a></td>
-                                <td>$45</td>
-                                <td>3</td>
-                                <td>sk0012</td>
+                                <td>$60</td>
+                                <td>10</td>
+                                <td>
 
-                                <td>$135</td>
-                                <td>
-                                    3562678989
                                 </td>
+                                <td>867686875</td>
+                                <td>Mar 11</td>
+                                <td><a href="brand-ordertracking.html">75684894</a></td>
+
                                 <td>
-                                    <a href="bvo-ordertracking.html">3534658889</a>
+                                    <button class="btn btn-minier btn-yellow cancel">取消</button>
                                 </td>
                             </tr>
 
@@ -227,16 +227,17 @@
                                     <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                                 </td>
                                 <td><a href="bvo-goodsdetail.html">best.com</a></td>
-                                <td>$45</td>
-                                <td>3</td>
-                                <td>sk0012</td>
+                                <td>$75</td>
+                                <td class="hidden-480">6</td>
+                                <td>
 
-                                <td>$135</td>
-                                <td>
-                                    3562678989
                                 </td>
+                                <td>43678989</td>
+                                <td class="hidden-phone">Apr 03</td>
+                                <td class="hidden-480"><a href="brand-ordertracking.html">75684894</a></td>
+
                                 <td>
-                                    <a href="bvo-ordertracking.html">3534658889</a>
+                                    <button class="btn btn-minier btn-yellow cancel">取消</button>
                                 </td>
                             </tr>
 
@@ -255,13 +256,13 @@
                                 <th class="center">
                                     <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
                                 </th>
-                                <th>Title</th>
-                                <th>Price</th>
-                                <th>QTY</th>
-                                <th>Sku</th>
-                                <th>Total</th>
-                                <th>Order No</th>
-                                <th>Tracking No</th>
+                                <th>商品标题</th>
+                                <th>价格</th>
+                                <th class="hidden-480">数量</th>
+                                <th>sku</th>
+                                <th>订单编号</th>
+                                <th class="hidden-480">订单创建时间</th>
+                                <th class="hidden-480">物流跟踪号</th>
 
                             </tr>
                             </thead>
@@ -275,24 +276,11 @@
                                 <td><a href="bvo-goodsdetail.html">ace.com</a></td>
                                 <td>$45</td>
                                 <td class="hidden-480">3</td>
-                                <td>Gm7643377</td>
-                                <td >$135</td>
-                                <td >546738788</td>
-                                <td class="hidden-480"><a href="bvo-ordertracking.html">46578990890</a></td>
-                            </tr>
+                                <td>GM100320</td>
+                                <td>896777676</td>
+                                <td class="hidden-phone">Feb 12</td>
+                                <td class="hidden-480"><a href="brand-ordertracking.html">46578990890</a></td>
 
-
-                            <tr>
-                                <td class="center">
-                                    <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                                </td>
-                                <td><a href="bvo-goodsdetail.html">ace.com</a></td>
-                                <td>$45</td>
-                                <td class="hidden-480">3</td>
-                                <td>Gm7643377</td>
-                                <td >$135</td>
-                                <td >546738788</td>
-                                <td class="hidden-480"><a href="bvo-ordertracking.html">46578990890</a></td>
 
                             </tr>
 
@@ -301,33 +289,16 @@
                                 <td class="center">
                                     <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                                 </td>
-                                <td><a href="bvo-goodsdetail.html">ace.com</a></td>
-                                <td>$45</td>
-                                <td class="hidden-480">3</td>
-                                <td>Gm7643377</td>
-                                <td >$135</td>
-                                <td >546738788</td>
-                                <td class="hidden-480"><a href="bvo-ordertracking.html">46578990890</a></td>
+                                <td><a href="bvo-goodsdetail.html">base.com</a></td>
+                                <td>$35</td>
+                                <td class="hidden-480">2</td>
+                                <td>GM100320</td>
+                                <td>86754444444</td>
+                                <td class="hidden-phone">Feb 18</td>
+                                <td class="hidden-480"><a href="brand-ordertracking.html">75684894</a></td>
+
 
                             </tr>
-
-
-                            <tr>
-                                <td class="center">
-                                    <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                                </td>
-                                <td><a href="bvo-goodsdetail.html">ace.com</a></td>
-                                <td>$45</td>
-                                <td class="hidden-480">3</td>
-                                <td>Gm7643377</td>
-                                <td >$135</td>
-                                <td >546738788</td>
-                                <td class="hidden-480"><a href="bvo-ordertracking.html">46578990890</a></td>
-
-                            </tr>
-
-
-
 
                             </tbody>
                         </table>
@@ -341,12 +312,13 @@
                                 <th class="center">
                                     <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
                                 </th>
-                                <th>Title</th>
-                                <th>Price</th>
-                                <th class="hidden-480">QTY</th>
-                                <th>	Sku</th>
-                                <th class="hidden-480">Total</th>
-                                <th class="hidden-480">Order No</th>
+                                <th>商品标题</th>
+                                <th>价格</th>
+                                <th class="hidden-480">数量</th>
+                                <th>sku</th>
+                                <th>订单编号</th>
+                                <th class="hidden-480">订单创建时间</th>
+
                             </tr>
                             </thead>
 
@@ -357,10 +329,13 @@
                                 </td>
                                 <td><a href="bvo-goodsdetail.html">base.com</a></td>
                                 <td>$35</td>
-                                <td class="hidden-480">20</td>
-                                <td>Gm356677</td>
-                                <td>$7000</td>
-                                <td>543678788</td>
+                                <td class="hidden-480">2,595</td>
+                                <td class="hidden-phone">Feb 18</td>
+                                <td class="hidden-480">75684894</td>
+                                <td>
+
+                                </td>
+
                             </tr>
 
 
@@ -368,12 +343,15 @@
                                 <td class="center">
                                     <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                                 </td>
-                                <td><a href="bvo-goodsdetail.html">base.com</a></td>
-                                <td>$35</td>
-                                <td class="hidden-480">20</td>
-                                <td>Gm356677</td>
-                                <td>$7000</td>
-                                <td>543678788</td>
+                                <td><a href="bvo-goodsdetail.html">max.com</a></td>
+                                <td>$60</td>
+                                <td class="hidden-480">4,400</td>
+                                <td class="hidden-phone">Mar 11</td>
+                                <td class="hidden-480">75684894</td>
+                                <td>
+
+                                </td>
+
                             </tr>
 
 
@@ -381,13 +359,20 @@
                                 <td class="center">
                                     <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                                 </td>
-                                <td><a href="bvo-goodsdetail.html">base.com</a></td>
-                                <td>$35</td>
-                                <td class="hidden-480">20</td>
-                                <td>Gm356677</td>
-                                <td>$7000</td>
-                                <td>543678788</td>
+                                <td><a href="bvo-goodsdetail.html">best.com</a></td>
+                                <td>$75</td>
+                                <td class="hidden-480">6,500</td>
+                                <td class="hidden-phone">Apr 03</td>
+                                <td class="hidden-480">75684894</td>
+                                <td>
+
+                                </td>
+
                             </tr>
+
+
+
+
                             </tbody>
                         </table>
                         </p>
@@ -400,7 +385,7 @@
 
 <script>
     export default {
-        name: "BovOrder"
+        name: "MvoOrder"
     }
 </script>
 
@@ -408,4 +393,5 @@
     .info div{
         float: right;
     }
+
 </style>

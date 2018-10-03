@@ -1,5 +1,5 @@
 <template>
-    <div id="MovProImg">
+    <div id="MvoProImg">
         <div id="page-content" class="clearfix">
 
             <div class="page-header position-relative" data-toggle="modal" data-target="#myModal">
@@ -211,7 +211,7 @@
 
 <script>
     export default {
-        name: "MovProImg"
+        name: "MvoProImg"
     }
 </script>
 

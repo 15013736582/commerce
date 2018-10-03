@@ -1,5 +1,5 @@
 <template>
-    <div id="BovWish">
+    <div id="BvoWish">
         <div id="page-content" class="clearfix" style="margin-top: 45px;">
             <div class="page-header position-relative">
                 <h1 style="color: #2679b5;">借卖方<small><i class="icon-double-angle-right"></i> 心愿单</small></h1>
@@ -75,7 +75,7 @@
 
 <script>
     export default {
-        name: "BovWish"
+        name: "BvoWish"
     }
 </script>
 

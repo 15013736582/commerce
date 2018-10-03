@@ -1,5 +1,5 @@
 <template>
-    <div id="BovWallet">
+    <div id="BvoWallet">
         <div id="page-content" class="clearfix">
             <div class="page-header position-relative">
                 <h1 style="color: #2679b5;">借卖方<small><i class="icon-double-angle-right"></i> 钱包账号注册</small></h1>
@@ -17,7 +17,7 @@
 
 <script>
     export default {
-        name: "BovWallet"
+        name: "BvoWallet"
     }
 </script>
 

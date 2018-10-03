@@ -1,5 +1,5 @@
 <template>
-    <div id="MovRegister" class="content" style="margin-top: 0px;padding: 0px">
+    <div id="MvoRegister" class="content" style="margin-top: 0px;padding: 0px">
         <div id="main-content" class="clearfix" >
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -66,7 +66,7 @@
 
 <script>
     export default {
-        name: "MovRegister",
+        name: "MvoRegister",
         methods:{
             doRegister(){
                 let data = $('#frm').serialize();

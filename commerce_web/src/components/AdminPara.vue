@@ -1,8 +1,6 @@
 <template>
     <div id="AdminPara">
-
             <div id="page-content" class="clearfix">
-
                 <div class="page-header position-relative">
                     <h1 style="color: #2679b5;">参数管理</h1>
                 </div>
@@ -18,14 +16,11 @@
                         <th>操作</th>
                     </tr>
                     </thead>
-
                     <tbody>
-
                     <tr>
                         <td class="center">
                             <label><input type="checkbox" class="input" ><span class="lbl"></span></label>
                         </td>
-
                         <td>STOCK_TIME</td>
                         <td>7</td>
                         <td>库存预警天数</td>
@@ -36,12 +31,10 @@
                             </div>
                         </td>
                     </tr>
-
                     <tr>
                         <td class="center">
                             <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                         </td>
-
                         <td>POUNDAGE</td>
                         <td>0</td>
                         <td>提现手续费</td>
@@ -52,13 +45,9 @@
                             </div>
                         </td>
                     </tr>
-
-
                     </tbody>
                 </table>
-
                 <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">新增</button>
-
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
@@ -69,7 +58,6 @@
                             </div>
                             <div class="modal-body" >
                                 <form class="form-horizontal">
-
                                     <div class="control-group">
                                         <label class="control-label">参数主键</label>
                                         <div class="controls">
@@ -88,7 +76,6 @@
                                             <input type="text" >
                                         </div>
                                     </div>
-
                                 </form>
                             </div>
                             <div class="modal-footer">

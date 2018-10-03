@@ -1,5 +1,5 @@
 <template>
-    <div id="BovShop">
+    <div id="BvoShop">
         <div id="page-content" class="clearfix">
             <div class="goodscontent">
                 <p>My stores</p>
@@ -24,7 +24,7 @@
 
 <script>
     export default {
-        name: "BovShop"
+        name: "BvoShop"
     }
 </script>
 
