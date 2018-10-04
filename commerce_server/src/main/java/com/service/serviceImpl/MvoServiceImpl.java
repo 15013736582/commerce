@@ -69,4 +69,12 @@ public class MvoServiceImpl implements MvoService {
     public Mvo findById(int id){
         return mvoMapper.selectByPrimaryKey(id);
     }
+
+    public Map findByUserId(int userId){
+        Map<String, Object> result = new HashMap<>();
+        Role role = roleService.findByUserId(userId);
+        result.put("state",0);
+        result.put("mvoInfo",findById(role.getUserInfoId()));
+        return result;
+    }
 }

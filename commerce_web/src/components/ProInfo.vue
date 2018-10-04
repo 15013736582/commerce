@@ -41,7 +41,9 @@
     export default {
         name: "ProInfo",
         data(){
+            return{
 
+            }
         },
         props:[
             'proInfo',

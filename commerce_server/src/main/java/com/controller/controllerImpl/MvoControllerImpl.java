@@ -18,14 +18,20 @@ import java.util.Map;
 
 @PreAuthorize("hasRole('1')")
 @RestController
-@RequestMapping("api/mvo/mvo")
+@RequestMapping("api/mvo")
 public class MvoControllerImpl  {
 
     @Autowired
     MvoServiceImpl mvoService;
 
+    @PreAuthorize("permitAll")
     @RequestMapping("register")
     public Map register(User user, Mvo mvo) {
         return mvoService.register(user, mvo);
+    }
+
+    @RequestMapping("selfInfo")
+    public Map selfInfo(int userId){
+        return mvoService.findByUserId(userId);
     }
 }

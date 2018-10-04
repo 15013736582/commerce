@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <div class="home " >
       <Heander></Heander>
-      <div class="row">
+      <div class="row container" >
           <div class="col-md-2">
               <LeftNav></LeftNav>
           </div>

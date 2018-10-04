@@ -16,9 +16,9 @@ import java.util.Map;
  * @description:
  * @create: 2018-09-28 18:09
  **/
-@PreAuthorize("hasRole('1')")
+@PreAuthorize("hasRole('2')")
 @RestController
-@RequestMapping("api/bvo/bvo")
+@RequestMapping("api/bvo")
 public class BvoControllerImpl implements BvoController {
 
     final
@@ -28,7 +28,7 @@ public class BvoControllerImpl implements BvoController {
     public BvoControllerImpl(BvoServiceImpl bovService) {
         this.bovService = bovService;
     }
-
+    @PreAuthorize("permitAll")
     @RequestMapping("register")
     public Map register(User user, Bvo bvo){
         return  bovService.register(user,bvo);

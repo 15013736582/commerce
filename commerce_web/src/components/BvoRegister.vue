@@ -4,48 +4,37 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body" style="max-height:none" >
-                        <form class="form-horizontal">
+                        <form id="frm" class="form-horizontal">
                             <div class="control-group">
                                 <label class="control-label">username<br>用户名</label>
                                 <div class="controls control-label">
-                                    <input type="text"  >
+                                    <input type="text" name="username"  >
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">password<br>密码</label>
                                 <div class="controls control-label">
-                                    <input type="text"  >
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Company Name<br>公司名称(中)</label>
-                                <div class="controls control-label">
-                                    <input type="text"  >
+                                    <input type="text" name="password" >
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" >Email<br>邮箱</label>
                                 <div class="controls control-label">
-                                    <input type="text"  >
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" >GMC Report Type<br> 品牌商认证类型</label>
-                                <div class="controls control-label">
-                                    <input type="text" >
+                                    <input type="text" name="email" >
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label control-label">Phone<br>电话</label>
                                 <div class="controls control-label">
-                                    <input type="text" >
+                                    <input type="text" name="phone" >
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="btnsave">注册</button>
+                        <button type="button" class="btn btn-primary" id="btnsave" @click="doRegister">注册</button>
                     </div>
+                    <p v-text="hint"></p>
                 </div>
             </div>
         </div>
@@ -54,7 +43,32 @@
 
 <script>
     export default {
-        name: "MvoRegister"
+        name: "MvoRegister",
+        data(){
+            return{
+                hint:""
+            }
+        },
+        methods:{
+            doRegister(){
+                let _this = this;
+                let data = $('#frm').serialize();
+                this.$axios.post("/api/bvo/register",data)
+                    .then(res=>{
+
+                        let data = res.data;
+                        console.log(data)
+                        if(data.state == 0){
+                            _this.hint = "注册成功,3秒后返回登录界面"
+                            let intervalId = setInterval(()=>{
+                                _this.$router.replace({name:"login"})
+                                clearInterval(intervalId)
+                            },3000)
+                        }
+                    })
+            }
+        }
+
     }
 </script>
 

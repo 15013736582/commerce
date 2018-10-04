@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService {
         }
         user = (User) list.get(0);
         Role role = roleService.findByUserId(user.getId());
+        user.setPassword(null);
         result.put("state", 0);
         result.put("userInfo", user);
         result.put("type",role.getRoleType());
@@ -53,7 +54,7 @@ public class UserServiceImpl implements UserService {
         claims.put("userInfo",user);
         claims.put("type",role.getRoleType());
         try {
-            String token =  JwtUtil.createJWT("0",claims,2*60*60*1000);
+            String token =  JwtUtil.createJWT("0",claims,200*60*60*1000);
             CookieUtile.setCookie(token, user, String.valueOf(role.getRoleType()));
         } catch (Exception e) {
             e.printStackTrace();
