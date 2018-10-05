@@ -74,7 +74,7 @@ public class MvoServiceImpl implements MvoService {
      * @return 插入后的主键
      */
     public int add(Mvo mov){
-        mvoMapper.insertSelective(mov);
+        mvoMapper.updateByPrimaryKeySelective(mov);
         return  mov.getId();
     }
 
