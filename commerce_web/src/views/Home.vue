@@ -27,9 +27,9 @@ export default {
 </script>
 
 <style scoped>
-    /*@import "../assets/css/ace.min.css";*/
-    /*@import "../assets/css/ace-skins.min.css";*/
-    /*@import "../assets/css/ace-responsive.min.css";*/
-    /*@import "../assets/css/font-awesome.min.css";*/
-    /*@import "../assets/css/bootstrap-responsive.min.css";*/
+    @import "../assets/css/ace.min.css";
+    @import "../assets/css/ace-skins.min.css";
+    @import "../assets/css/ace-responsive.min.css";
+    @import "../assets/css/font-awesome.min.css";
+    @import "../assets/css/bootstrap-responsive.min.css";
 </style>

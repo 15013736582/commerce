@@ -89,10 +89,10 @@
     }
 
     .main li:hover,
-    :focus {
-        background-color: #f5f5f5;
-        box-shadow: 2px 2px 5px #999;
-    }
+    /*:focus {*/
+        /*background-color: #f5f5f5;*/
+        /*box-shadow: 2px 2px 5px #999;*/
+    /*}*/
 
     .main li a {
         display: inline;
