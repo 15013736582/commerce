@@ -45,6 +45,7 @@ public class DicServiceImpl implements DicService {
     public Map findAll(){
         Map<String, Object> result = new HashMap<>();
         result.put("dicList",dicMapper.selectByExample(null));
+        result.put("state",0);
         return result;
     }
 }

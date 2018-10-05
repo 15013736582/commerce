@@ -1,7 +1,9 @@
 package com.service.serviceImpl;
 
+import com.dto.ResultState;
 import com.mapper.MvoMapper;
 import com.pojo.Mvo;
+import com.pojo.MvoExample;
 import com.pojo.Role;
 import com.pojo.User;
 import com.service.MvoService;
@@ -42,7 +44,7 @@ public class MvoServiceImpl implements MvoService {
         Map<String, Object> result = new HashMap<>();
         List userList = userService.findByName(user.getUsername());
         if (!userList.isEmpty()) {
-            result.put("state",1);
+            result.put("state",ResultState.Fail.getState());
             result.put("mes","用户名已存在");
             return result;
         }
@@ -56,12 +58,22 @@ public class MvoServiceImpl implements MvoService {
         return result;
     }
 
+    /**
+     * @param mvo
+     * @return  map.state状态
+     */
+    public Map updata(Mvo mvo){
+        Map<String, Object> result = new HashMap<>();
+        mvoMapper.updateByPrimaryKey(mvo);
+        result.put("state", ResultState.SECCESS.getState());
+        return  result;
+    }
 
     /**
      * @param mov
      * @return 插入后的主键
      */
-    public int add(Mvo mov ){
+    public int add(Mvo mov){
         mvoMapper.insertSelective(mov);
         return  mov.getId();
     }
@@ -73,7 +85,7 @@ public class MvoServiceImpl implements MvoService {
     public Map findByUserId(int userId){
         Map<String, Object> result = new HashMap<>();
         Role role = roleService.findByUserId(userId);
-        result.put("state",0);
+        result.put("state",ResultState.SECCESS.getState());
         result.put("mvoInfo",findById(role.getUserInfoId()));
         return result;
     }

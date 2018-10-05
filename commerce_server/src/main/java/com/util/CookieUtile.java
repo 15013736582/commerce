@@ -14,23 +14,24 @@ import javax.servlet.http.HttpServletResponse;
  **/
 public class CookieUtile {
     public static void setCookie (String token, User user,String type){
+        int time = 60*60*24*10000;
         ServletRequestAttributes requestAttributes =
                 (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletResponse response = requestAttributes.getResponse();
         Cookie cookie = new javax.servlet.http.Cookie("token",token);
-        cookie.setMaxAge(60*30);
+        cookie.setMaxAge(time);
         cookie.setPath("/");
         response.addCookie(cookie);
         cookie = new javax.servlet.http.Cookie("userType",type);
-        cookie.setMaxAge(60*30);
+        cookie.setMaxAge(time);
         cookie.setPath("/");
         response.addCookie(cookie);
         cookie = new javax.servlet.http.Cookie("userId",String.valueOf(user.getId()));
-        cookie.setMaxAge(60*30);
+        cookie.setMaxAge(time);
         cookie.setPath("/");
         response.addCookie(cookie);
         cookie = new javax.servlet.http.Cookie("userName",user.getNickname());
-        cookie.setMaxAge(60*30);
+        cookie.setMaxAge(time);
         cookie.setPath("/");
         response.addCookie(cookie);
         return;

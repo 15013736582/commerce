@@ -6,35 +6,39 @@
                     <small><i class="icon-double-angle-right"></i> 我的信息</small>
                 </h1>
             </div>
-            <div class="inputName">
-                <div class="mydiv">
-                    <label class="green">中文名: </label>
-                    <input type="text" name="cName" :value="mvoInfo.cName">
-                </div>
-                <div class="mydiv">
-                    <label class="green">英文名:</label>
-                    <input type="text" name="eName" :value="mvoInfo.eName">
-                </div>
-                <div class="mydiv">
-                    <label class="green">Email:</label>
-                    <input type="text" name="email" :value="mvoInfo.email">
-                </div>
+            <form id="frm">
 
-                <div class="mydiv">
-                    <label class="green">认证类型:</label>
-                    <select name="type" id="type" class="form-control" v-model="mvoInfo.reportType">
-                        <option v-for="r in report" :value="r.code"
-                                v-text="r.value">
-                        </option>
-                    </select>
+
+                <div class="inputName">
+                    <div class="mydiv">
+                        <label class="green">中文名: </label>
+                        <input type="text" name="cName" v-model="mvoInfo.cName">
+                    </div>
+                    <div class="mydiv">
+                        <label class="green">英文名:</label>
+                        <input type="text" name="eName" v-model="mvoInfo.eName">
+                    </div>
+                    <div class="mydiv">
+                        <label class="green">Email:</label>
+                        <input type="text" name="email" v-model="mvoInfo.email">
+                    </div>
+
+                    <div class="mydiv">
+                        <label class="green">认证类型:</label>
+                        <select name="type" id="type" class="form-control" v-model="mvoInfo.reportType">
+                            <option v-for="r in report" v-model="r.code"
+                                    v-text="r.value">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="mydiv">
+                        <label class="green">认证地址:</label>
+                        <input type="text" name="reportUrl" v-model="mvoInfo.reportUrl">
+                    </div>
+                    <button type="button" class="btn  btn-success save" @click="doUpdate">save</button>
+                    <!--<button class="btn  btn-pink" onclick="myshop()">My Stores</button>-->
                 </div>
-                <div class="mydiv">
-                    <label class="green">认证地址:</label>
-                    <input type="text" name="reportUrl" :value="mvoInfo.reportUrl">
-                </div>
-                <button class="btn  btn-success save">save</button>
-                <!--<button class="btn  btn-pink" onclick="myshop()">My Stores</button>-->
-            </div>
+            </form>
         </div>
     </div>
 </template>
@@ -68,20 +72,26 @@
                 'acUserInfo'
             ]),
             getMvoInfo() {
-                let _this = this;
                 console.log(this.userInfo.id)
                 this.$axios.post("/api/mvo/selfInfo", $.param({userId: this.userInfo.id}))
                     .then(res => {
-                        _this.mvoInfo = res.data.mvoInfo;
+                        this.mvoInfo = res.data.mvoInfo;
                     });
             },
             getReportType() {
-                let _this = this;
                 this.$axios.post("/api/dic/type", $.param({type: "report"}))
                     .then(res => {
                         console.log(res.data);
-                        _this.report = res.data.dicList;
+                        this.report = res.data.dicList;
                     });
+            },
+            doUpdate() {
+                let data = $.param(this.mvoInfo);
+                console.log(data);
+                this.$axios.post("/api/mvo/update", data)
+                    .then(res => {
+                        console.log(res.data)
+                    })
             }
 
         },

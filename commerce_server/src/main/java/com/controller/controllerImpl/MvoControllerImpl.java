@@ -34,4 +34,9 @@ public class MvoControllerImpl  {
     public Map selfInfo(int userId){
         return mvoService.findByUserId(userId);
     }
+
+    @RequestMapping("update")
+    public Map updata(Mvo mvo){
+        return mvoService.updata(mvo);
+    }
 }
