@@ -1,6 +1,6 @@
 <template>
     <div id="LeftNav">
-        <div id="sidebar">
+        <div id="sidebar1">
             <div id="sidebar-shortcuts">
                 <div id="sidebar-shortcuts-large">
                     <button class="btn btn-small btn-success"><i class="icon-signal"></i></button>
@@ -113,16 +113,5 @@
 </script>
 
 <style scoped>
-    #sidebar{
-        left: 0;
-        margin-top: 0;
-    }
-    body,html{
-        width: 100%;
-        height: 100%;
-    }
-    .blue{
-        color:blue;
-    }
 
 </style>

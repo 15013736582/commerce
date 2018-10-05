@@ -1,6 +1,7 @@
 package com.configuration.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -25,7 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //禁用 csrf
         http.cors().and().csrf().disable().authorizeRequests()
                 //允许以下请求
-                .antMatchers("/security/s2", "/api/user/login").permitAll()
+                .antMatchers(antMatchersUrl())
+                .permitAll()
                 // 所有请求需要身份认证
                 .anyRequest().authenticated()
                 .and()
@@ -39,5 +41,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    }
+
+    public String[] antMatchersUrl(){
+        String []  urls= {
+                "/security/s2",
+                "/api/user/login",
+                "/api/mvo/register",
+                "/api/bvo/register",
+                "/api/dic/*"
+        };
+        return urls;
     }
 }
