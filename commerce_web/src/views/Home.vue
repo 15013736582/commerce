@@ -2,10 +2,10 @@
   <div class="home " >
       <Heander></Heander>
       <div class="row container" >
-          <div class="col-md-2">
+          <div class="col-md-3">
               <LeftNav></LeftNav>
           </div>
-          <div class="col-md-10">
+          <div class="col-md-9">
               <router-view/>
           </div>
       </div>

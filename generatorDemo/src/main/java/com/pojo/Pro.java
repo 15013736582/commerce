@@ -1,5 +1,7 @@
 package com.pojo;
 
+import java.util.Date;
+
 public class Pro {
     private Integer id;
 
@@ -7,11 +9,15 @@ public class Pro {
 
     private Double price;
 
+    private Integer type;
+
     private String reverse;
 
     private String sku;
 
     private String img;
+
+    private String desp;
 
     private String status;
 
@@ -19,16 +25,21 @@ public class Pro {
 
     private Integer shelf;
 
-    public Pro(Integer id, String title, Double price, String reverse, String sku, String img, String status, Integer mId, Integer shelf) {
+    private Date addDate;
+
+    public Pro(Integer id, String title, Double price, Integer type, String reverse, String sku, String img, String desp, String status, Integer mId, Integer shelf, Date addDate) {
         this.id = id;
         this.title = title;
         this.price = price;
+        this.type = type;
         this.reverse = reverse;
         this.sku = sku;
         this.img = img;
+        this.desp = desp;
         this.status = status;
         this.mId = mId;
         this.shelf = shelf;
+        this.addDate = addDate;
     }
 
     public Pro() {
@@ -59,6 +70,14 @@ public class Pro {
         this.price = price;
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
     public String getReverse() {
         return reverse;
     }
@@ -83,6 +102,14 @@ public class Pro {
         this.img = img == null ? null : img.trim();
     }
 
+    public String getDesp() {
+        return desp;
+    }
+
+    public void setDesp(String desp) {
+        this.desp = desp == null ? null : desp.trim();
+    }
+
     public String getStatus() {
         return status;
     }
@@ -105,5 +132,13 @@ public class Pro {
 
     public void setShelf(Integer shelf) {
         this.shelf = shelf;
+    }
+
+    public Date getAddDate() {
+        return addDate;
+    }
+
+    public void setAddDate(Date addDate) {
+        this.addDate = addDate;
     }
 }

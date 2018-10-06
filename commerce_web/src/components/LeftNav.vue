@@ -23,7 +23,7 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'mvoProAdd'}">
+                    <router-link :to="{name:'mvoPro'}">
                         <i class="icon-text-width"></i>
                         <span>品牌商-商品录入</span>
                     </router-link>

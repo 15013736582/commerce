@@ -6,12 +6,15 @@
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="price" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="reverse" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="sku" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="img" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="desp" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="m_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="shelf" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="add_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -73,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, price, reverse, sku, img, status, m_id, shelf
+    id, title, price, type, reverse, sku, img, desp, status, m_id, shelf, add_date
   </sql>
   <select id="selectByExample" parameterType="com.pojo.ProExample" resultMap="BaseResultMap">
     select
@@ -110,12 +113,14 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into pro (title, price, reverse, 
-      sku, img, status, m_id, 
-      shelf)
-    values (#{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{reverse,jdbcType=VARCHAR}, 
-      #{sku,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{mId,jdbcType=INTEGER}, 
-      #{shelf,jdbcType=INTEGER})
+    insert into pro (title, price, type, 
+      reverse, sku, img, 
+      desp, status, m_id, 
+      shelf, add_date)
+    values (#{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{type,jdbcType=INTEGER}, 
+      #{reverse,jdbcType=VARCHAR}, #{sku,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
+      #{desp,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{mId,jdbcType=INTEGER}, 
+      #{shelf,jdbcType=INTEGER}, #{addDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.pojo.Pro">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -129,6 +134,9 @@
       <if test="price != null">
         price,
       </if>
+      <if test="type != null">
+        type,
+      </if>
       <if test="reverse != null">
         reverse,
       </if>
@@ -137,6 +145,9 @@
       </if>
       <if test="img != null">
         img,
+      </if>
+      <if test="desp != null">
+        desp,
       </if>
       <if test="status != null">
         status,
@@ -147,6 +158,9 @@
       <if test="shelf != null">
         shelf,
       </if>
+      <if test="addDate != null">
+        add_date,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="title != null">
@@ -154,6 +168,9 @@
       </if>
       <if test="price != null">
         #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="reverse != null">
         #{reverse,jdbcType=VARCHAR},
@@ -164,6 +181,9 @@
       <if test="img != null">
         #{img,jdbcType=VARCHAR},
       </if>
+      <if test="desp != null">
+        #{desp,jdbcType=VARCHAR},
+      </if>
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
       </if>
@@ -172,6 +192,9 @@
       </if>
       <if test="shelf != null">
         #{shelf,jdbcType=INTEGER},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -193,6 +216,9 @@
       <if test="record.price != null">
         price = #{record.price,jdbcType=DOUBLE},
       </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
       <if test="record.reverse != null">
         reverse = #{record.reverse,jdbcType=VARCHAR},
       </if>
@@ -202,6 +228,9 @@
       <if test="record.img != null">
         img = #{record.img,jdbcType=VARCHAR},
       </if>
+      <if test="record.desp != null">
+        desp = #{record.desp,jdbcType=VARCHAR},
+      </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=VARCHAR},
       </if>
@@ -210,6 +239,9 @@
       </if>
       <if test="record.shelf != null">
         shelf = #{record.shelf,jdbcType=INTEGER},
+      </if>
+      <if test="record.addDate != null">
+        add_date = #{record.addDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -221,12 +253,15 @@
     set id = #{record.id,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DOUBLE},
+      type = #{record.type,jdbcType=INTEGER},
       reverse = #{record.reverse,jdbcType=VARCHAR},
       sku = #{record.sku,jdbcType=VARCHAR},
       img = #{record.img,jdbcType=VARCHAR},
+      desp = #{record.desp,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=VARCHAR},
       m_id = #{record.mId,jdbcType=INTEGER},
-      shelf = #{record.shelf,jdbcType=INTEGER}
+      shelf = #{record.shelf,jdbcType=INTEGER},
+      add_date = #{record.addDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -240,6 +275,9 @@
       <if test="price != null">
         price = #{price,jdbcType=DOUBLE},
       </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
       <if test="reverse != null">
         reverse = #{reverse,jdbcType=VARCHAR},
       </if>
@@ -248,6 +286,9 @@
       </if>
       <if test="img != null">
         img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="desp != null">
+        desp = #{desp,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
@@ -258,6 +299,9 @@
       <if test="shelf != null">
         shelf = #{shelf,jdbcType=INTEGER},
       </if>
+      <if test="addDate != null">
+        add_date = #{addDate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -265,12 +309,15 @@
     update pro
     set title = #{title,jdbcType=VARCHAR},
       price = #{price,jdbcType=DOUBLE},
+      type = #{type,jdbcType=INTEGER},
       reverse = #{reverse,jdbcType=VARCHAR},
       sku = #{sku,jdbcType=VARCHAR},
       img = #{img,jdbcType=VARCHAR},
+      desp = #{desp,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
       m_id = #{mId,jdbcType=INTEGER},
-      shelf = #{shelf,jdbcType=INTEGER}
+      shelf = #{shelf,jdbcType=INTEGER},
+      add_date = #{addDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
