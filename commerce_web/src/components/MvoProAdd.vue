@@ -1,135 +1,132 @@
 <template>
     <div id="MvoProAdd">
-        <div id="page-content" class="clearfix">
+        <div id="main-content" class="clearfix">
+            <div id="page-content" class="clearfix">
+                <div class="page-header position-relative">
+                    <h1 style="color: #2679b5;">品牌商
+                        <small><i class="icon-double-angle-right"></i> 商品信息录入</small>
+                    </h1>
+                </div>
 
+                <form id="frm" class="form-horizontal">
 
-            <div class="page-header position-relative">
-                <h1 style="color: #2679b5;">品牌商<small><i class="icon-double-angle-right"></i> 商品信息录入</small></h1>
+                    <div class="control-group">
+                        <p class="red">商品标题中包含搜索关键字，品牌名，颜色，大小，型号。</p>
+                        <label class="control-label">商品标题</label>
+                        <div class="controls">
+                            <input type="text" name="title">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">商品sku编码</label>
+                        <div class="controls">
+                            <input type="text" name="sku">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">价格</label>
+                        <div class="controls">
+                            <input type="text" name="price">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">库存</label>
+                        <div class="controls">
+                            <input type="text" name="reverse">
+                        </div>
+                    </div>
+                    <div class="control-group my">
+                        <label class="control-label">商品状态</label>
+                        <select name="type" id="type" class="form-control">
+                            <option v-for="r in porType" v-model="r.code"
+                                    v-text="r.value">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">简单描述</label>
+                        <div class="controls">
+                            <textarea type="text" rows="4" cols="50" name="desp"></textarea>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">商品主图</label>
+                        <img class="img-rounded my_img" v-show="uploadImgSrc != '' && uploadImgSrc != null"
+                             :src="'http://qn.limitip.com/'+uploadImgSrc"/>
+                        <input id="file" @change="upLoad($event)" type="file" name="myFile">
+                    </div>
+                    <input type="hidden" name="mId" :value="userInfo.id"/>
+                    <input type="hidden" name="img" :value="uploadImgSrc"/>
+                </form>
+                <div style="text-align: center">
+                    <button class="btn">取消</button>
+                    <button class="btn btn-primary saved" @click="doAdd">增加</button>
+                </div>
             </div>
-            <form class="form-search">
-                商品标题：
-                <input type="text" class="input-medium search-query">
-                <button onclick="return false;" class="btn btn-purple btn-small">Search <i class="icon-search icon-on-right"></i></button>
-            </form>
-            <table id="table_bug_report" class="table table-striped table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th class="center">
-                        <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
-                    </th>
-                    <th>商品标题</th>
-                    <th>商品价格</th>
-                    <th>库存</th>
-                    <th>sku</th>
-
-                    <th>操作</th>
-                </tr>
-                </thead>
-
-                <tbody>
-
-                <tr>
-                    <td class="center">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                    </td>
-                    <td><a href="#">ace.com</a></td>
-                    <td>$45</td>
-                    <td class="hidden-480">3,330</td>
-                    <td class="hidden-phone">GM001031</td>
-
-                    <td>
-                        <div class="inline position-relative" >
-                            <button class="btn btn-mini btn-info" onclick="gotoadd()"><i class="icon-edit"></i></button>
-                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td class="center">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                    </td>
-                    <td><a href="#">base.com</a></td>
-                    <td>$35</td>
-                    <td class="hidden-480">2,595</td>
-                    <td class="hidden-phone">GM001031</td>
-
-                    <td>
-                        <div class="inline position-relative" >
-                            <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"><i class="icon-edit"></i></button>
-                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td class="center">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                    </td>
-                    <td><a href="#">max.com</a></td>
-                    <td>$60</td>
-                    <td class="hidden-480">4,400</td>
-                    <td class="hidden-phone">GM001031</td>
-
-                    <td>
-                        <div class="inline position-relative" >
-                            <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"><i class="icon-edit"></i></button>
-                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td class="center">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                    </td>
-                    <td><a href="#">best.com</a></td>
-                    <td>$75</td>
-                    <td class="hidden-480">6,500</td>
-                    <td class="hidden-phone">GM001031</td>
-
-                    <td>
-                        <div class="inline position-relative" >
-                            <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"><i class="icon-edit"></i></button>
-                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="center">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                    </td>
-                    <td><a href="#">pro.com</a></td>
-                    <td>$55</td>
-                    <td class="hidden-480">4,250</td>
-                    <td class="hidden-phone">GM001031</td>
-
-                    <td>
-                        <div class="inline position-relative" >
-                            <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"><i class="icon-edit"></i></button>
-                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-
-            <button class="btn btn-primary" onclick="gotoadd()">新增</button>
 
         </div>
     </div>
 </template>
 
 <script>
+    import {mapGetters, mapActions} from 'vuex'
     export default {
-        name: "MvoProAdd"
+        name: "MvoProAdd",
+        data() {
+            return {
+                porType: [],
+                uploadImgSrc: "",
+
+            }
+        },
+        computed:{
+            ...mapGetters([
+                'userInfo'
+            ])
+        },
+        methods: {
+            getReportType() {
+                this.$axios.post("/api/dic/type", $.param({type: "proType"}))
+                    .then(res => {
+                        console.log(res.data);
+                        this.porType = res.data.dicList;
+                    });
+            },
+            upLoad(event){
+                let file = event.target.files[0];
+                let data = new FormData();
+                data.append("proImg",file);
+                this.$axios.post("/api/pro/upload",data)
+                    .then(res=> {
+                        this.uploadImgSrc = res.data.imgSrc;
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+
+            },
+            doAdd(){
+                let data = $("#frm").serialize();
+                this.$axios.post("/api/pro/add",data)
+                    .then(res=>{
+
+                    })
+            }
+        },
+        mounted() {
+            this.getReportType();
+        }
+
     }
 </script>
 
 <style scoped>
-
+    .my {
+        width: 30%;
+    }
+    .my_img {
+        width: 200px;
+        height: 200px;
+    }
 </style>

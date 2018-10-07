@@ -30,7 +30,7 @@ public class CookieUtile {
         cookie.setMaxAge(time);
         cookie.setPath("/");
         response.addCookie(cookie);
-        cookie = new javax.servlet.http.Cookie("userName",user.getNickname());
+        cookie = new javax.servlet.http.Cookie("userName",user.getUsername());
         cookie.setMaxAge(time);
         cookie.setPath("/");
         response.addCookie(cookie);

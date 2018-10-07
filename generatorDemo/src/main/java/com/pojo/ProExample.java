@@ -1,6 +1,7 @@
 package com.pojo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ProExample {
@@ -294,6 +295,66 @@ public class ProExample {
             return (Criteria) this;
         }
 
+        public Criteria andTypeIsNull() {
+            addCriterion("type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNotNull() {
+            addCriterion("type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeEqualTo(Integer value) {
+            addCriterion("type =", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotEqualTo(Integer value) {
+            addCriterion("type <>", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThan(Integer value) {
+            addCriterion("type >", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("type >=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThan(Integer value) {
+            addCriterion("type <", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("type <=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIn(List<Integer> values) {
+            addCriterion("type in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotIn(List<Integer> values) {
+            addCriterion("type not in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeBetween(Integer value1, Integer value2) {
+            addCriterion("type between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("type not between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
         public Criteria andReverseIsNull() {
             addCriterion("reverse is null");
             return (Criteria) this;
@@ -504,6 +565,76 @@ public class ProExample {
             return (Criteria) this;
         }
 
+        public Criteria andDespIsNull() {
+            addCriterion("desp is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDespIsNotNull() {
+            addCriterion("desp is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDespEqualTo(String value) {
+            addCriterion("desp =", value, "desp");
+            return (Criteria) this;
+        }
+
+        public Criteria andDespNotEqualTo(String value) {
+            addCriterion("desp <>", value, "desp");
+            return (Criteria) this;
+        }
+
+        public Criteria andDespGreaterThan(String value) {
+            addCriterion("desp >", value, "desp");
+            return (Criteria) this;
+        }
+
+        public Criteria andDespGreaterThanOrEqualTo(String value) {
+            addCriterion("desp >=", value, "desp");
+            return (Criteria) this;
+        }
+
+        public Criteria andDespLessThan(String value) {
+            addCriterion("desp <", value, "desp");
+            return (Criteria) this;
+        }
+
+        public Criteria andDespLessThanOrEqualTo(String value) {
+            addCriterion("desp <=", value, "desp");
+            return (Criteria) this;
+        }
+
+        public Criteria andDespLike(String value) {
+            addCriterion("desp like", value, "desp");
+            return (Criteria) this;
+        }
+
+        public Criteria andDespNotLike(String value) {
+            addCriterion("desp not like", value, "desp");
+            return (Criteria) this;
+        }
+
+        public Criteria andDespIn(List<String> values) {
+            addCriterion("desp in", values, "desp");
+            return (Criteria) this;
+        }
+
+        public Criteria andDespNotIn(List<String> values) {
+            addCriterion("desp not in", values, "desp");
+            return (Criteria) this;
+        }
+
+        public Criteria andDespBetween(String value1, String value2) {
+            addCriterion("desp between", value1, value2, "desp");
+            return (Criteria) this;
+        }
+
+        public Criteria andDespNotBetween(String value1, String value2) {
+            addCriterion("desp not between", value1, value2, "desp");
+            return (Criteria) this;
+        }
+
         public Criteria andStatusIsNull() {
             addCriterion("status is null");
             return (Criteria) this;
@@ -691,6 +822,66 @@ public class ProExample {
 
         public Criteria andShelfNotBetween(Integer value1, Integer value2) {
             addCriterion("shelf not between", value1, value2, "shelf");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateIsNull() {
+            addCriterion("add_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateIsNotNull() {
+            addCriterion("add_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateEqualTo(Date value) {
+            addCriterion("add_date =", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateNotEqualTo(Date value) {
+            addCriterion("add_date <>", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateGreaterThan(Date value) {
+            addCriterion("add_date >", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("add_date >=", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateLessThan(Date value) {
+            addCriterion("add_date <", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateLessThanOrEqualTo(Date value) {
+            addCriterion("add_date <=", value, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateIn(List<Date> values) {
+            addCriterion("add_date in", values, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateNotIn(List<Date> values) {
+            addCriterion("add_date not in", values, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateBetween(Date value1, Date value2) {
+            addCriterion("add_date between", value1, value2, "addDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddDateNotBetween(Date value1, Date value2) {
+            addCriterion("add_date not between", value1, value2, "addDate");
             return (Criteria) this;
         }
     }

@@ -48,8 +48,9 @@
                     .then(res=>{
                         let data = res.data;
                         if(data.state == 0){
-                            data.userInfo.tpye = data.type;
+                            data.userInfo.type = data.type;
                             _this.acUserInfo(data.userInfo)
+                            console.log(data.userInfo)
                             this.$router.replace({name:"home"})
                         }else {
                             _this.hint = "账户或密码错误"
@@ -59,9 +60,12 @@
         },
         mounted(){
             let userId = this.$cookies.get("userId");
+            let type = this.$cookies.get("userType");
+            console.log(type+"@@@@@@@@@@@@@@@@@@@@@@")
             if(userId != null && userId != ""){
                 let userInfo = this.userInfo;
                 userInfo.id = userId;
+                userInfo.type = type;
                 this.acUserInfo(userInfo);
                 this.$router.replace({name:'home'})
             }

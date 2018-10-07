@@ -9,25 +9,25 @@ public class User {
 
     private String password;
 
-    private String nickname;
-
-    private Integer sex;
-
-    private Integer walletId;
-
-    private String token;
+    private Integer role;
 
     private Date addDate;
 
-    public User(Integer id, String username, String password, String nickname, Integer sex, Integer walletId, String token, Date addDate) {
+    private Integer sex;
+
+    private String token;
+
+    private Integer walletId;
+
+    public User(Integer id, String username, String password, Integer role, Date addDate, Integer sex, String token, Integer walletId) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.nickname = nickname;
-        this.sex = sex;
-        this.walletId = walletId;
-        this.token = token;
+        this.role = role;
         this.addDate = addDate;
+        this.sex = sex;
+        this.token = token;
+        this.walletId = walletId;
     }
 
     public User() {
@@ -58,12 +58,20 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getNickname() {
-        return nickname;
+    public Integer getRole() {
+        return role;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname == null ? null : nickname.trim();
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
+    public Date getAddDate() {
+        return addDate;
+    }
+
+    public void setAddDate(Date addDate) {
+        this.addDate = addDate;
     }
 
     public Integer getSex() {
@@ -74,14 +82,6 @@ public class User {
         this.sex = sex;
     }
 
-    public Integer getWalletId() {
-        return walletId;
-    }
-
-    public void setWalletId(Integer walletId) {
-        this.walletId = walletId;
-    }
-
     public String getToken() {
         return token;
     }
@@ -90,11 +90,11 @@ public class User {
         this.token = token == null ? null : token.trim();
     }
 
-    public Date getAddDate() {
-        return addDate;
+    public Integer getWalletId() {
+        return walletId;
     }
 
-    public void setAddDate(Date addDate) {
-        this.addDate = addDate;
+    public void setWalletId(Integer walletId) {
+        this.walletId = walletId;
     }
 }

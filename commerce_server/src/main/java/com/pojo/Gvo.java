@@ -3,11 +3,11 @@ package com.pojo;
 public class Gvo {
     private Integer id;
 
-    private String describe;
+    private String nickname;
 
-    public Gvo(Integer id, String describe) {
+    public Gvo(Integer id, String nickname) {
         this.id = id;
-        this.describe = describe;
+        this.nickname = nickname;
     }
 
     public Gvo() {
@@ -22,11 +22,11 @@ public class Gvo {
         this.id = id;
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe == null ? null : describe.trim();
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
     }
 }
