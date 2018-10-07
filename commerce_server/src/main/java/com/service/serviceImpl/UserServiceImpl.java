@@ -1,6 +1,7 @@
 package com.service.serviceImpl;
 
 import com.mapper.UserMapper;
+import com.pojo.Bvo;
 import com.pojo.Role;
 import com.pojo.User;
 import com.pojo.UserExample;
@@ -91,5 +92,11 @@ public class UserServiceImpl implements UserService {
         criteria.andUsernameEqualTo(user.getUsername());
         criteria.andPasswordEqualTo(user.getPassword());
         return userMapper.selectByExample(ex);
+    }
+
+    public User findById(int userId){
+
+       return userMapper.selectByPrimaryKey(userId);
+
     }
 }

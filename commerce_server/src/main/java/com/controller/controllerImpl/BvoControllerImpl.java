@@ -22,16 +22,26 @@ import java.util.Map;
 public class BvoControllerImpl implements BvoController {
 
     final
-    BvoServiceImpl bovService;
+    BvoServiceImpl bvoService;
 
     @Autowired
-    public BvoControllerImpl(BvoServiceImpl bovService) {
-        this.bovService = bovService;
+    public BvoControllerImpl(BvoServiceImpl bvoService) {
+        this.bvoService = bvoService;
     }
+
     @PreAuthorize("permitAll")
     @RequestMapping("register")
     public Map register(User user, Bvo bvo){
-        return  bovService.register(user,bvo);
+        return  bvoService.register(user,bvo);
     }
 
+    @RequestMapping("selfInfo")
+    public Map selfInfo(int userId){
+        return  bvoService.findByUserId(userId);
+    }
+
+    @RequestMapping("update")
+    public  Map update(Bvo bvo){
+        return  bvoService.update(bvo);
+    }
 }

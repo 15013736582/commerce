@@ -1,5 +1,6 @@
 package com.service.serviceImpl;
 
+import com.dto.ResultState;
 import com.mapper.BvoMapper;
 import com.pojo.Bvo;
 import com.pojo.Role;
@@ -72,4 +73,22 @@ public class BvoServiceImpl {
     public Bvo findById(int id){
         return bvoMapper.selectByPrimaryKey(id);
     }
+
+    public  Map update(Bvo bvo){
+        Map<String,Object> result=new HashMap<>();
+//        自动找bvo中主键
+        bvoMapper.updateByPrimaryKey(bvo);
+        result.put("state", ResultState.SECCESS.getState());
+        return result;
+    }
+
+    public  Map findByUserId(int userId){
+        Map<String,Object> result=new HashMap<>();
+        Role role=roleService.findByUserId(userId);
+        result.put("state",ResultState.SECCESS.getState());
+        result.put("bvoInfo",findById(role.getUserInfoId()));
+        result.put("username",userService.findById(userId).getUsername());
+        return  result;
+    }
+
 }

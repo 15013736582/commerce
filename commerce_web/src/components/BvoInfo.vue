@@ -8,20 +8,69 @@
                     </h1>
                 </div>
                 <div class="inputName">
-                    <div class="mydiv"><label class="green">Name: </label><input type="text" value="" placeholder="Lucy"></div>
-                    <div class="mydiv"><label class="green">Email:</label><input type="text" value="" placeholder="845153@qq.com">
+                    <div class="mydiv"><label class="green">Name: </label><input type="text" name="nickname" v-model="bvoInfo.username"></div>
+                    <div class="mydiv"><label class="green">Email:</label><input type="text" name="email" v-model="bvoInfo.email">
                     </div>
-                    <div class="mydiv"><label class="green">Phone:</label><input type="text" value="" placeholder="1376533621"></div>
-                    <button class="btn  btn-success save">save</button>
-                    <button class="btn  btn-pink" onclick="myshop()">My Stores</button>
+                    <div class="mydiv"><label class="green">Phone:</label><input type="text" name="phone" v-model="bvoInfo.phone"></div>
+                    <button class="btn  btn-success save" @click="doUpdate">save</button>
+                    <!--<button class="btn  btn-pink" onclick="myshop()">My Stores</button>-->
                 </div>
             </div>
     </div>
 </template>
 
 <script>
+    import {mapGetters, mapActions} from 'vuex'
     export default {
-        name: "BvoInfo"
+        name: "BvoInfo",
+        data(){
+            return{
+                bvoInfo:{
+                    id:null,
+                    nickname: null,
+                    email:null,
+                    phone:null
+                },
+                report:[]
+            }
+        },
+        computed:{
+            ...mapGetters([
+                'userInfo'
+            ])
+        },
+        methods:{
+            ...mapActions([
+                'acUserInfo'
+            ]),
+            getBvoInfo(){
+
+                this.$axios.post("/api/bvo/selfInfo",$.param({userId:this.userInfo.id}))
+                    .then(res=>{
+                        console.log(res.data);
+                        this.bvoInfo=res.data.bvoInfo;
+                        this.bvoInfo.username=res.data.username;
+                        console.log(this.bvoInfo)
+                    });
+            },
+            getReportType(){
+                this.$axios.post("/api/dic/type",$.param({type:"report"}))
+                    .then(res=>{
+                        this.report=res.data.dicList;
+                    });
+            },
+            doUpdate(){
+                let data=$.param(this.bvoInfo);
+                this.$axios.post("/api/bvo/update",data)
+                    .then(res=>{
+                        console.log(res.data)
+                    })
+            }
+        },
+        mounted(){
+            this.getBvoInfo();
+            this.getReportType();
+        }
     }
 </script>
 
