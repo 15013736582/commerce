@@ -18,7 +18,7 @@
                             <ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
 
 
-                                <li><a href="logout"><i class="icon-off"></i> 退出</a></li>
+                                <li ><a @click="cleanCookie"><i class="icon-off"></i> 退出</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -30,7 +30,15 @@
 
 <script>
     export default {
-        name: "Header"
+        name: "Header",
+        methods:{
+            cleanCookie(){
+                this.$cookies.remove('token');
+                this.$cookies.remove('userType');
+                this.$cookies.remove('userId');
+                this.$router.replace({name:"login"})
+            }
+        }
     }
 </script>
 

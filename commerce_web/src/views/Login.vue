@@ -61,8 +61,7 @@
         mounted(){
             let userId = this.$cookies.get("userId");
             let type = this.$cookies.get("userType");
-            console.log(type+"@@@@@@@@@@@@@@@@@@@@@@")
-            if(userId != null && userId != ""){
+            if(userId   != null && userId != ""){
                 let userInfo = this.userInfo;
                 userInfo.id = userId;
                 userInfo.type = type;
