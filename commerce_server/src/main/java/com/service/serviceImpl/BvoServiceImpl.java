@@ -2,12 +2,10 @@ package com.service.serviceImpl;
 
 import com.dto.ResultState;
 import com.mapper.BvoMapper;
-import com.pojo.Bvo;
-import com.pojo.Role;
-import com.pojo.User;
+import com.mapper.StoreMapper;
+import com.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.text.normalizer.UBiDiProps;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,12 +24,14 @@ public class BvoServiceImpl {
     private final UserServiceImpl userService;
 
     private final BvoMapper bvoMapper;
+    private final StoreMapper storeMapper;
 
     @Autowired
-    public BvoServiceImpl(RoleServiceImpl roleService, UserServiceImpl userService, BvoMapper bvoMapper) {
+    public BvoServiceImpl(RoleServiceImpl roleService, UserServiceImpl userService, BvoMapper bvoMapper, StoreMapper storeMapper) {
         this.roleService = roleService;
         this.userService = userService;
         this.bvoMapper = bvoMapper;
+        this.storeMapper = storeMapper;
     }
 
     /**
@@ -91,4 +91,27 @@ public class BvoServiceImpl {
         return  result;
     }
 
+    public Map findStore(int bid){
+        Map<String,Object> result=new HashMap<>();
+        StoreExample ex=new StoreExample();
+        StoreExample.Criteria criteria=ex.createCriteria();
+        criteria.andBIdEqualTo(bid);
+//        criteria.andPlatformEqualTo(platform);
+         storeMapper.selectByExample(ex);
+         result.put("store",storeMapper.selectByExample(ex));
+         return result;
+    }
+
+    public Map addStore(Store store){
+        Map<String,Object> result=new HashMap<>();
+        StoreExample ex=new StoreExample();
+        StoreExample.Criteria criteria=ex.createCriteria();
+        criteria.andPlatformEqualTo(store.getPlatform());
+        criteria.andBIdEqualTo(store.getbId());
+        criteria.andNameEqualTo(store.getName());
+        result.put("state",ResultState.SECCESS.getState());
+        result.put("store",storeMapper.insertSelective(store));
+        return  result;
+
+    }
 }

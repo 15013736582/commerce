@@ -216,37 +216,6 @@
 </script>
 
 <style scoped>
-    .modal{
-        width: 800px;
-        margin-left: -400px;
-    }
-    .form-control {
-        display: block;
-        width: 50%;
-        height: 35px;
-        line-height: 35px;
-        margin-bottom: 20px;
-        padding: 6px 12px;
-        font-size: 14px;
-        color: #555;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    }
-    .thumbnail {
-        float: left;
-        position: relative;
-        margin: 0 20px 20px 0;
-        width: 110px;
-        height: 110px;
-        padding: 4px;
-    }
     .file-item .info {
         position: absolute;
         left: 4px;
@@ -262,12 +231,6 @@
         text-overflow: ellipsis;
         font-size: 12px;
         z-index: 10;
-    }
-    #filePicker {
-        display: inline-block;
-
-        vertical-align: middle;
-        margin: 0 12px 0 0;
     }
     .imgList{
         width: 30px;

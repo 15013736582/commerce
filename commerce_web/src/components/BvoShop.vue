@@ -5,17 +5,20 @@
                 <p>My stores</p>
                 <div class="store">
                     <h3 class="blue">amamzon</h3>
-                    <p>store_001</p>
-                    <p>store_002</p>
-                    <p>store_003</p>
+                    <p v-for="s in store" v-if="s.platform==0">
+                        {{s.name}}
+                    </p>
                 </div>
                 <div class="store">
                     <h3 class="blue">ebay</h3>
-                    <p>store_001</p>
-                    <p>store_002</p>
-                    <p>store_003</p>
+                    <p v-for="s in store" v-if="s.platform==1">{{s.name}}</p>
                 </div>
-                <div style="text-align: right"><button class="btn btn-primary addshop">Add a new store</button></div>
+                <div style="text-align: right">
+                    <router-link :to="{name:'bvoShopAdd'}" >
+                        <button class="btn btn-primary addshop" >Add a new store</button>
+                    </router-link>
+
+                </div>
 
             </div>
         </div>
@@ -23,8 +26,36 @@
 </template>
 
 <script>
+    import {mapGetters, mapActions} from 'vuex'
+
     export default {
-        name: "BvoShop"
+        name: "BvoShop",
+        data() {
+            return {
+                store: [],
+                report: []
+            }
+        },
+        computed: {
+            ...mapGetters([
+                'userInfo'
+            ])
+        },
+        methods: {
+            getStore() {
+                this.$axios.post("/api/bvo/findStore", $.param({userId: this.userInfo.id}))
+                    .then(res => {
+                        this.store = res.data.store;
+                        console.log(this.store)
+                    });
+            },
+
+
+        },
+        mounted() {
+            this.getStore();
+
+        }
     }
 </script>
 
