@@ -17,6 +17,7 @@ import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
 import com.service.ProService;
 import org.apache.commons.io.FileUtils;
+import org.apache.ibatis.annotations.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -81,10 +82,27 @@ public class ProServiceImpl implements ProService {
         return result;
     }
 
+    public void update(Pro pro){
+        proMapper.updateByPrimaryKeySelective(pro);
+    }
+
+    public List findByUserId(int userId) {
+        ProExample ex = new ProExample();
+        ProExample.Criteria cr = ex.createCriteria();
+        cr.andMIdEqualTo(userId);
+        return proMapper.selectByExample(ex);
+    }
 
     public Map add(Pro pro){
         Map result = new HashMap();
         proMapper.insertSelective(pro);
+        result.put("state", ResultState.SECCESS.getState());
+        return result;
+    }
+
+    public Map del(int id){
+        Map<String, Object> result = new HashMap<>();
+        proMapper.deleteByPrimaryKey(id);
         result.put("state", ResultState.SECCESS.getState());
         return result;
     }

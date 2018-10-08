@@ -1,5 +1,6 @@
 <template>
     <div id="MvoPro">
+
         <div id="page-content" class="clearfix">
 
 
@@ -21,122 +22,201 @@
                         <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
                     </th>
                     <th>商品标题</th>
+                    <th>商品分类</th>
                     <th>商品价格</th>
                     <th>库存</th>
                     <th>sku</th>
-
+                    <th>状态</th>
                     <th>操作</th>
                 </tr>
                 </thead>
 
                 <tbody>
-
-                <tr>
+                <tr v-for="(p,index) in proList" :key="index">
                     <td class="center">
                         <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                     </td>
-                    <td><a href="#">ace.com</a></td>
-                    <td>$45</td>
-                    <td class="hidden-480">3,330</td>
-                    <td class="hidden-phone">GM001031</td>
-
+                    <td>{{p.title}}</td>
+                    <td>{{p.type | dicCover('proType',dicList)}}</td>
+                    <td>{{p.price}}</td>
+                    <td class="hidden-480">{{p.reverse}}</td>
+                    <td class="hidden-phone">{{p.sku}}</td>
+                    <td class="hidden-phone">
+                        <span class="label label-sm label-info arrowed arrowed-righ">
+                            {{p.status | dicCover('proState',dicList)}}
+                        </span>
+                    </td>
                     <td>
+                        <!--<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" @click="DicAdd">新增</button>-->
                         <div class="inline position-relative">
-                            <button class="btn btn-mini btn-info" onclick="gotoadd()"><i class="icon-edit"></i></button>
-                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
+                            <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"
+                                    @click="update(index)"><i class="icon-edit"></i></button>
+                            <button class="btn btn-mini btn-danger" @click="dele(index)"><i class="icon-trash"></i></button>
                         </div>
                     </td>
                 </tr>
-
-
-                <tr>
-                    <td class="center">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                    </td>
-                    <td><a href="#">base.com</a></td>
-                    <td>$35</td>
-                    <td class="hidden-480">2,595</td>
-                    <td class="hidden-phone">GM001031</td>
-
-                    <td>
-                        <div class="inline position-relative">
-                            <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"><i
-                                    class="icon-edit"></i></button>
-                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td class="center">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                    </td>
-                    <td><a href="#">max.com</a></td>
-                    <td>$60</td>
-                    <td class="hidden-480">4,400</td>
-                    <td class="hidden-phone">GM001031</td>
-
-                    <td>
-                        <div class="inline position-relative">
-                            <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"><i
-                                    class="icon-edit"></i></button>
-                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td class="center">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                    </td>
-                    <td><a href="#">best.com</a></td>
-                    <td>$75</td>
-                    <td class="hidden-480">6,500</td>
-                    <td class="hidden-phone">GM001031</td>
-
-                    <td>
-                        <div class="inline position-relative">
-                            <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"><i
-                                    class="icon-edit"></i></button>
-                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="center">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                    </td>
-                    <td><a href="#">pro.com</a></td>
-                    <td>$55</td>
-                    <td class="hidden-480">4,250</td>
-                    <td class="hidden-phone">GM001031</td>
-
-                    <td>
-                        <div class="inline position-relative">
-                            <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"><i
-                                    class="icon-edit"></i></button>
-                            <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-
                 </tbody>
             </table>
             <router-link :to="{name:'mvoProAdd'}">
                 <button class="btn btn-primary">新增</button>
             </router-link>
         </div>
+
+        <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">数据字典信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <p class="red">商品标题中包含搜索关键字，品牌名，颜色，大小，型号。</p>
+                                <label class="control-label">商品标题</label>
+                                <div class="controls">
+                                    <input type="text" name="title" v-model="currPro.title">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">商品sku编码</label>
+                                <div class="controls">
+                                    <input type="text" name="sku" v-model="currPro.sku">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">价格</label>
+                                <div class="controls">
+                                    <input type="text" name="price" v-model="currPro.price">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">库存</label>
+                                <div class="controls">
+                                    <input type="text" name="reverse" v-model="currPro.reverse">
+                                </div>
+                            </div>
+                            <div class="control-group my">
+                                <label class="control-label">商品类型</label>
+                                <select v-model="currPro.type" class="form-control">
+                                    <option v-for="r in dicList" v-if="r.type=='proType'" v-model="r.code"
+                                            :value="r.code" v-text="r.value">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="control-group my">
+                                <label class="control-label">商品状态</label>
+                                <select v-model="currPro.status" class="form-control">
+                                    <option v-for="r in dicList" v-if="r.type == 'proState'" v-model="r.code"
+                                            :value="r.code" v-text="r.value">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">简单描述</label>
+                                <div class="controls">
+                                    <textarea type="text" rows="4" cols="50" name="desp"
+                                              v-model="currPro.desp"></textarea>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">商品主图</label>
+                                <img class="img-rounded my_img" v-show="currPro.img != '' && currPro.img != null"
+                                     :src="'http://qn.limitip.com/'+currPro.img"/>
+                                <input id="file" @change="upLoad($event)" type="file" name="myFile">
+                            </div>
+                            <input type="hidden" name="mId" :value="userInfo.id"/>
+                            <input type="hidden" name="img" :value="currPro.img"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="doUpdate">更新
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+    import {mapGetters, mapActions} from 'vuex'
+
     export default {
-        name: "MvoPro"
+        name: "MvoPro",
+        data() {
+            return {
+                proList: [],
+                currPro: {},
+                dicList: [],
+            }
+        },
+        computed: {
+            ...mapGetters([
+                'userInfo'
+            ])
+        },
+        methods: {
+            getPro() {
+                this.$axios.post("/api/mvo/findProByUserId", $.param({userId: this.userInfo.id}))
+                    .then(res => {
+                        this.proList = res.data.list;
+                    })
+            },
+            getDic() {
+                this.$axios.post("/api/dic/all")
+                    .then(res => {
+                        this.dicList = res.data.dicList;
+                    })
+            },
+            dele(index){
+                this.$axios.post("/api/mvo/delPro",$.param({proId:this.proList[index].id}))
+                    .then(res=>{
+                        if(res.data.state == 0){
+                            console.log(index);
+                            this.proList.splice(index,1);
+                        }
+                    })
+            },
+            update(index) {
+                this.currPro = {...this.proList[index]};
+                console.log(this.currPro)
+            },
+
+            doUpdate(){
+                this.$axios.post("/api/mvo/updatePro",$.param(this.currPro))
+                    .then(res=>{
+                        this.getPro()
+                    })
+            },
+            upLoad(event) {
+                let file = event.target.files[0];
+                let data = new FormData();
+                data.append("proImg", file);
+                this.$axios.post("/api/pro/upload", data)
+                    .then(res => {
+                        this.currPro.img = res.data.imgSrc;
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            },
+        },
+        mounted() {
+            this.getPro();
+            this.getDic();
+        }
     }
 </script>
 
 <style scoped>
-
+    .my_img {
+        width: 200px;
+        height: 200px;
+    }
 </style>

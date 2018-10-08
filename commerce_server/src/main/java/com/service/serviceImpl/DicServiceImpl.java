@@ -83,4 +83,6 @@ public class DicServiceImpl implements DicService {
         result.put("state", ResultState.SECCESS);
         return result;
     }
+
+
 }

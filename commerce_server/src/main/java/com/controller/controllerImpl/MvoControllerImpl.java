@@ -1,6 +1,7 @@
 package com.controller.controllerImpl;
 
 import com.pojo.Mvo;
+import com.pojo.Pro;
 import com.pojo.User;
 import com.service.serviceImpl.MvoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import java.util.Map;
 @PreAuthorize("hasRole('1')")
 @RestController
 @RequestMapping("api/mvo")
-public class MvoControllerImpl  {
+public class MvoControllerImpl {
 
     @Autowired
     MvoServiceImpl mvoService;
@@ -31,12 +32,28 @@ public class MvoControllerImpl  {
     }
 
     @RequestMapping("selfInfo")
-    public Map selfInfo(int userId){
+    public Map selfInfo(int userId) {
         return mvoService.findByUserId(userId);
     }
 
     @RequestMapping("update")
-    public Map updata(Mvo mvo){
+    public Map updata(Mvo mvo) {
         return mvoService.updata(mvo);
+    }
+
+    @RequestMapping("findProByUserId")
+    public Map findProByUserId(int userId) {
+        return mvoService.findProAll(userId);
+    }
+
+    @RequestMapping("updatePro")
+    public Map updatePro(Pro pro) {
+        return mvoService.updatePro(pro);
+    }
+
+
+    @RequestMapping("delPro")
+    public Map delPro(int proId) {
+        return mvoService.delPro(proId);
     }
 }
