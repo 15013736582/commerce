@@ -118,4 +118,15 @@ public class ProServiceImpl implements ProService {
         return result;
     }
 
+    public  Map findByPname(String title){
+        Map<String,Object> result=new HashMap<>();
+        ProExample ex=new ProExample();
+        ProExample.Criteria criteria=ex.createCriteria();
+        String t="%"+title+"%";
+        criteria.andTitleLike(t);
+        List list=proMapper.selectByExample(ex);
+        result.put("state", ResultState.SECCESS.getState());
+        result.put("proList",list);
+        return  result;
+    }
 }

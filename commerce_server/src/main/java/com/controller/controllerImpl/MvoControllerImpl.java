@@ -51,9 +51,10 @@ public class MvoControllerImpl {
         return mvoService.updatePro(pro);
     }
 
-
     @RequestMapping("delPro")
     public Map delPro(int proId) {
         return mvoService.delPro(proId);
     }
+
+
 }
