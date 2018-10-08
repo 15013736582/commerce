@@ -1,6 +1,8 @@
 package com.service.serviceImpl;
 
+import com.dto.ResultState;
 import com.mapper.UserMapper;
+import com.pojo.Bvo;
 import com.pojo.Role;
 import com.pojo.User;
 import com.pojo.UserExample;
@@ -91,5 +93,23 @@ public class UserServiceImpl implements UserService {
         criteria.andUsernameEqualTo(user.getUsername());
         criteria.andPasswordEqualTo(user.getPassword());
         return userMapper.selectByExample(ex);
+    }
+
+    public User findById(int userId){
+       return userMapper.selectByPrimaryKey(userId);
+    }
+
+    public User addWallet(User user){
+        userMapper.updateByPrimaryKeySelective(user);
+        return user;
+    }
+
+    public Map getUserById(int userId){
+        Map<String, Object> result = new HashMap<>();
+        User user = userMapper.selectByPrimaryKey(userId);
+        user.setPassword(null);
+        result.put("state", ResultState.SECCESS.getState());
+        result.put("userInfo", user);
+        return  result;
     }
 }

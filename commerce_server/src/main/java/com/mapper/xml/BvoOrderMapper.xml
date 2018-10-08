@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mapper.BroOrderMapper">
-  <resultMap id="BaseResultMap" type="com.pojo.BroOrder">
+<mapper namespace="com.mapper.BvoOrderMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.BvoOrder">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="price" javaType="java.lang.Double" jdbcType="DOUBLE" />
       <arg column="qty" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="sku" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="total" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="wish" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="is_pay" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="u_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -73,16 +71,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, price, qty, sku, total, wish, is_pay, u_id
+    id, title, price, qty, is_pay, u_id, create_date
   </sql>
-  <select id="selectByExample" parameterType="com.pojo.BroOrderExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.pojo.BvoOrderExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from bro_order
+    from bvo_order
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,35 +91,35 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from bro_order
+    from bvo_order
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from bro_order
+    delete from bvo_order
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.pojo.BroOrderExample">
-    delete from bro_order
+  <delete id="deleteByExample" parameterType="com.pojo.BvoOrderExample">
+    delete from bvo_order
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.pojo.BroOrder">
+  <insert id="insert" parameterType="com.pojo.BvoOrder">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into bro_order (title, price, qty, 
-      sku, total, wish, is_pay, 
-      u_id)
+    insert into bvo_order (title, price, qty, 
+      is_pay, u_id, create_date
+      )
     values (#{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{qty,jdbcType=INTEGER}, 
-      #{sku,jdbcType=VARCHAR}, #{total,jdbcType=VARCHAR}, #{wish,jdbcType=INTEGER}, #{isPay,jdbcType=INTEGER}, 
-      #{uId,jdbcType=INTEGER})
+      #{isPay,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.pojo.BroOrder">
+  <insert id="insertSelective" parameterType="com.pojo.BvoOrder">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into bro_order
+    insert into bvo_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="title != null">
         title,
@@ -132,20 +130,14 @@
       <if test="qty != null">
         qty,
       </if>
-      <if test="sku != null">
-        sku,
-      </if>
-      <if test="total != null">
-        total,
-      </if>
-      <if test="wish != null">
-        wish,
-      </if>
       <if test="isPay != null">
         is_pay,
       </if>
       <if test="uId != null">
         u_id,
+      </if>
+      <if test="createDate != null">
+        create_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -158,31 +150,25 @@
       <if test="qty != null">
         #{qty,jdbcType=INTEGER},
       </if>
-      <if test="sku != null">
-        #{sku,jdbcType=VARCHAR},
-      </if>
-      <if test="total != null">
-        #{total,jdbcType=VARCHAR},
-      </if>
-      <if test="wish != null">
-        #{wish,jdbcType=INTEGER},
-      </if>
       <if test="isPay != null">
         #{isPay,jdbcType=INTEGER},
       </if>
       <if test="uId != null">
         #{uId,jdbcType=INTEGER},
       </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.pojo.BroOrderExample" resultType="java.lang.Long">
-    select count(*) from bro_order
+  <select id="countByExample" parameterType="com.pojo.BvoOrderExample" resultType="java.lang.Long">
+    select count(*) from bvo_order
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update bro_order
+    update bvo_order
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
@@ -196,20 +182,14 @@
       <if test="record.qty != null">
         qty = #{record.qty,jdbcType=INTEGER},
       </if>
-      <if test="record.sku != null">
-        sku = #{record.sku,jdbcType=VARCHAR},
-      </if>
-      <if test="record.total != null">
-        total = #{record.total,jdbcType=VARCHAR},
-      </if>
-      <if test="record.wish != null">
-        wish = #{record.wish,jdbcType=INTEGER},
-      </if>
       <if test="record.isPay != null">
         is_pay = #{record.isPay,jdbcType=INTEGER},
       </if>
       <if test="record.uId != null">
         u_id = #{record.uId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -217,22 +197,20 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update bro_order
+    update bvo_order
     set id = #{record.id,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DOUBLE},
       qty = #{record.qty,jdbcType=INTEGER},
-      sku = #{record.sku,jdbcType=VARCHAR},
-      total = #{record.total,jdbcType=VARCHAR},
-      wish = #{record.wish,jdbcType=INTEGER},
       is_pay = #{record.isPay,jdbcType=INTEGER},
-      u_id = #{record.uId,jdbcType=INTEGER}
+      u_id = #{record.uId,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.BroOrder">
-    update bro_order
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.BvoOrder">
+    update bvo_order
     <set>
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
@@ -243,34 +221,26 @@
       <if test="qty != null">
         qty = #{qty,jdbcType=INTEGER},
       </if>
-      <if test="sku != null">
-        sku = #{sku,jdbcType=VARCHAR},
-      </if>
-      <if test="total != null">
-        total = #{total,jdbcType=VARCHAR},
-      </if>
-      <if test="wish != null">
-        wish = #{wish,jdbcType=INTEGER},
-      </if>
       <if test="isPay != null">
         is_pay = #{isPay,jdbcType=INTEGER},
       </if>
       <if test="uId != null">
         u_id = #{uId,jdbcType=INTEGER},
       </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.pojo.BroOrder">
-    update bro_order
+  <update id="updateByPrimaryKey" parameterType="com.pojo.BvoOrder">
+    update bvo_order
     set title = #{title,jdbcType=VARCHAR},
       price = #{price,jdbcType=DOUBLE},
       qty = #{qty,jdbcType=INTEGER},
-      sku = #{sku,jdbcType=VARCHAR},
-      total = #{total,jdbcType=VARCHAR},
-      wish = #{wish,jdbcType=INTEGER},
       is_pay = #{isPay,jdbcType=INTEGER},
-      u_id = #{uId,jdbcType=INTEGER}
+      u_id = #{uId,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -25,7 +25,7 @@
 
                     <div class="mydiv">
                         <label class="green">认证类型:</label>
-                        <select name="type" id="type" class="form-control" v-model="mvoInfo.reportType">
+                        <select name="type"  class="form-control" v-model="mvoInfo.reportType">
                             <option v-for="r in report" v-model="r.code"
                                     v-text="r.value">
                             </option>

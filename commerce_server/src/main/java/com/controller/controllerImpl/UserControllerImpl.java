@@ -1,12 +1,15 @@
 package com.controller.controllerImpl;
 
 import com.controller.UserController;
+import com.dto.ResultState;
 import com.pojo.User;
+import com.qiniu.storage.model.FileListing;
 import com.service.serviceImpl.UserServiceImpl;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -27,5 +30,10 @@ public class UserControllerImpl implements UserController {
     @RequestMapping("login")
     public Map login(User user){
         return userService.login(user);
+    }
+
+    @RequestMapping("getUserById")
+    public Map getUserById(int userId){
+        return userService.getUserById(userId);
     }
 }

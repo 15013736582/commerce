@@ -32,11 +32,12 @@
                         <td>{{dic.value}}</td>
                         <td>
                             <div class="inline position-relative">
-                                <button   class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"
-                                          @click="update(index)" >
+                                <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"
+                                        @click="update(index)">
                                     <i class="icon-edit"></i>
                                 </button>
-                                <button class="btn btn-mini btn-danger" @click="doDel(index)"><i class="icon-trash"></i></button>
+                                <button class="btn btn-mini btn-danger" @click="doDel(index)"><i class="icon-trash"></i>
+                                </button>
                             </div>
                         </td>
                     </tr>
@@ -45,57 +46,60 @@
 
                 <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" @click="DicAdd">新增</button>
 
-                <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">数据字典信息</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal">
+                <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">数据字典信息</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
 
-                                <div class="control-group">
-                                    <label class="control-label">字典类型</label>
-                                    <div class="controls">
-                                        <input type="text" v-model="model.type">
+                                    <div class="control-group">
+                                        <label class="control-label">字典类型</label>
+                                        <div class="controls">
+                                            <input type="text" v-model="model.type">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">用途描述</label>
-                                    <div class="controls">
-                                        <input type="text" v-model="model.desp">
+                                    <div class="control-group">
+                                        <label class="control-label">用途描述</label>
+                                        <div class="controls">
+                                            <input type="text" v-model="model.desp">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">编码</label>
-                                    <div class="controls">
-                                        <input type="text" v-model="model.code">
+                                    <div class="control-group">
+                                        <label class="control-label">编码</label>
+                                        <div class="controls">
+                                            <input type="text" v-model="model.code">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">编码值</label>
-                                    <div class="controls">
-                                        <input type="text" v-model="model.value">
+                                    <div class="control-group">
+                                        <label class="control-label">编码值</label>
+                                        <div class="controls">
+                                            <input type="text" v-model="model.value">
+                                        </div>
                                     </div>
-                                </div>
 
-                            </form>
-                        </div>
-                        <div class="modal-footer" v-if="isAdd">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"
-                                    @click="doDicAdd">增加</button>
-                        </div>
-                        <div class="modal-footer" v-else>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"
-                                    @click="doUpdate">保存</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer" v-if="isAdd">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                        @click="doDicAdd">增加
+                                </button>
+                            </div>
+                            <div class="modal-footer" v-else>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                        @click="doUpdate">保存
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
@@ -115,15 +119,13 @@
                         "value": null
                     },
                 ],
-                model:{},
-                upIndex:null,
-                hint:null,
-                isAdd:false,
+                model: {},
+                upIndex: null,
+                hint: null,
+                isAdd: false,
             }
         },
-        computed:{
-
-        },
+        computed: {},
         methods: {
             getDic() {
                 this.$axios.post("/api/dic/all")
@@ -131,35 +133,35 @@
                         this.dicList = res.data.dicList;
                     })
             },
-            update(index){
+            update(index) {
                 this.isAdd = false;
                 this.upIndex = index;
                 this.model = {...this.dicList[index]};
             },
-            doUpdate(){
-                this.$axios.post("/api/dic/update",$.param(this.model))
-                    .then(res=>{
+            doUpdate() {
+                this.$axios.post("/api/dic/update", $.param(this.model))
+                    .then(res => {
                         let old = Object.assign({}, this.dicList)
                         old[this.upIndex] = this.model;
                         this.dicList = old;
                         console.log(res.data)
                     })
             },
-            doDel(index){
-                this.$axios.post("/api/dic/del",$.param({id: this.dicList[index].id}))
-                    .then(res=>{
-                        this.dicList.splice(index,1);
+            doDel(index) {
+                this.$axios.post("/api/dic/del", $.param({id: this.dicList[index].id}))
+                    .then(res => {
+                        this.dicList.splice(index, 1);
                         this.hint = "操作成功"
                     })
             },
-            DicAdd(){
+            DicAdd() {
                 this.isAdd = true;
                 this.model = {};
             },
-            doDicAdd(){
+            doDicAdd() {
                 console.log($.param(this.model));
-                this.$axios.post("/api/dic/add",$.param(this.model))
-                    .then(res=>{
+                this.$axios.post("/api/dic/add", $.param(this.model))
+                    .then(res => {
                         this.dicList.push(this.model);
                         this.hint = "操作成功"
                     })

@@ -58,18 +58,17 @@
                     })
             },
         },
-        mounted(){
-            let userId = this.$cookies.get("userId");
-            let type = this.$cookies.get("userType");
-            console.log(type+"@@@@@@@@@@@@@@@@@@@@@@")
-            if(userId != null && userId != ""){
-                let userInfo = this.userInfo;
-                userInfo.id = userId;
-                userInfo.type = type;
-                this.acUserInfo(userInfo);
-                this.$router.replace({name:'home'})
-            }
-        }
+        // mounted(){
+        //     let userId = this.$cookies.get("userId");
+        //     let type = this.$cookies.get("userType");
+        //     if(userId   != null && userId != ""){
+        //         let userInfo = this.userInfo;
+        //         userInfo.id = userId;
+        //         userInfo.type = type;
+        //         this.acUserInfo(userInfo);
+        //         this.$router.replace({name:'home'})
+        //     }
+        // }
 
     }
 </script>

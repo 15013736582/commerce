@@ -17,9 +17,11 @@ public class User {
 
     private String token;
 
+    private String img;
+
     private Integer walletId;
 
-    public User(Integer id, String username, String password, Integer role, Date addDate, Integer sex, String token, Integer walletId) {
+    public User(Integer id, String username, String password, Integer role, Date addDate, Integer sex, String token, String img, Integer walletId) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -27,6 +29,7 @@ public class User {
         this.addDate = addDate;
         this.sex = sex;
         this.token = token;
+        this.img = img;
         this.walletId = walletId;
     }
 
@@ -88,6 +91,14 @@ public class User {
 
     public void setToken(String token) {
         this.token = token == null ? null : token.trim();
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img == null ? null : img.trim();
     }
 
     public Integer getWalletId() {

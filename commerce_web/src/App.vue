@@ -25,11 +25,17 @@
         },
         mounted() {
             let userId = this.$cookies.get("userId");
+            let type = this.$cookies.get("userType");
             if (userId != null && userId != "") {
-                let userInfo = this.userInfo;
-                userInfo.id = userId;
-                this.acUserInfo(userInfo);
-                this.$router.replace({name: 'home'})
+                this.$axios.post("/api/user/getUserById",$.param({userId: userId}))
+                    .then(res=>{
+                        let userInfo = this.userInfo;
+                        userInfo = res.data.userInfo;
+                        userInfo.type = type;
+                        this.acUserInfo(userInfo);
+                        this.acUserInfo(userInfo);
+                        this.$router.replace({name: 'home'})
+                    });
             }
         }
     }

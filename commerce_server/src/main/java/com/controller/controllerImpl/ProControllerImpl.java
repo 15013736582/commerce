@@ -23,6 +23,11 @@ public class ProControllerImpl {
         return proService.queryAll();
     }
 
+    @RequestMapping("queryByState")
+    public Map<String, Object> queryByState(int state){
+        return proService.queryByState(state);
+    }
+
     @RequestMapping("upload")
     public Map upload(@RequestParam("proImg") MultipartFile file, HttpSession session) {
         return proService.fileUpload(file);
@@ -31,5 +36,10 @@ public class ProControllerImpl {
     @RequestMapping("add")
     public Map add(Pro pro){
         return proService.add(pro);
+    }
+
+    @RequestMapping("findByPname")
+    public  Map findByPname(String title){
+        return  proService.findByPname(title);
     }
 }

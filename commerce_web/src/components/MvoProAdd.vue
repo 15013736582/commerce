@@ -37,10 +37,18 @@
                         </div>
                     </div>
                     <div class="control-group my">
+                        <label class="control-label">商品类型</label>
+                        <select name="type" class="form-control">
+                            <option v-for="r in proType" v-model="r.code"
+                                    :value="r.code" v-text="r.value">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="control-group my">
                         <label class="control-label">商品状态</label>
-                        <select name="type" id="type" class="form-control">
-                            <option v-for="r in porType" v-model="r.code"
-                                    v-text="r.value">
+                        <select name="status" class="form-control">
+                            <option v-for="r in proState" v-model="r.code"
+                                    :value="r.code" v-text="r.value">
                             </option>
                         </select>
                     </div>
@@ -63,6 +71,7 @@
                     <button class="btn">取消</button>
                     <button class="btn btn-primary saved" @click="doAdd">增加</button>
                 </div>
+                <div>{{hint}}</div>
             </div>
 
         </div>
@@ -75,9 +84,10 @@
         name: "MvoProAdd",
         data() {
             return {
-                porType: [],
+                proType: [],
+                proState:"",
                 uploadImgSrc: "",
-
+                hint:"",
             }
         },
         computed:{
@@ -90,7 +100,12 @@
                 this.$axios.post("/api/dic/type", $.param({type: "proType"}))
                     .then(res => {
                         console.log(res.data);
-                        this.porType = res.data.dicList;
+                        this.proType = res.data.dicList;
+                    });
+                this.$axios.post("/api/dic/type", $.param({type: "proState"}))
+                    .then(res => {
+                        console.log(res.data);
+                        this.proState = res.data.dicList;
                     });
             },
             upLoad(event){
@@ -110,7 +125,8 @@
                 let data = $("#frm").serialize();
                 this.$axios.post("/api/pro/add",data)
                     .then(res=>{
-
+                        this.hint = "操作成功"
+                        this.$router.replace({name:"mvoPro"})
                     })
             }
         },

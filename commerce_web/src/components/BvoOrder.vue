@@ -3,21 +3,24 @@
         <div id="page-content" class="clearfix">
 
             <div class="page-header position-relative">
-                <h1 style="color: #2679b5;">借卖方<small><i class="icon-double-angle-right"></i> 订单管理</small></h1>
+                <h1 style="color: #2679b5;">借卖方
+                    <small><i class="icon-double-angle-right"></i> 订单管理</small>
+                </h1>
             </div>
             <form class="form-search">
                 Title：
                 <input type="text" class="input-medium search-query">
-                <button onclick="return false;" class="btn btn-purple btn-small">Search <i class="icon-search icon-on-right"></i></button>
+                <button onclick="return false;" class="btn btn-purple btn-small">Search <i
+                        class="icon-search icon-on-right"></i></button>
             </form>
-            <a href="#" class="btn  btn-success"  style="margin-bottom: 30px">
+            <a href="#" class="btn  btn-success" style="margin-bottom: 30px">
                 <i class="icon-refresh"></i>
                 Pull Orders
             </a>
 
             <div class="tabbable">
                 <ul class="nav nav-tabs" id="myTab">
-                    <li class="active"><a data-toggle="tab" href="#AwaitingPayment"> Awaiting Payment</a></li>
+                    <li class="active"><a @click="waitingPayment" data-toggle="tab" href="#AwaitingPayment"> Awaiting Payment</a></li>
                     <li class=""><a data-toggle="tab" href="#AwaitingShipment"> Awaiting Shipment</a></li>
                     <li class=""><a data-toggle="tab" href="#shipped">Shiped</a></li>
                     <li class=""><a data-toggle="tab" href="#complete">Completed Orders</a></li>
@@ -25,66 +28,31 @@
                 </ul>
                 <div class="tab-content">
                     <div id="AwaitingPayment" class="tab-pane active">
-                        <p>
-                        <table id="table_bug_report" class="table table-striped table-bordered table-hover">
+                        <table class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th class="center">
-                                    <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
+                                    <label><input type="checkbox" class="ace-checkbox-2"><span
+                                            class="lbl"></span></label>
                                 </th>
                                 <th>Title</th>
-                                <th>Price</th>
-                                <th class="hidden-480">QTY</th>
-                                <th>Sku</th>
-                                <th class="hidden-480">Order No</th>
-                                <th class="hidden-480">Total</th>
-                                <th> </th>
+                                <th class="hidden-480">数量</th>
+                                <!--<th>Sku</th>-->
+                                <th class="hidden-480">单号</th>
+                                <th class="hidden-480">总价</th>
+                                <th></th>
                             </tr>
                             </thead>
 
                             <tbody>
-                            <tr>
+                            <tr  v-for="(item,index) in waitOrders" :key="index">
                                 <td class="center">
                                     <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                                 </td>
-                                <td><a href="bvo-goodsdetail.html">max.com</a></td>
-                                <td>$60</td>
-                                <td class="hidden-480">400</td>
-                                <td class="hidden-phone">Q8976511</td>
-                                <td class="hidden-480">4,400</td>
-                                <td>$500</td>
-                                <td>
-                                    <a href="bvo-orderPayment.html">Pay Now</a>
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td class="center">
-                                    <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                                </td>
-                                <td><a href="bvo-goodsdetail.html">best.com</a></td>
-                                <td>$75</td>
-                                <td class="hidden-480">6,500</td>
-                                <td class="hidden-phone">GM9012203</td>
-                                <td class="hidden-480">OD23336500</td>
-                                <td>$5678</td>
-                                <td>
-                                    <a href="bvo-orderPayment.html">Pay Now</a>
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td class="center">
-                                    <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                                </td>
-                                <td><a href="bvo-goodsdetail.html">pro.com</a></td>
-                                <td>$55</td>
-                                <td class="hidden-480">4,250</td>
-                                <td class="hidden-phone">GM775332</td>
-                                <td class="hidden-480">T4536476250</td>
-                                <td>$6788</td>
+                                <td><a href="bvo-goodsdetail.html">{{item.title}}</a></td>
+                                <td class="hidden-480">{{item.qty}}</td>
+                                <td class="hidden-phone">{{item.id}}</td>
+                                <td class="hidden-480">{{item.price}}</td>
                                 <td>
                                     <a href="bvo-orderPayment.html">Pay Now</a>
                                 </td>
@@ -92,7 +60,6 @@
 
                             </tbody>
                         </table>
-                        </p>
                     </div>
                     <div id="AwaitingShipment" class="tab-pane">
                         <p>
@@ -100,7 +67,8 @@
                             <thead>
                             <tr>
                                 <th class="center">
-                                    <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
+                                    <label><input type="checkbox" class="ace-checkbox-2"><span
+                                            class="lbl"></span></label>
                                 </th>
                                 <th>Title</th>
                                 <th>Price</th>
@@ -150,7 +118,8 @@
                             <thead>
                             <tr>
                                 <th class="center">
-                                    <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
+                                    <label><input type="checkbox" class="ace-checkbox-2"><span
+                                            class="lbl"></span></label>
                                 </th>
                                 <th>Title</th>
                                 <th>Price</th>
@@ -241,8 +210,6 @@
                             </tr>
 
 
-
-
                             </tbody>
                         </table>
                         </p>
@@ -253,7 +220,8 @@
                             <thead>
                             <tr>
                                 <th class="center">
-                                    <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
+                                    <label><input type="checkbox" class="ace-checkbox-2"><span
+                                            class="lbl"></span></label>
                                 </th>
                                 <th>Title</th>
                                 <th>Price</th>
@@ -276,8 +244,8 @@
                                 <td>$45</td>
                                 <td class="hidden-480">3</td>
                                 <td>Gm7643377</td>
-                                <td >$135</td>
-                                <td >546738788</td>
+                                <td>$135</td>
+                                <td>546738788</td>
                                 <td class="hidden-480"><a href="bvo-ordertracking.html">46578990890</a></td>
                             </tr>
 
@@ -290,23 +258,8 @@
                                 <td>$45</td>
                                 <td class="hidden-480">3</td>
                                 <td>Gm7643377</td>
-                                <td >$135</td>
-                                <td >546738788</td>
-                                <td class="hidden-480"><a href="bvo-ordertracking.html">46578990890</a></td>
-
-                            </tr>
-
-
-                            <tr>
-                                <td class="center">
-                                    <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                                </td>
-                                <td><a href="bvo-goodsdetail.html">ace.com</a></td>
-                                <td>$45</td>
-                                <td class="hidden-480">3</td>
-                                <td>Gm7643377</td>
-                                <td >$135</td>
-                                <td >546738788</td>
+                                <td>$135</td>
+                                <td>546738788</td>
                                 <td class="hidden-480"><a href="bvo-ordertracking.html">46578990890</a></td>
 
                             </tr>
@@ -320,13 +273,26 @@
                                 <td>$45</td>
                                 <td class="hidden-480">3</td>
                                 <td>Gm7643377</td>
-                                <td >$135</td>
-                                <td >546738788</td>
+                                <td>$135</td>
+                                <td>546738788</td>
                                 <td class="hidden-480"><a href="bvo-ordertracking.html">46578990890</a></td>
 
                             </tr>
 
 
+                            <tr>
+                                <td class="center">
+                                    <label><input type="checkbox" class="input"><span class="lbl"></span></label>
+                                </td>
+                                <td><a href="bvo-goodsdetail.html">ace.com</a></td>
+                                <td>$45</td>
+                                <td class="hidden-480">3</td>
+                                <td>Gm7643377</td>
+                                <td>$135</td>
+                                <td>546738788</td>
+                                <td class="hidden-480"><a href="bvo-ordertracking.html">46578990890</a></td>
+
+                            </tr>
 
 
                             </tbody>
@@ -339,12 +305,13 @@
                             <thead>
                             <tr>
                                 <th class="center">
-                                    <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
+                                    <label><input type="checkbox" class="ace-checkbox-2"><span
+                                            class="lbl"></span></label>
                                 </th>
                                 <th>Title</th>
                                 <th>Price</th>
                                 <th class="hidden-480">QTY</th>
-                                <th>	Sku</th>
+                                <th> Sku</th>
                                 <th class="hidden-480">Total</th>
                                 <th class="hidden-480">Order No</th>
                             </tr>
@@ -399,13 +366,40 @@
 </template>
 
 <script>
+    import {mapGetters, mapActions} from 'vuex'
+
     export default {
-        name: "BvoOrder"
+        name: "BvoOrder",
+        data() {
+            return {
+                waitOrders:[],
+
+            }
+        },
+        computed: {
+            ...mapGetters([
+                'userInfo'
+            ])
+        },
+        methods: {
+            waitingPayment() {
+                this.$axios.post("/api/bvoOrder/findByUserIdAndIsPay", $.param({
+                    userId: this.userInfo.id,isPay:0
+                })).then(res=>{
+                    console.log(res.data);
+                    this.waitOrders = res.data.waitOrders;
+                })
+            }
+        },
+        mounted(){
+            this.waitingPayment()
+        }
+
     }
 </script>
 
 <style scoped>
-    .info div{
+    .info div {
         float: right;
     }
 </style>
