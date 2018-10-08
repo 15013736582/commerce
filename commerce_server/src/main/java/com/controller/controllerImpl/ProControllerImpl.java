@@ -37,4 +37,9 @@ public class ProControllerImpl {
     public Map add(Pro pro){
         return proService.add(pro);
     }
+
+    @RequestMapping("findByPname")
+    public  Map findByPname(String title){
+        return  proService.findByPname(title);
+    }
 }

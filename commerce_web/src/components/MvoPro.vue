@@ -9,10 +9,10 @@
                     <small><i class="icon-double-angle-right"></i> 商品信息录入</small>
                 </h1>
             </div>
-            <form class="form-search">
+            <form id="findByPname" class="form-search">
                 商品标题：
-                <input type="text" class="input-medium search-query">
-                <button onclick="return false;" class="btn btn-purple btn-small">Search <i
+                <input type="text" class="input-medium search-query" name="title">
+                <button type="button" @click="findByPname"  class="btn btn-purple btn-small">Search <i
                         class="icon-search icon-on-right"></i></button>
             </form>
             <table id="table_bug_report" class="table table-striped table-bordered table-hover">
@@ -204,6 +204,16 @@
                     })
                     .catch(function (error) {
                         console.log(error)
+                    })
+            },
+            findByPname(){
+                let data=$("#findByPname").serialize();
+
+                this.$axios.post("/api/pro/findByPname",data)
+                    .then(res => {
+                        console.log(res.data);
+                        this.proList = res.data.proList;
+                        console.log(data)
                     })
             },
         },

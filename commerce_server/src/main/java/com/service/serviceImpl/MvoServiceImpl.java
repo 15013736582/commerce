@@ -2,8 +2,11 @@ package com.service.serviceImpl;
 
 import com.dto.ResultState;
 import com.mapper.MvoMapper;
+import com.mapper.ProMapper;
+import com.mapper.WalletMapper;
 import com.pojo.*;
 import com.service.MvoService;
+import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +22,22 @@ import java.util.Map;
 @Service
 public class MvoServiceImpl implements MvoService {
     private final MvoMapper mvoMapper;
-
+    private final ProMapper proMapper;
+    private final WalletMapper walletMapper;
     private final UserServiceImpl userService;
 
     private final RoleServiceImpl roleService;
 
     private ProServiceImpl proService;
+
     @Autowired
-    public MvoServiceImpl(MvoMapper mvoMapper, UserServiceImpl userService, RoleServiceImpl roleService, ProServiceImpl proService) {
+    public MvoServiceImpl(MvoMapper mvoMapper, UserServiceImpl userService, RoleServiceImpl roleService, ProServiceImpl proService, ProMapper proMapper, WalletMapper walletMapper) {
         this.mvoMapper = mvoMapper;
         this.userService = userService;
         this.roleService = roleService;
         this.proService = proService;
+        this.proMapper = proMapper;
+        this.walletMapper = walletMapper;
     }
 
 
@@ -115,12 +122,5 @@ public class MvoServiceImpl implements MvoService {
         return proService.del(proId);
     }
 
-    public  Map findByPname(String title){
-        Map<String,Object> result=new HashMap<>();
-        ProExample ex=new ProExample();
-        ProExample.Criteria criteria=ex.createCriteria();
-        String t="%"+title+"%";
-        result.put("pro", criteria.andTitleLike(t));
-        return  result;
-    }
+
 }

@@ -1,23 +1,81 @@
 <template>
     <div id="BvoWallet">
-        <div id="page-content" class="clearfix">
-            <div class="page-header position-relative">
-                <h1 style="color: #2679b5;">借卖方<small><i class="icon-double-angle-right"></i> 钱包账号注册</small></h1>
-            </div>
-            <div class="Register">
-                <div><label class="green">Email:</label><input type="text"></div>
-                <div><label class="green">Account Name:</label><input type="text"></div>
-                <div><label class="green">Password:</label><input type="password"></div>
-                <button class="btn  btn-success save" onclick="gotoWallet()">Sign Up</button>
-            </div>
-
+        <div class=" position-relative">
+            <h4 style="color: #2679b5;text-align: center;margin-right: 100px" v-if="userInfo.walletId ==null">钱包注册</h4>
+            <h4 style="color: #2679b5;text-align: center;margin-right: 100px" v-if="userInfo.walletId != null">钱包查看</h4>
+            <hr>
         </div>
+
+        <div id="main-content" class="clearfix">
+            <div id="page-content" class="clearfix">
+
+                <div class="Register">
+                    <form id="rWallet">
+                        <input type="hidden" name="userId" :value="userInfo.id">
+                        <div class="mydiv" v-if="userInfo.walletId ==null"><label class="green">账号:</label><input
+                                type="text" name="username"></div>
+                        <div class="mydiv" v-if="userInfo.walletId ==null"><label class="green">密码:</label><input
+                                type="password" name="password"></div>
+                        <div class="mydiv" v-if="userInfo.walletId !=null"><label class="green" >账号:</label>
+                            <input type="text" readonly="readonly" name="username" :value="wallet.username"></div>
+                        <div class="mydiv" v-if="userInfo.walletId !=null"><label class="green">余额:</label>
+                            <input type="text" readonly="readonly" name="password" :value="wallet.money">
+                        </div>
+                        <button type="button" @click="walletRegister" class="btn  btn-success save" v-if="userInfo.walletId ==null">注册</button>
+                    </form>
+                    <div>{{hint}}</div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
 <script>
+    import {mapGetters, mapActions} from 'vuex'
     export default {
-        name: "BvoWallet"
+        name: "BvoWallet",
+        data() {
+            return {
+                wallet:{
+                    id:null,
+                    username:null,
+                    password:null,
+                    money:null,
+                    createDate:null,
+                },
+                hint: ""
+            }
+        },
+        computed: {
+            ...mapGetters([
+                'userInfo'
+            ])
+        },
+        methods: {
+            getWallet() {
+                console.log(this.userInfo.id)
+                this.$axios.post("/api/wallet/find", $.param({userId: this.userInfo.id}))
+                    .then(res => {
+                        this.wallet = res.data.wallet;
+                    });
+            },
+            walletRegister() {
+                let data = $("#rWallet").serialize();
+                console.log(data);
+                this.$axios.post("/api/wallet/register", data)
+                    .then(res => {
+                        this.hint = "操作成功"
+                        console.log(res.data);
+
+
+                    })
+            }
+        },
+        mounted() {
+            this.getWallet()
+        }
+
     }
 </script>
 

@@ -1,10 +1,7 @@
 package com.service.serviceImpl;
 
 import com.mapper.UserMapper;
-import com.pojo.Bvo;
-import com.pojo.Role;
-import com.pojo.User;
-import com.pojo.UserExample;
+import com.pojo.*;
 import com.service.UserService;
 import com.util.CookieUtile;
 import com.util.JwtUtil;
@@ -95,8 +92,12 @@ public class UserServiceImpl implements UserService {
     }
 
     public User findById(int userId){
-
        return userMapper.selectByPrimaryKey(userId);
 
+    }
+
+    public User addWallet(User user){
+        userMapper.updateByPrimaryKeySelective(user);
+        return user;
     }
 }

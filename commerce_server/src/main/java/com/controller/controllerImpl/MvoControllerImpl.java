@@ -56,8 +56,5 @@ public class MvoControllerImpl {
         return mvoService.delPro(proId);
     }
 
-    @RequestMapping("findByPname")
-    public  Map findByPname(String title){
-        return  mvoService.findByPname(title);
-    }
+
 }
