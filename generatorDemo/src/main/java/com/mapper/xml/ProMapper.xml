@@ -11,7 +11,7 @@
       <arg column="sku" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="img" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="desp" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="m_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="shelf" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="add_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
@@ -119,7 +119,7 @@
       shelf, add_date)
     values (#{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{type,jdbcType=INTEGER}, 
       #{reverse,jdbcType=VARCHAR}, #{sku,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
-      #{desp,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{mId,jdbcType=INTEGER}, 
+      #{desp,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, 
       #{shelf,jdbcType=INTEGER}, #{addDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.pojo.Pro">
@@ -185,7 +185,7 @@
         #{desp,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        #{status,jdbcType=VARCHAR},
+        #{status,jdbcType=INTEGER},
       </if>
       <if test="mId != null">
         #{mId,jdbcType=INTEGER},
@@ -232,7 +232,7 @@
         desp = #{record.desp,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
-        status = #{record.status,jdbcType=VARCHAR},
+        status = #{record.status,jdbcType=INTEGER},
       </if>
       <if test="record.mId != null">
         m_id = #{record.mId,jdbcType=INTEGER},
@@ -258,7 +258,7 @@
       sku = #{record.sku,jdbcType=VARCHAR},
       img = #{record.img,jdbcType=VARCHAR},
       desp = #{record.desp,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
       m_id = #{record.mId,jdbcType=INTEGER},
       shelf = #{record.shelf,jdbcType=INTEGER},
       add_date = #{record.addDate,jdbcType=TIMESTAMP}
@@ -291,7 +291,7 @@
         desp = #{desp,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=VARCHAR},
+        status = #{status,jdbcType=INTEGER},
       </if>
       <if test="mId != null">
         m_id = #{mId,jdbcType=INTEGER},
@@ -314,7 +314,7 @@
       sku = #{sku,jdbcType=VARCHAR},
       img = #{img,jdbcType=VARCHAR},
       desp = #{desp,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
       m_id = #{mId,jdbcType=INTEGER},
       shelf = #{shelf,jdbcType=INTEGER},
       add_date = #{addDate,jdbcType=TIMESTAMP}

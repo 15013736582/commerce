@@ -56,4 +56,5 @@ public class BvoControllerImpl implements BvoController {
     public Map addStore(Store store){
         return  bvoService.addStore(store);
     }
+
 }

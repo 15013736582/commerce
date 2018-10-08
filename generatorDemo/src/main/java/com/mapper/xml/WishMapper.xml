@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mapper.MvoOrderMapper">
-  <resultMap id="BaseResultMap" type="com.pojo.MvoOrder">
+<mapper namespace="com.mapper.WishMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.Wish">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="price" javaType="java.lang.Double" jdbcType="DOUBLE" />
-      <arg column="number" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="u_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pro_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
@@ -70,16 +68,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, price, number, u_id, create_date
+    id, user_id, pro_id, create_date
   </sql>
-  <select id="selectByExample" parameterType="com.pojo.MvoOrderExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.pojo.WishExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from mvo_order
+    from wish
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -90,91 +88,73 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from mvo_order
+    from wish
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from mvo_order
+    delete from wish
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.pojo.MvoOrderExample">
-    delete from mvo_order
+  <delete id="deleteByExample" parameterType="com.pojo.WishExample">
+    delete from wish
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.pojo.MvoOrder">
+  <insert id="insert" parameterType="com.pojo.Wish">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into mvo_order (title, price, number, 
-      u_id, create_date)
-    values (#{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{number,jdbcType=VARCHAR}, 
-      #{uId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP})
+    insert into wish (user_id, pro_id, create_date
+      )
+    values (#{userId,jdbcType=INTEGER}, #{proId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.pojo.MvoOrder">
+  <insert id="insertSelective" parameterType="com.pojo.Wish">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into mvo_order
+    insert into wish
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="title != null">
-        title,
+      <if test="userId != null">
+        user_id,
       </if>
-      <if test="price != null">
-        price,
-      </if>
-      <if test="number != null">
-        number,
-      </if>
-      <if test="uId != null">
-        u_id,
+      <if test="proId != null">
+        pro_id,
       </if>
       <if test="createDate != null">
         create_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
-      <if test="price != null">
-        #{price,jdbcType=DOUBLE},
-      </if>
-      <if test="number != null">
-        #{number,jdbcType=VARCHAR},
-      </if>
-      <if test="uId != null">
-        #{uId,jdbcType=INTEGER},
+      <if test="proId != null">
+        #{proId,jdbcType=INTEGER},
       </if>
       <if test="createDate != null">
         #{createDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.pojo.MvoOrderExample" resultType="java.lang.Long">
-    select count(*) from mvo_order
+  <select id="countByExample" parameterType="com.pojo.WishExample" resultType="java.lang.Long">
+    select count(*) from wish
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update mvo_order
+    update wish
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.title != null">
-        title = #{record.title,jdbcType=VARCHAR},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.price != null">
-        price = #{record.price,jdbcType=DOUBLE},
-      </if>
-      <if test="record.number != null">
-        number = #{record.number,jdbcType=VARCHAR},
-      </if>
-      <if test="record.uId != null">
-        u_id = #{record.uId,jdbcType=INTEGER},
+      <if test="record.proId != null">
+        pro_id = #{record.proId,jdbcType=INTEGER},
       </if>
       <if test="record.createDate != null">
         create_date = #{record.createDate,jdbcType=TIMESTAMP},
@@ -185,31 +165,23 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update mvo_order
+    update wish
     set id = #{record.id,jdbcType=INTEGER},
-      title = #{record.title,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=DOUBLE},
-      number = #{record.number,jdbcType=VARCHAR},
-      u_id = #{record.uId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      pro_id = #{record.proId,jdbcType=INTEGER},
       create_date = #{record.createDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.MvoOrder">
-    update mvo_order
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.Wish">
+    update wish
     <set>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="price != null">
-        price = #{price,jdbcType=DOUBLE},
-      </if>
-      <if test="number != null">
-        number = #{number,jdbcType=VARCHAR},
-      </if>
-      <if test="uId != null">
-        u_id = #{uId,jdbcType=INTEGER},
+      <if test="proId != null">
+        pro_id = #{proId,jdbcType=INTEGER},
       </if>
       <if test="createDate != null">
         create_date = #{createDate,jdbcType=TIMESTAMP},
@@ -217,12 +189,10 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.pojo.MvoOrder">
-    update mvo_order
-    set title = #{title,jdbcType=VARCHAR},
-      price = #{price,jdbcType=DOUBLE},
-      number = #{number,jdbcType=VARCHAR},
-      u_id = #{uId,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="com.pojo.Wish">
+    update wish
+    set user_id = #{userId,jdbcType=INTEGER},
+      pro_id = #{proId,jdbcType=INTEGER},
       create_date = #{createDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

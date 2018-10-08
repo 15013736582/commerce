@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.pojo.User">
+<mapper namespace="com.mapper.WalletMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.Wallet">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="role" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="add_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="sex" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="token" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="img" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="wallet_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="money" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -73,16 +69,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, password, role, add_date, sex, token, img, wallet_id
+    id, username, password, money, create_date
   </sql>
-  <select id="selectByExample" parameterType="com.pojo.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.pojo.WalletExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from user
+    from wallet
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,35 +89,33 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from user
+    from wallet
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user
+    delete from wallet
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.pojo.UserExample">
-    delete from user
+  <delete id="deleteByExample" parameterType="com.pojo.WalletExample">
+    delete from wallet
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.pojo.User">
+  <insert id="insert" parameterType="com.pojo.Wallet">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into user (username, password, role, 
-      add_date, sex, token, 
-      img, wallet_id)
-    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, 
-      #{addDate,jdbcType=TIMESTAMP}, #{sex,jdbcType=INTEGER}, #{token,jdbcType=VARCHAR}, 
-      #{img,jdbcType=VARCHAR}, #{walletId,jdbcType=INTEGER})
+    insert into wallet (username, password, money, 
+      create_date)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.pojo.User">
+  <insert id="insertSelective" parameterType="com.pojo.Wallet">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into user
+    insert into wallet
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="username != null">
         username,
@@ -129,23 +123,11 @@
       <if test="password != null">
         password,
       </if>
-      <if test="role != null">
-        role,
+      <if test="money != null">
+        money,
       </if>
-      <if test="addDate != null">
-        add_date,
-      </if>
-      <if test="sex != null">
-        sex,
-      </if>
-      <if test="token != null">
-        token,
-      </if>
-      <if test="img != null">
-        img,
-      </if>
-      <if test="walletId != null">
-        wallet_id,
+      <if test="createDate != null">
+        create_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -155,34 +137,22 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="role != null">
-        #{role,jdbcType=INTEGER},
+      <if test="money != null">
+        #{money,jdbcType=INTEGER},
       </if>
-      <if test="addDate != null">
-        #{addDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="sex != null">
-        #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="token != null">
-        #{token,jdbcType=VARCHAR},
-      </if>
-      <if test="img != null">
-        #{img,jdbcType=VARCHAR},
-      </if>
-      <if test="walletId != null">
-        #{walletId,jdbcType=INTEGER},
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.pojo.UserExample" resultType="java.lang.Long">
-    select count(*) from user
+  <select id="countByExample" parameterType="com.pojo.WalletExample" resultType="java.lang.Long">
+    select count(*) from wallet
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update user
+    update wallet
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
@@ -193,23 +163,11 @@
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.role != null">
-        role = #{record.role,jdbcType=INTEGER},
+      <if test="record.money != null">
+        money = #{record.money,jdbcType=INTEGER},
       </if>
-      <if test="record.addDate != null">
-        add_date = #{record.addDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.sex != null">
-        sex = #{record.sex,jdbcType=INTEGER},
-      </if>
-      <if test="record.token != null">
-        token = #{record.token,jdbcType=VARCHAR},
-      </if>
-      <if test="record.img != null">
-        img = #{record.img,jdbcType=VARCHAR},
-      </if>
-      <if test="record.walletId != null">
-        wallet_id = #{record.walletId,jdbcType=INTEGER},
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -217,22 +175,18 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update user
+    update wallet
     set id = #{record.id,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
-      role = #{record.role,jdbcType=INTEGER},
-      add_date = #{record.addDate,jdbcType=TIMESTAMP},
-      sex = #{record.sex,jdbcType=INTEGER},
-      token = #{record.token,jdbcType=VARCHAR},
-      img = #{record.img,jdbcType=VARCHAR},
-      wallet_id = #{record.walletId,jdbcType=INTEGER}
+      money = #{record.money,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.User">
-    update user
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.Wallet">
+    update wallet
     <set>
       <if test="username != null">
         username = #{username,jdbcType=VARCHAR},
@@ -240,37 +194,21 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="role != null">
-        role = #{role,jdbcType=INTEGER},
+      <if test="money != null">
+        money = #{money,jdbcType=INTEGER},
       </if>
-      <if test="addDate != null">
-        add_date = #{addDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="sex != null">
-        sex = #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="token != null">
-        token = #{token,jdbcType=VARCHAR},
-      </if>
-      <if test="img != null">
-        img = #{img,jdbcType=VARCHAR},
-      </if>
-      <if test="walletId != null">
-        wallet_id = #{walletId,jdbcType=INTEGER},
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.pojo.User">
-    update user
+  <update id="updateByPrimaryKey" parameterType="com.pojo.Wallet">
+    update wallet
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      role = #{role,jdbcType=INTEGER},
-      add_date = #{addDate,jdbcType=TIMESTAMP},
-      sex = #{sex,jdbcType=INTEGER},
-      token = #{token,jdbcType=VARCHAR},
-      img = #{img,jdbcType=VARCHAR},
-      wallet_id = #{walletId,jdbcType=INTEGER}
+      money = #{money,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

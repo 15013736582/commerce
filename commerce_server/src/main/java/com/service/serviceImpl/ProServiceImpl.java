@@ -54,6 +54,17 @@ public class ProServiceImpl implements ProService {
         return result;
     }
 
+    public Map<String, Object> queryByState(int state) {
+        Map<String, Object> result = new HashMap<>();
+        ProExample ex = new ProExample();
+        ProExample.Criteria criteria = ex.createCriteria();
+        criteria.andStatusEqualTo(state);
+        List list = proMapper.selectByExample(ex);
+        result.put("state", 0);
+        result.put("proList", list);
+        return result;
+    }
+
     /**
      * @param file
      * @return

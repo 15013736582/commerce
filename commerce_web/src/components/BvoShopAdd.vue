@@ -13,7 +13,9 @@
                 <div class="goodsname  control-group">
                     <form id="addStore">
                         <div><h4>Store Name</h4><input type="text" v-model="store.name" name="name"></div>
-                        <div><h4>Seller ID</h4><input type="text" v-model="store.bId" name="bId"></div>
+                        <div>
+                            <!--<h4>Seller ID</h4>-->
+                            <input type="hidden" name="bId" :value="userInfo.id"></div>
                         <div><h4>Placeform</h4>
                             <select name="platform" v-model="store.platform">
                                 <option v-for="p in platform" v-model="p.code" :value="p.code" v-text="p.value">

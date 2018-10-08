@@ -19,7 +19,7 @@ public class Pro {
 
     private String desp;
 
-    private String status;
+    private Integer status;
 
     private Integer mId;
 
@@ -27,7 +27,7 @@ public class Pro {
 
     private Date addDate;
 
-    public Pro(Integer id, String title, Double price, Integer type, String reverse, String sku, String img, String desp, String status, Integer mId, Integer shelf, Date addDate) {
+    public Pro(Integer id, String title, Double price, Integer type, String reverse, String sku, String img, String desp, Integer status, Integer mId, Integer shelf, Date addDate) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -110,12 +110,12 @@ public class Pro {
         this.desp = desp == null ? null : desp.trim();
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Integer getmId() {

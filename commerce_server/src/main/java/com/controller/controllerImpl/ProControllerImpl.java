@@ -23,6 +23,11 @@ public class ProControllerImpl {
         return proService.queryAll();
     }
 
+    @RequestMapping("queryByState")
+    public Map<String, Object> queryByState(int state){
+        return proService.queryByState(state);
+    }
+
     @RequestMapping("upload")
     public Map upload(@RequestParam("proImg") MultipartFile file, HttpSession session) {
         return proService.fileUpload(file);

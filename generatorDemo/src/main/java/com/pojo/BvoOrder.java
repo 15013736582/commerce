@@ -1,6 +1,8 @@
 package com.pojo;
 
-public class BroOrder {
+import java.util.Date;
+
+public class BvoOrder {
     private Integer id;
 
     private String title;
@@ -9,29 +11,23 @@ public class BroOrder {
 
     private Integer qty;
 
-    private String sku;
-
-    private String total;
-
-    private Integer wish;
-
     private Integer isPay;
 
     private Integer uId;
 
-    public BroOrder(Integer id, String title, Double price, Integer qty, String sku, String total, Integer wish, Integer isPay, Integer uId) {
+    private Date createDate;
+
+    public BvoOrder(Integer id, String title, Double price, Integer qty, Integer isPay, Integer uId, Date createDate) {
         this.id = id;
         this.title = title;
         this.price = price;
         this.qty = qty;
-        this.sku = sku;
-        this.total = total;
-        this.wish = wish;
         this.isPay = isPay;
         this.uId = uId;
+        this.createDate = createDate;
     }
 
-    public BroOrder() {
+    public BvoOrder() {
         super();
     }
 
@@ -67,30 +63,6 @@ public class BroOrder {
         this.qty = qty;
     }
 
-    public String getSku() {
-        return sku;
-    }
-
-    public void setSku(String sku) {
-        this.sku = sku == null ? null : sku.trim();
-    }
-
-    public String getTotal() {
-        return total;
-    }
-
-    public void setTotal(String total) {
-        this.total = total == null ? null : total.trim();
-    }
-
-    public Integer getWish() {
-        return wish;
-    }
-
-    public void setWish(Integer wish) {
-        this.wish = wish;
-    }
-
     public Integer getIsPay() {
         return isPay;
     }
@@ -105,5 +77,13 @@ public class BroOrder {
 
     public void setuId(Integer uId) {
         this.uId = uId;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }

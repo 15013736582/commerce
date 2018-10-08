@@ -9,19 +9,19 @@ public class MvoOrder {
 
     private Double price;
 
-    private Date createDate;
-
     private String number;
 
     private Integer uId;
 
-    public MvoOrder(Integer id, String title, Double price, Date createDate, String number, Integer uId) {
+    private Date createDate;
+
+    public MvoOrder(Integer id, String title, Double price, String number, Integer uId, Date createDate) {
         this.id = id;
         this.title = title;
         this.price = price;
-        this.createDate = createDate;
         this.number = number;
         this.uId = uId;
+        this.createDate = createDate;
     }
 
     public MvoOrder() {
@@ -52,14 +52,6 @@ public class MvoOrder {
         this.price = price;
     }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
     public String getNumber() {
         return number;
     }
@@ -74,5 +66,13 @@ public class MvoOrder {
 
     public void setuId(Integer uId) {
         this.uId = uId;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }
