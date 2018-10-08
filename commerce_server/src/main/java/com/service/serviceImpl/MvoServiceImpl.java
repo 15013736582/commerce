@@ -111,8 +111,16 @@ public class MvoServiceImpl implements MvoService {
         return result;
     }
 
-
     public Map delPro(int proId){
         return proService.del(proId);
+    }
+
+    public  Map findByPname(String title){
+        Map<String,Object> result=new HashMap<>();
+        ProExample ex=new ProExample();
+        ProExample.Criteria criteria=ex.createCriteria();
+        String t="%"+title+"%";
+        result.put("pro", criteria.andTitleLike(t));
+        return  result;
     }
 }
