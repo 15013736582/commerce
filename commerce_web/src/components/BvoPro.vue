@@ -3,22 +3,21 @@
         <div>
             <h5 style="margin-top: 45px;">Feature Products</h5>
             <!--<div class="container">-->
-                <!--<div class="row">-->
-                    <!--<div class="col-md-3">-->
-                    <!--</div>-->
-                <!--</div>-->
+            <!--<div class="row">-->
+            <!--<div class="col-md-3">-->
+            <!--</div>-->
+            <!--</div>-->
             <!--</div>-->
             <ul>
-                <li v-for="(pro,index) in proList" :key="index" >
-                    <router-link  :to="{name:'proInfo', params: {proInfo:proList[index]}}">
+                <li v-for="(pro,index) in proList" :key="index">
+                    <router-link :to="{name:'proInfo', params: {proInfo:proList[index]}}">
                         <div class="img"></div>
-                        <img src="@/assets/image/61X0zlgsL9L._SL1001_.jpg" alt=""/>
+                        <img :src="'http://qn.limitip.com/'+pro.img" alt=""/>
                         <p>{{pro.title}}</p>
                         <span>$16.00</span>
                     </router-link>
                 </li>
             </ul>
-            <button @click="ation">11</button>
         </div>
     </div>
 </template>
@@ -26,28 +25,22 @@
 <script>
     export default {
         name: "BvoPro",
-        data(){
+        data() {
             return {
-                proList:[],
+                proList: [],
             }
         },
-        methods:{
-            getProList(){
-                let _this = this;
-                let data = {
-                    username: "iiii"
-                };
-                // data = $.param(data);
-                this.$axios.post("/api/pro/queryAll",data)
-                    .then(function (res) {
-                         _this.proList = res.data.proList;
-                    })
-            },
-            ation(){
-                this.proList=[]
+        methods: {
+            getProList() {
+                this.$axios.post("/api/pro/queryAll")
+                    .then(res => {
+                            this.proList = res.data.proList;
+                            console.log(res.data)
+                        }
+                    )
             }
         },
-        mounted(){
+        mounted() {
             this.getProList();
         }
 
@@ -89,10 +82,10 @@
     }
 
     .main li:hover,
-    /*:focus {*/
+        /*:focus {*/
         /*background-color: #f5f5f5;*/
         /*box-shadow: 2px 2px 5px #999;*/
-    /*}*/
+        /*}*/
 
     .main li a {
         display: inline;
