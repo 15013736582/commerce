@@ -1,16 +1,17 @@
 package com.pojo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class BroOrderExample {
+public class BvoOrderExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public BroOrderExample() {
+    public BvoOrderExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -354,206 +355,6 @@ public class BroOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andSkuIsNull() {
-            addCriterion("sku is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkuIsNotNull() {
-            addCriterion("sku is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkuEqualTo(String value) {
-            addCriterion("sku =", value, "sku");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkuNotEqualTo(String value) {
-            addCriterion("sku <>", value, "sku");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkuGreaterThan(String value) {
-            addCriterion("sku >", value, "sku");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkuGreaterThanOrEqualTo(String value) {
-            addCriterion("sku >=", value, "sku");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkuLessThan(String value) {
-            addCriterion("sku <", value, "sku");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkuLessThanOrEqualTo(String value) {
-            addCriterion("sku <=", value, "sku");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkuLike(String value) {
-            addCriterion("sku like", value, "sku");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkuNotLike(String value) {
-            addCriterion("sku not like", value, "sku");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkuIn(List<String> values) {
-            addCriterion("sku in", values, "sku");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkuNotIn(List<String> values) {
-            addCriterion("sku not in", values, "sku");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkuBetween(String value1, String value2) {
-            addCriterion("sku between", value1, value2, "sku");
-            return (Criteria) this;
-        }
-
-        public Criteria andSkuNotBetween(String value1, String value2) {
-            addCriterion("sku not between", value1, value2, "sku");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalIsNull() {
-            addCriterion("total is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalIsNotNull() {
-            addCriterion("total is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalEqualTo(String value) {
-            addCriterion("total =", value, "total");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalNotEqualTo(String value) {
-            addCriterion("total <>", value, "total");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalGreaterThan(String value) {
-            addCriterion("total >", value, "total");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalGreaterThanOrEqualTo(String value) {
-            addCriterion("total >=", value, "total");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalLessThan(String value) {
-            addCriterion("total <", value, "total");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalLessThanOrEqualTo(String value) {
-            addCriterion("total <=", value, "total");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalLike(String value) {
-            addCriterion("total like", value, "total");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalNotLike(String value) {
-            addCriterion("total not like", value, "total");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalIn(List<String> values) {
-            addCriterion("total in", values, "total");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalNotIn(List<String> values) {
-            addCriterion("total not in", values, "total");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalBetween(String value1, String value2) {
-            addCriterion("total between", value1, value2, "total");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalNotBetween(String value1, String value2) {
-            addCriterion("total not between", value1, value2, "total");
-            return (Criteria) this;
-        }
-
-        public Criteria andWishIsNull() {
-            addCriterion("wish is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWishIsNotNull() {
-            addCriterion("wish is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWishEqualTo(Integer value) {
-            addCriterion("wish =", value, "wish");
-            return (Criteria) this;
-        }
-
-        public Criteria andWishNotEqualTo(Integer value) {
-            addCriterion("wish <>", value, "wish");
-            return (Criteria) this;
-        }
-
-        public Criteria andWishGreaterThan(Integer value) {
-            addCriterion("wish >", value, "wish");
-            return (Criteria) this;
-        }
-
-        public Criteria andWishGreaterThanOrEqualTo(Integer value) {
-            addCriterion("wish >=", value, "wish");
-            return (Criteria) this;
-        }
-
-        public Criteria andWishLessThan(Integer value) {
-            addCriterion("wish <", value, "wish");
-            return (Criteria) this;
-        }
-
-        public Criteria andWishLessThanOrEqualTo(Integer value) {
-            addCriterion("wish <=", value, "wish");
-            return (Criteria) this;
-        }
-
-        public Criteria andWishIn(List<Integer> values) {
-            addCriterion("wish in", values, "wish");
-            return (Criteria) this;
-        }
-
-        public Criteria andWishNotIn(List<Integer> values) {
-            addCriterion("wish not in", values, "wish");
-            return (Criteria) this;
-        }
-
-        public Criteria andWishBetween(Integer value1, Integer value2) {
-            addCriterion("wish between", value1, value2, "wish");
-            return (Criteria) this;
-        }
-
-        public Criteria andWishNotBetween(Integer value1, Integer value2) {
-            addCriterion("wish not between", value1, value2, "wish");
-            return (Criteria) this;
-        }
-
         public Criteria andIsPayIsNull() {
             addCriterion("is_pay is null");
             return (Criteria) this;
@@ -671,6 +472,66 @@ public class BroOrderExample {
 
         public Criteria andUIdNotBetween(Integer value1, Integer value2) {
             addCriterion("u_id not between", value1, value2, "uId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateDateIsNull() {
+            addCriterion("create_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateDateIsNotNull() {
+            addCriterion("create_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateDateEqualTo(Date value) {
+            addCriterion("create_date =", value, "createDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateDateNotEqualTo(Date value) {
+            addCriterion("create_date <>", value, "createDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateDateGreaterThan(Date value) {
+            addCriterion("create_date >", value, "createDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("create_date >=", value, "createDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateDateLessThan(Date value) {
+            addCriterion("create_date <", value, "createDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateDateLessThanOrEqualTo(Date value) {
+            addCriterion("create_date <=", value, "createDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateDateIn(List<Date> values) {
+            addCriterion("create_date in", values, "createDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateDateNotIn(List<Date> values) {
+            addCriterion("create_date not in", values, "createDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateDateBetween(Date value1, Date value2) {
+            addCriterion("create_date between", value1, value2, "createDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateDateNotBetween(Date value1, Date value2) {
+            addCriterion("create_date not between", value1, value2, "createDate");
             return (Criteria) this;
         }
     }
