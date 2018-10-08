@@ -1,5 +1,6 @@
 package com.service.serviceImpl;
 
+import com.dto.ResultState;
 import com.mapper.UserMapper;
 import com.pojo.Bvo;
 import com.pojo.Role;
@@ -50,12 +51,12 @@ public class UserServiceImpl implements UserService {
         user.setPassword(null);
         result.put("state", 0);
         result.put("userInfo", user);
-        result.put("type",role.getRoleType());
+        result.put("type", role.getRoleType());
         Map<String, Object> claims = new HashMap<>();
-        claims.put("userInfo",user);
-        claims.put("type",role.getRoleType());
+        claims.put("userInfo", user);
+        claims.put("type", role.getRoleType());
         try {
-            String token =  JwtUtil.createJWT("0",claims,200*60*60*1000);
+            String token = JwtUtil.createJWT("0", claims, 200 * 60 * 60 * 1000);
             CookieUtile.setCookie(token, user, String.valueOf(role.getRoleType()));
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,6 +64,14 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    public Map getUserById(int userId) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("state", ResultState.SECCESS.getState());
+        User user = userMapper.selectByPrimaryKey(userId);
+        user.setPassword(null);
+        result.put("userInfo",user);
+        return result;
+    }
 
     /**
      * @param user 用户信息
@@ -94,9 +103,9 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectByExample(ex);
     }
 
-    public User findById(int userId){
+    public User findById(int userId) {
 
-       return userMapper.selectByPrimaryKey(userId);
+        return userMapper.selectByPrimaryKey(userId);
 
     }
 }

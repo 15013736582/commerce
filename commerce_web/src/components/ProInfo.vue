@@ -4,15 +4,14 @@
         <div id="page-content" class="clearfix">
 
             <div class="goods-header">
-                <div class="goods-header-left"><img src="image/61X0zlgsL9L._SL1001_.jpg" alt="" /></div>
+                <div class="goods-header-left"><img :src="'http://qn.limitip.com/'+proInfo.img"/></div>
                 <div class="goods-header-right">
                     <p>{{proInfo.title}}</p>
                     <p class="red">${{proInfo.price}}</p>
-                    <p>sku:{{proInfo.sku}}</p>
-                    <p>Brand：GMY</p>
-                    <p>Stock in US：{{proInfo.reverse}}</p>
-
-                    <button class="btn btn-primary"><a style="color:#fff" href="bvo-goodsstorechoose.html">Dropship Now</a></button>
+                    <p>类型: {{proInfo.type | dicCover('proType',dicList)}}</p>
+                    <p>sku: {{proInfo.sku}}</p>
+                    <p>库存：{{proInfo.reverse}}</p>
+                    <button class="btn btn-primary" @click="buy"> buy</button>
                     <button class="btn btn-primary">Add to Wish List</button>
                 </div>
             </div>
@@ -38,16 +37,42 @@
 </template>
 
 <script>
+
+    import {mapGetters, mapActions} from 'vuex'
     export default {
         name: "ProInfo",
         data(){
             return{
-
+                dicList:[],
             }
         },
         props:[
             'proInfo',
-        ]
+        ],
+        computed:{
+            ...mapGetters([
+                'userInfo'
+            ])
+        },
+        methods:{
+            getDic() {
+                this.$axios.post("/api/dic/all")
+                    .then(res => {
+                        this.dicList = res.data.dicList;
+                    })
+            },
+            buy(){
+                let data = {...this.proInfo};
+                data.userId = this.userInfo.id;
+                this.$axios.post("/api/bvoOrder/buyOne",$.param(data))
+                    .then(res => {
+                        console.log(res.data)
+                    })
+            }
+        },
+        mounted(){
+            this.getDic();
+        }
     }
 </script>
 

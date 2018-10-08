@@ -28,4 +28,9 @@ public class UserControllerImpl implements UserController {
     public Map login(User user){
         return userService.login(user);
     }
+
+    @RequestMapping("getUserById")
+    public Map getUserById(int userId){
+        return userService.getUserById(userId);
+    }
 }
