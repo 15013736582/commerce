@@ -2,6 +2,7 @@ package com.service.serviceImpl;
 
 import com.dto.ResultState;
 import com.mapper.BvoMapper;
+import com.mapper.BvoOrderMapper;
 import com.mapper.StoreMapper;
 import com.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,15 @@ public class BvoServiceImpl {
 
     private final BvoMapper bvoMapper;
     private final StoreMapper storeMapper;
+    private final BvoOrderMapper broOrderMapper;
 
     @Autowired
-    public BvoServiceImpl(RoleServiceImpl roleService, UserServiceImpl userService, BvoMapper bvoMapper, StoreMapper storeMapper) {
+    public BvoServiceImpl(RoleServiceImpl roleService, UserServiceImpl userService, BvoMapper bvoMapper, StoreMapper storeMapper, BvoOrderMapper broOrderMapper1) {
         this.roleService = roleService;
         this.userService = userService;
         this.bvoMapper = bvoMapper;
         this.storeMapper = storeMapper;
+        this.broOrderMapper = broOrderMapper1;
     }
 
     /**

@@ -14,6 +14,7 @@
                         <div class="img"></div>
                         <img :src="'http://qn.limitip.com/'+pro.img" alt=""/>
                         <p>{{pro.title}}</p>
+                        <p>{{pro.type | dicCover("proType",dicList)}} </p>
                         <span>$16.00</span>
                     </router-link>
                 </li>
@@ -28,20 +29,28 @@
         data() {
             return {
                 proList: [],
+                dicList: []
             }
         },
         methods: {
             getProList() {
-                this.$axios.post("/api/pro/queryAll")
+                this.$axios.post("/api/pro/queryByState", $.param({state: "0"}))
                     .then(res => {
                             this.proList = res.data.proList;
                             console.log(res.data)
                         }
                     )
-            }
+            },
+            getDic() {
+                this.$axios.post("/api/dic/all")
+                    .then(res => {
+                        this.dicList = res.data.dicList;
+                    })
+            },
         },
         mounted() {
             this.getProList();
+            this.getDic();
         }
 
     }
