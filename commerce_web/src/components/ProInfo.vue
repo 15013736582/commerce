@@ -12,7 +12,7 @@
                     <p>sku: {{proInfo.sku}}</p>
                     <p>库存：{{proInfo.reverse}}</p>
                     <button class="btn btn-primary" @click="buy"> buy</button>
-                    <button class="btn btn-primary">Add to Wish List</button>
+                    <button class="btn btn-primary" @click="addWish">Add to Wish List</button>
                 </div>
             </div>
 
@@ -44,10 +44,11 @@
         data(){
             return{
                 dicList:[],
+                wish:{}
             }
         },
         props:[
-            'proInfo',
+            'proInfo'
         ],
         computed:{
             ...mapGetters([
@@ -68,6 +69,15 @@
                     .then(res => {
                         console.log(res.data)
                     })
+            },
+            addWish(){
+                let data={uid:this.userInfo.id,pid:this.proInfo.id};
+                data=$.param(data);
+                this.$axios.post("/api/wish/add",data)
+                    .then(res=>{
+                        console.log(res.data)
+                    })
+
             }
         },
         mounted(){
