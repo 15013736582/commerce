@@ -1,73 +1,80 @@
 <template>
     <div id="BvoInfo">
 
-            <div id="page-content" class="clearfix">
-                <div class="page-header position-relative">
-                    <h1 style="color: #2679b5;">借卖方
-                        <small><i class="icon-double-angle-right"></i> 我的信息</small>
-                    </h1>
-                </div>
-                <div class="inputName">
-                    <div class="mydiv"><label class="green">Name: </label><input type="text" name="nickname" v-model="bvoInfo.username"></div>
-                    <div class="mydiv"><label class="green">Email:</label><input type="text" name="email" v-model="bvoInfo.email">
-                    </div>
-                    <div class="mydiv"><label class="green">Phone:</label><input type="text" name="phone" v-model="bvoInfo.phone"></div>
-                    <button class="btn  btn-success save" @click="doUpdate">save</button>
-                    <!--<button class="btn  btn-pink" onclick="myshop()">My Stores</button>-->
-                </div>
+        <div id="page-content" class="clearfix">
+            <div class="page-header position-relative">
+                <h1 style="color: #2679b5;">借卖方
+                    <small><i class="icon-double-angle-right"></i> 我的信息</small>
+                </h1>
             </div>
+            <div class="inputName">
+                <div class="mydiv"><label class="green">Name: </label>
+                    <input type="text" readonly="readonly"  v-model="bvoInfo.username">
+                </div>
+                <div class="mydiv">
+                    <label class="green">Email:</label>
+                    <input type="text" name="email" v-model="bvoInfo.email">
+                </div>
+                <div class="mydiv">
+                    <label class="green">Phone:</label>
+                    <input type="text" name="phone" v-model="bvoInfo.phone"></div>
+                <button class="btn  btn-success save" @click="doUpdate">save</button>
+                <!--<button class="btn  btn-pink" onclick="myshop()">My Stores</button>-->
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     import {mapGetters, mapActions} from 'vuex'
+
     export default {
         name: "BvoInfo",
-        data(){
-            return{
-                bvoInfo:{
-                    id:null,
+        data() {
+            return {
+                bvoInfo: {
+                    id: null,
                     nickname: null,
-                    email:null,
-                    phone:null
+                    email: null,
+                    phone: null
                 },
-                report:[]
+                report: []
             }
         },
-        computed:{
+        computed: {
             ...mapGetters([
                 'userInfo'
             ])
         },
-        methods:{
+        methods: {
             ...mapActions([
                 'acUserInfo'
             ]),
-            getBvoInfo(){
+            getBvoInfo() {
 
-                this.$axios.post("/api/bvo/selfInfo",$.param({userId:this.userInfo.id}))
-                    .then(res=>{
+                this.$axios.post("/api/bvo/selfInfo", $.param({userId: this.userInfo.id}))
+                    .then(res => {
                         console.log(res.data);
-                        this.bvoInfo=res.data.bvoInfo;
-                        this.bvoInfo.username=res.data.username;
+                        this.bvoInfo = res.data.bvoInfo;
+                        this.bvoInfo.username = res.data.username;
                         console.log(this.bvoInfo)
                     });
             },
-            getReportType(){
-                this.$axios.post("/api/dic/type",$.param({type:"report"}))
-                    .then(res=>{
-                        this.report=res.data.dicList;
+            getReportType() {
+                this.$axios.post("/api/dic/type", $.param({type: "report"}))
+                    .then(res => {
+                        this.report = res.data.dicList;
                     });
             },
-            doUpdate(){
-                let data=$.param(this.bvoInfo);
-                this.$axios.post("/api/bvo/update",data)
-                    .then(res=>{
+            doUpdate() {
+                let data = $.param(this.bvoInfo);
+                this.$axios.post("/api/bvo/update", data)
+                    .then(res => {
                         console.log(res.data)
                     })
             }
         },
-        mounted(){
+        mounted() {
             this.getBvoInfo();
             this.getReportType();
         }
@@ -75,14 +82,15 @@
 </script>
 
 <style scoped>
-    .mydiv{
+    .mydiv {
         margin-bottom: 20px;
 
     }
+
     .btn {
 
         margin-left: 18px;
-   margin-right:8px;
+        margin-right: 8px;
     }
 
     .btn-success {
