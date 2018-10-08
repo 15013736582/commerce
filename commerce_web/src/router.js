@@ -21,6 +21,7 @@ import AdminPara from '@/components/AdminPara.vue'
 import AdminWalletController from '@/components/AdminWalletController.vue'
 import ProInfo from '@/components/ProInfo.vue'
 import MvoProAdd from '@/components/MvoProAdd.vue'
+import BvoShopAdd from '@/components/BvoShopAdd.vue'
 
 Vue.use(Router)
 
@@ -47,6 +48,7 @@ export default new Router({
                 {path: 'admin_wallet_controller', name: 'adminWalletController', component: AdminWalletController},
                 {path: 'pro_info', name: 'proInfo', component: ProInfo, props: true},
                 {path: 'mvo_pro_add', name: 'mvoProAdd', component: MvoProAdd},
+                {path: 'bvo_shop_add', name: 'bvoShopAdd', component: BvoShopAdd},
 
             ]
         },

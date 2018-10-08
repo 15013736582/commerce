@@ -216,14 +216,6 @@
 </script>
 
 <style scoped>
-    .thumbnail {
-        float: left;
-        position: relative;
-        margin: 0 20px 20px 0;
-        width: 110px;
-        height: 110px;
-        padding: 4px;
-    }
     .file-item .info {
         position: absolute;
         left: 4px;
@@ -239,12 +231,6 @@
         text-overflow: ellipsis;
         font-size: 12px;
         z-index: 10;
-    }
-    #filePicker {
-        display: inline-block;
-
-        vertical-align: middle;
-        margin: 0 12px 0 0;
     }
     .imgList{
         width: 30px;
