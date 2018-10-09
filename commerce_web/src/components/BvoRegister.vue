@@ -61,7 +61,7 @@
                         if(data.state == 0){
                             _this.hint = "注册成功,3秒后返回登录界面"
                             let intervalId = setInterval(()=>{
-                                _this.$router.replace({name:"login"})
+                                _this.$router.replace({name:"login"});
                                 clearInterval(intervalId)
                             },3000)
                         }
