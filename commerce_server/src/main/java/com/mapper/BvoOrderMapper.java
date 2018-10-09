@@ -1,11 +1,16 @@
 package com.mapper;
 
 import com.pojo.BvoOrder;
+import com.pojo.BvoOrderDetail;
 import com.pojo.BvoOrderExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface BvoOrderMapper {
+
+    List<BvoOrderDetail> findOrderDetail(int userId);
+
+
     long countByExample(BvoOrderExample example);
 
     int deleteByExample(BvoOrderExample example);

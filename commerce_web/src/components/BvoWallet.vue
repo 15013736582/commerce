@@ -1,28 +1,57 @@
 <template>
     <div id="BvoWallet">
         <div class=" position-relative">
-            <h4 style="color: #2679b5;text-align: center;margin-right: 100px" v-if="userInfo.walletId ==null">钱包注册</h4>
-            <h4 style="color: #2679b5;text-align: center;margin-right: 100px" v-if="userInfo.walletId != null">钱包查看</h4>
+            <h4 style="color: #2679b5;text-align: center;margin-right: 100px" v-if="!isLogin">钱包注册/登陆</h4>
+            <h4 style="color: #2679b5;text-align: center;margin-right: 100px" v-if="isLogin">钱包查看</h4>
             <hr>
         </div>
 
-        <div id="main-content" class="clearfix">
+        <div class="clearfix" v-if="!isLogin">
             <div id="page-content" class="clearfix">
 
                 <div class="Register">
                     <form id="rWallet">
                         <input type="hidden" name="userId" :value="userInfo.id">
-                        <div class="mydiv" v-if="userInfo.walletId ==null"><label class="green">账号:</label><input
-                                type="text" name="username"></div>
-                        <div class="mydiv" v-if="userInfo.walletId ==null"><label class="green">密码:</label><input
-                                type="password" name="password"></div>
-                        <div class="mydiv" v-if="userInfo.walletId !=null"><label class="green" >账号:</label>
-                            <input type="text" readonly="readonly" name="username" :value="wallet.username"></div>
-                        <div class="mydiv" v-if="userInfo.walletId !=null"><label class="green">余额:</label>
+                        <div class="mydiv">
+                            <label class="green">钱包账号:</label><input
+                                type="text" name="username">
+                        </div>
+                        <div class="mydiv" >
+                            <label class="green">密码:</label><input
+                                type="password" name="password">
+                        </div>
+                        <button type="button" class="btn  btn-success save"
+                                @click="walletRegister" >注册</button>
+                        <button type="button" class="btn  btn-success save my_btn"
+                                @click="walletLogin" >登陆</button>
+                    </form>
+                    <div>{{hint}}</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div  class="clearfix" v-if="isLogin" >
+            <div id="page-content" class="clearfix">
+
+                <div class="Register">
+                    <form >
+                        <input type="hidden" name="userId" :value="userInfo.id">
+                        <div class="mydiv" >
+                            <label class="green" >账号:</label>
+                            <input type="text" readonly="readonly" name="username" :value="wallet.username">
+                        </div>
+                        <div class="mydiv" >
+                            <label class="green">余额:</label>
                             <input type="text" readonly="readonly" name="password" :value="wallet.money">
                         </div>
                         <button type="button" @click="walletRegister" class="btn  btn-success save" v-if="userInfo.walletId ==null">注册</button>
                     </form>
+                    <div class="mydiv" >
+                        <label class="green" >充值:</label>
+                        <input type="text" v-model="addm" >
+                        <button @click="recharge">确定</button>
+                    </div>
                     <div>{{hint}}</div>
                 </div>
             </div>
@@ -41,10 +70,12 @@
                     id:null,
                     username:null,
                     password:null,
-                    money:null,
+                    money:0,
                     createDate:null,
                 },
-                hint: ""
+                hint: "",
+                isLogin:false,
+                addm:0,
             }
         },
         computed: {
@@ -65,10 +96,33 @@
                 console.log(data);
                 this.$axios.post("/api/wallet/register", data)
                     .then(res => {
-                        this.hint = "操作成功"
+                        this.hint = "注册成功";
                         console.log(res.data);
-
-
+                    })
+            },
+            walletLogin(){
+                let data = $("#rWallet").serialize();
+                this.$axios.post("/api/wallet/login", data)
+                    .then(res => {
+                        if(res.data.state == 0){
+                            this.isLogin = true;
+                            this.hint = "";
+                        }else {
+                            this.hint = "用户名或者密码错误"
+                        }
+                    })
+            },
+            recharge(){
+                let data = {...this.wallet};
+                data.num = this.addm;
+                this.$axios.post("/api/wallet/recharge", $.param(data))
+                    .then(res => {
+                        if(res.data.state == 0){
+                            this.hint = "充值成功";
+                            this.wallet.money = parseInt(this.wallet.money) + parseInt(this.addm);
+                        }else {
+                            this.hint = "用户名或者密码错误"
+                        }
                     })
             }
         },
@@ -80,6 +134,9 @@
 </script>
 
 <style scoped>
+    .my_btn{
+        margin-left: 20%;
+    }
     .Register{
         width: 50%;
         margin:auto;

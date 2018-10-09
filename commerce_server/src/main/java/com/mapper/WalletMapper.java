@@ -2,8 +2,9 @@ package com.mapper;
 
 import com.pojo.Wallet;
 import com.pojo.WalletExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface WalletMapper {
     long countByExample(WalletExample example);

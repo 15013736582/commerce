@@ -2,6 +2,7 @@ package com.controller.controllerImpl;
 
 import com.pojo.Wallet;
 import com.service.serviceImpl.WalletServiceImpl;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,4 +23,16 @@ public class WalletControllerImpl {
     public  Map find(int userId){
         return walletService.find(userId);
     }
+
+    @RequestMapping("login")
+    public Map login(Wallet wallet){
+        return walletService.login(wallet);
+    }
+
+    @RequestMapping("recharge")
+    public Map recharge(Wallet wallet,int num){
+        return walletService.recharge(wallet, num);
+    }
+
+
 }

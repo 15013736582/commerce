@@ -9,11 +9,11 @@ public class Wallet {
 
     private String password;
 
-    private Integer money;
+    private Double money;
 
     private Date createDate;
 
-    public Wallet(Integer id, String username, String password, Integer money, Date createDate) {
+    public Wallet(Integer id, String username, String password, Double money, Date createDate) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -49,11 +49,11 @@ public class Wallet {
         this.password = password == null ? null : password.trim();
     }
 
-    public Integer getMoney() {
+    public Double getMoney() {
         return money;
     }
 
-    public void setMoney(Integer money) {
+    public void setMoney(Double money) {
         this.money = money;
     }
 

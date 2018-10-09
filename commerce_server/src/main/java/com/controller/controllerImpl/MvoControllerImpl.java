@@ -3,6 +3,7 @@ package com.controller.controllerImpl;
 import com.pojo.Mvo;
 import com.pojo.Pro;
 import com.pojo.User;
+import com.service.serviceImpl.MvoOrderServiceImpl;
 import com.service.serviceImpl.MvoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,8 +23,15 @@ import java.util.Map;
 @RequestMapping("api/mvo")
 public class MvoControllerImpl {
 
+    final MvoOrderServiceImpl mvoOrderService;
+
+    final MvoServiceImpl mvoService;
+
     @Autowired
-    MvoServiceImpl mvoService;
+    public MvoControllerImpl(MvoOrderServiceImpl mvoOrderService, MvoServiceImpl mvoService) {
+        this.mvoOrderService = mvoOrderService;
+        this.mvoService = mvoService;
+    }
 
     @PreAuthorize("permitAll")
     @RequestMapping("register")

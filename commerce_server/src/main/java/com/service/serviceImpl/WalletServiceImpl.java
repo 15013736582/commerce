@@ -2,8 +2,11 @@ package com.service.serviceImpl;
 
 import com.dto.ResultState;
 import com.mapper.WalletMapper;
+import com.pojo.Pro;
 import com.pojo.User;
 import com.pojo.Wallet;
+import com.pojo.WalletExample;
+import org.apache.ibatis.annotations.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +44,35 @@ public class WalletServiceImpl {
            result.put("wallet",walletMapper.selectByPrimaryKey(user.getWalletId()));
        }
        return  result;
+    }
+
+    public Map login(Wallet wallet){
+        Map<String, Object> result = new HashMap<>();
+        WalletExample ex = new WalletExample();
+        WalletExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(wallet.getUsername());
+        cr.andPasswordEqualTo(wallet.getPassword());
+        if (walletMapper.selectByExample(ex).size() > 0) {
+            result.put("state", ResultState.SECCESS.getState());
+            return result;
+        }
+        result.put("state", ResultState.Fail.getState());
+        return result;
+    }
+
+    public Map recharge(Wallet wallet,int num){
+        Map<String, Object> result = new HashMap<>();
+        wallet.setMoney(wallet.getMoney()+num);
+        walletMapper.updateByPrimaryKeySelective(wallet);
+        result.put("state", ResultState.SECCESS.getState());
+        return result;
+    }
+
+    public Wallet findById(int id){
+        return walletMapper.selectByPrimaryKey(id);
+    }
+
+    public void update(Wallet wallet){
+        walletMapper.updateByPrimaryKeySelective(wallet);
     }
 }

@@ -27,6 +27,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.security.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -106,6 +107,7 @@ public class ProServiceImpl implements ProService {
 
     public Map add(Pro pro){
         Map result = new HashMap();
+        pro.setAddDate(new Date());
         proMapper.insertSelective(pro);
         result.put("state", ResultState.SECCESS.getState());
         return result;
@@ -128,5 +130,9 @@ public class ProServiceImpl implements ProService {
         result.put("state", ResultState.SECCESS.getState());
         result.put("proList",list);
         return  result;
+    }
+
+    public Pro findById(int id){
+        return proMapper.selectByPrimaryKey(id);
     }
 }

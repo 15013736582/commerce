@@ -1,10 +1,9 @@
 <template>
     <div id="ProInfo">
-        {{proInfo.title}}
         <div id="page-content" class="clearfix">
 
             <div class="goods-header">
-                <div class="goods-header-left"><img :src="'http://qn.limitip.com/'+proInfo.img"/></div>
+                <div class="goods-header-left "><img class="my_img" :src="'http://qn.limitip.com/'+proInfo.img"/></div>
                 <div class="goods-header-right">
                     <p>{{proInfo.title}}</p>
                     <p class="red">${{proInfo.price}}</p>
@@ -77,6 +76,10 @@
 </script>
 
 <style scoped>
+    .my_img{
+        width: 140px;
+        height: 180px;
+    }
     .goods-header{
         overflow: hidden;
     }

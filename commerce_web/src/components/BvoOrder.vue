@@ -20,8 +20,9 @@
 
             <div class="tabbable">
                 <ul class="nav nav-tabs" id="myTab">
-                    <li class="active"><a @click="waitingPayment" data-toggle="tab" href="#AwaitingPayment"> Awaiting Payment</a></li>
-                    <li class=""><a data-toggle="tab" href="#AwaitingShipment"> Awaiting Shipment</a></li>
+                    <li class="active"><a @click="waitingPayment" data-toggle="tab" href="#AwaitingPayment"> Awaiting
+                        Payment(等待付款)</a></li>
+                    <li class=""><a @click="getPaidOrders" data-toggle="tab" href="#AwaitingShipment">paid(已付款)</a></li>
                     <li class=""><a data-toggle="tab" href="#shipped">Shiped</a></li>
                     <li class=""><a data-toggle="tab" href="#complete">Completed Orders</a></li>
                     <li class=""><a data-toggle="tab" href="#canceled">Cancelled Orders</a></li>
@@ -35,34 +36,35 @@
                                     <label><input type="checkbox" class="ace-checkbox-2"><span
                                             class="lbl"></span></label>
                                 </th>
+                                <th>序号</th>
+                                <th class="hidden-480">单号</th>
                                 <th>Title</th>
                                 <th class="hidden-480">数量</th>
-                                <!--<th>Sku</th>-->
-                                <th class="hidden-480">单号</th>
                                 <th class="hidden-480">总价</th>
                                 <th></th>
                             </tr>
                             </thead>
 
                             <tbody>
-                            <tr  v-for="(item,index) in waitOrders" :key="index">
+                            <tr v-for="(item,index) in waitOrders" :key="index">
                                 <td class="center">
                                     <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                                 </td>
-                                <td><a href="bvo-goodsdetail.html">{{item.title}}</a></td>
-                                <td class="hidden-480">{{item.qty}}</td>
+                                <td>{{index}}</td>
                                 <td class="hidden-phone">{{item.id}}</td>
+                                <td>{{item.title}}</td>
+                                <td class="hidden-480">{{item.qty}}</td>
                                 <td class="hidden-480">{{item.price}}</td>
                                 <td>
-                                    <a href="bvo-orderPayment.html">Pay Now</a>
+                                    <button @click="buyNow(index)">Pay Now</button>
                                 </td>
                             </tr>
 
                             </tbody>
                         </table>
+                        <h1>{{hint}}</h1>
                     </div>
                     <div id="AwaitingShipment" class="tab-pane">
-                        <p>
                         <table id="table_bug_report" class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
@@ -70,47 +72,32 @@
                                     <label><input type="checkbox" class="ace-checkbox-2"><span
                                             class="lbl"></span></label>
                                 </th>
+                                <th>序号</th>
+                                <th class="hidden-480">单号</th>
                                 <th>Title</th>
-                                <th>Price</th>
-                                <th class="hidden-480">QTY</th>
-                                <th>Sku</th>
-                                <th>Order No</th>
-                                <th class="hidden-480">Total</th>
-
+                                <th class="hidden-480">数量</th>
+                                <th class="hidden-480">总价</th>
+                                <!--<th></th>-->
                             </tr>
                             </thead>
 
                             <tbody>
-                            <tr>
+                            <tr v-for="(item,index) in paidOrders" :key="index">
                                 <td class="center">
                                     <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                                 </td>
-                                <td><a href="bvo-goodsdetail.html">best.com</a></td>
-                                <td>$75</td>
-                                <td>500</td>
-                                <td>GM667747888</td>
-                                <td>565742</td>
-                                <td>$7000</td>
-
-                            </tr>
-
-
-                            <tr>
-                                <td class="center">
-                                    <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                                </td>
-                                <td><a href="bvo-goodsdetail.html">pro.com</a></td>
-                                <td>$55</td>
-                                <td>4,250</td>
-                                <td>GM667747888</td>
-                                <td>7897777</td>
-                                <td>$5788</td>
-
+                                <td>{{index}}</td>
+                                <td class="hidden-phone">{{item.id}}</td>
+                                <td>{{item.title}}</td>
+                                <td class="hidden-480">{{item.qty}}</td>
+                                <td class="hidden-480">{{item.price}}</td>
+                                <!--<td>-->
+                                    <!--<button @click="buyNow(index)">Pay Now</button>-->
+                                <!--</td>-->
                             </tr>
 
                             </tbody>
                         </table>
-                        </p>
                     </div>
                     <div id="shipped" class="tab-pane">
                         <p>
@@ -372,7 +359,9 @@
         name: "BvoOrder",
         data() {
             return {
-                waitOrders:[],
+                waitOrders: [],
+                paidOrders: [],
+                hint: "",
 
             }
         },
@@ -384,14 +373,35 @@
         methods: {
             waitingPayment() {
                 this.$axios.post("/api/bvoOrder/findByUserIdAndIsPay", $.param({
-                    userId: this.userInfo.id,isPay:0
-                })).then(res=>{
+                    userId: this.userInfo.id, isPay: 0
+                })).then(res => {
                     console.log(res.data);
-                    this.waitOrders = res.data.waitOrders;
+                    this.waitOrders = res.data.orders;
+                })
+            },
+            buyNow(index) {
+                console.log(this.waitOrders[index]);
+                this.$axios.post("/api/bvoOrder/pay", $.param(this.waitOrders[index]))
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.state == 0) {
+                            this.waitOrders.splice(index, 1);
+                        }
+                        else {
+                            this.hint = res.data.msg;
+                        }
+                    })
+            },
+            getPaidOrders(){
+                this.$axios.post("/api/bvoOrder/findByUserIdAndIsPay", $.param({
+                    userId: this.userInfo.id, isPay: 1
+                })).then(res => {
+                    console.log(res.data);
+                    this.paidOrders = res.data.orders;
                 })
             }
         },
-        mounted(){
+        mounted() {
             this.waitingPayment()
         }
 

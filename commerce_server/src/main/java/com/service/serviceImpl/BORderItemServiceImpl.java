@@ -7,6 +7,7 @@ import com.service.BORderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,5 +24,8 @@ public class BORderItemServiceImpl implements BORderItemService {
         bOrderItemMapper.insertSelective(bOrderItem);
     }
 
-//    public boolean find(int oId, int pId);
+
+    public List findMvoOrderDetailById(Map map){
+        return bOrderItemMapper.findMvoOrderDetail(map);
+    }
 }

@@ -3,9 +3,16 @@ package com.mapper;
 import com.pojo.BOrderItem;
 import com.pojo.BOrderItemExample;
 import java.util.List;
+import java.util.Map;
+
+import com.pojo.MvoOrderDetail;
 import org.apache.ibatis.annotations.Param;
 
 public interface BOrderItemMapper {
+
+    List<MvoOrderDetail> findMvoOrderDetail(Map map);
+
+
     long countByExample(BOrderItemExample example);
 
     int deleteByExample(BOrderItemExample example);

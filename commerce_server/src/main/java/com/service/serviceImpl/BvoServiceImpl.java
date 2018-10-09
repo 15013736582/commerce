@@ -26,15 +26,15 @@ public class BvoServiceImpl {
 
     private final BvoMapper bvoMapper;
     private final StoreMapper storeMapper;
-    private final BvoOrderMapper broOrderMapper;
+    private final BvoOrderMapper bvoOrderMapper;
 
     @Autowired
-    public BvoServiceImpl(RoleServiceImpl roleService, UserServiceImpl userService, BvoMapper bvoMapper, StoreMapper storeMapper, BvoOrderMapper broOrderMapper1) {
+    public BvoServiceImpl(RoleServiceImpl roleService, UserServiceImpl userService, BvoMapper bvoMapper, StoreMapper storeMapper, BvoOrderMapper bvoOrderMapper) {
         this.roleService = roleService;
         this.userService = userService;
         this.bvoMapper = bvoMapper;
         this.storeMapper = storeMapper;
-        this.broOrderMapper = broOrderMapper1;
+        this.bvoOrderMapper = bvoOrderMapper;
     }
 
     /**

@@ -6,7 +6,7 @@
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="money" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="money" javaType="java.lang.Double" jdbcType="DOUBLE" />
       <arg column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
@@ -108,7 +108,7 @@
     </selectKey>
     insert into wallet (username, password, money, 
       create_date)
-    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, 
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}, 
       #{createDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.pojo.Wallet">
@@ -138,7 +138,7 @@
         #{password,jdbcType=VARCHAR},
       </if>
       <if test="money != null">
-        #{money,jdbcType=INTEGER},
+        #{money,jdbcType=DOUBLE},
       </if>
       <if test="createDate != null">
         #{createDate,jdbcType=TIMESTAMP},
@@ -164,7 +164,7 @@
         password = #{record.password,jdbcType=VARCHAR},
       </if>
       <if test="record.money != null">
-        money = #{record.money,jdbcType=INTEGER},
+        money = #{record.money,jdbcType=DOUBLE},
       </if>
       <if test="record.createDate != null">
         create_date = #{record.createDate,jdbcType=TIMESTAMP},
@@ -179,7 +179,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
-      money = #{record.money,jdbcType=INTEGER},
+      money = #{record.money,jdbcType=DOUBLE},
       create_date = #{record.createDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -195,7 +195,7 @@
         password = #{password,jdbcType=VARCHAR},
       </if>
       <if test="money != null">
-        money = #{money,jdbcType=INTEGER},
+        money = #{money,jdbcType=DOUBLE},
       </if>
       <if test="createDate != null">
         create_date = #{createDate,jdbcType=TIMESTAMP},
@@ -207,7 +207,7 @@
     update wallet
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      money = #{money,jdbcType=INTEGER},
+      money = #{money,jdbcType=DOUBLE},
       create_date = #{createDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
