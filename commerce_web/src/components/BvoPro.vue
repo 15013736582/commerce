@@ -9,13 +9,13 @@
             <!--</div>-->
             <!--</div>-->
             <ul>
-                <li v-for="(pro,index) in proList" :key="index">
+                <li v-for="(pro,index) in proList " :key="index">
                     <router-link :to="{name:'proInfo', params: {proInfo:proList[index]}}">
                         <div class="img"></div>
                         <img :src="'http://qn.limitip.com/'+pro.img" alt=""/>
                         <p>{{pro.title}}</p>
                         <p>{{pro.type | dicCover("proType",dicList)}} </p>
-                        <span>$16.00</span>
+                        <span>${{pro.price}}</span>
                     </router-link>
                 </li>
             </ul>

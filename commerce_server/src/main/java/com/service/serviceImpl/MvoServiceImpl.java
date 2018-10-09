@@ -102,7 +102,7 @@ public class MvoServiceImpl implements MvoService {
      * @return 插入后的主键
      */
     public int add(Mvo mov){
-        mvoMapper.updateByPrimaryKeySelective(mov);
+        mvoMapper.insertSelective(mov);
         return  mov.getId();
     }
 

@@ -5,17 +5,19 @@
         <!--<router-link to="/about">About</router-link>-->
         <!--</div>-->
         <router-view/>
+        <Loading class="my_loading" v-if="showLoading"></Loading>
     </div>
 </template>
 
 <script>
     import {mapGetters, mapActions} from 'vuex'
-
+    import Loading from '@/components/loading/Loading.vue'
     export default {
         name: "app",
         computed: {
             ...mapGetters([
-                'userInfo'
+                'userInfo',
+                'showLoading',
             ]),
         },
         methods: {
@@ -37,9 +39,19 @@
                         this.$router.replace({name: 'home'})
                     });
             }
+        },
+        components: {
+            Loading,
         }
     }
 </script>
 <style lang="scss">
-
+ .my_loading{
+     position: fixed;
+     top: 280px;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background: rgba(0,0,0,0);
+ }
 </style>

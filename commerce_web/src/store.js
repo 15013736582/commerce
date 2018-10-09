@@ -15,12 +15,16 @@ export default new Vuex.Store({
             token: null,
             addDate: null,
             type:null,
-        }
+        },
+        showLoading:false,
     },
     mutations: {
         mUserInfo(state, n) {
             state.userInfo = n;
         },
+        mShowLoading(){
+
+        }
     },
     actions: {
         acUserInfo({commit}, n) {
@@ -30,6 +34,9 @@ export default new Vuex.Store({
     getters: {
         userInfo: (state) => {
             return state.userInfo;
+        },
+        showLoading:(state) => {
+            return state.showLoading;
         },
     },
 })

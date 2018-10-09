@@ -130,7 +130,12 @@
             getDic() {
                 this.$axios.post("/api/dic/all")
                     .then(res => {
-                        this.dicList = res.data.dicList;
+                        this.dicList = res.data.dicList.sort((a, b) => {
+                            if (a.type == b.type) {
+                                return a.code < b.code ? -1 : 1
+                            }
+                            return a.type > b.type ? -1 : 1;
+                        });
                     })
             },
             update(index) {

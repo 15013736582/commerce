@@ -85,6 +85,7 @@
                 console.log(data);
                 this.$axios.post("/api/mvo/register", data)
                     .then(res => {
+                        console.log(res.data);
                         let data = res.data;
                         if (data.state == 0) {
                             console.log(data)
