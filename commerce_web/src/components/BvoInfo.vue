@@ -7,7 +7,7 @@
                     <small><i class="icon-double-angle-right"></i> 我的信息</small>
                 </h1>
             </div>
-            <div class="inputName">
+            <div class="inputName" >
                 <div class="mydiv"><label class="green">Name: </label>
                     <input type="text" readonly="readonly"  v-model="bvoInfo.username">
                 </div>
@@ -82,10 +82,21 @@
 </script>
 
 <style scoped>
-    .mydiv {
-        margin-bottom: 20px;
+    .clearfix{animation:pulse 1s 0s 1 both}
+    @keyframes pulse {
+        from {
+            transform: scale3d(1, 1, 1);
+        }
 
+        50% {
+            transform: scale3d(1.05, 1.05, 1.05);
+        }
+
+        to {
+            transform: scale3d(1, 1, 1);
+        }
     }
+
 
     .btn {
 

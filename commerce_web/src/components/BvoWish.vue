@@ -74,6 +74,7 @@
 </script>
 
 <style scoped>
+
     img{
         width: 200px;
         height: 200px;
@@ -102,4 +103,21 @@
         height: 25px;
         margin-right: 10px;
     }
+    .clearfix>ul{animation:puffIn 1s 0s 1 both}
+    @keyframes puffIn {
+        0% {
+            opacity: 0;
+            transform-origin: 50% 50%;
+            transform: scale(2,2);
+            filter: blur(2px);
+        }
+
+        100% {
+            opacity: 1;
+            transform-origin: 50% 50%;
+            transform: scale(1,1);
+            filter: blur(0px);
+        }
+    }
+
 </style>

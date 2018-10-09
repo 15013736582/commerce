@@ -20,9 +20,9 @@
                             <label class="green">密码:</label><input
                                 type="password" name="password">
                         </div>
-                        <button type="button" class="btn  btn-success save"
+                        <button v-if="userInfo.walletId ==null" type="button" class="btn  btn-success save"
                                 @click="walletRegister" >注册</button>
-                        <button type="button" class="btn  btn-success save my_btn"
+                        <button v-if="userInfo.walletId !=null" type="button" class="btn  btn-success save my_btn"
                                 @click="walletLogin" >登陆</button>
                     </form>
                     <div>{{hint}}</div>
@@ -134,6 +134,8 @@
 </script>
 
 <style scoped>
+
+
     .my_btn{
         margin-left: 20%;
     }
