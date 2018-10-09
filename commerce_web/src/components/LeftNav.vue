@@ -28,12 +28,12 @@
                         <span>品牌商-商品录入</span>
                     </router-link>
                 </li>
-                <li>
-                    <router-link :to="{name:'mvoProImg'}" v-if="userInfo.type==1">
-                        <i class="icon-text-width"></i>
-                        <span>品牌商-商品主图</span>
-                    </router-link>
-                </li>
+                <!--<li>-->
+                    <!--<router-link :to="{name:'mvoProImg'}" v-if="userInfo.type==1">-->
+                        <!--<i class="icon-text-width"></i>-->
+                        <!--<span>品牌商-商品主图</span>-->
+                    <!--</router-link>-->
+                <!--</li>-->
                 <li>
                     <router-link :to="{name:'mvoOrder'}" v-if="userInfo.type==1">
                         <i class="icon-file"></i>

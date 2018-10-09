@@ -16,4 +16,12 @@ public class WishControllerImpl {
     public Map addWish(int uid,int pid){
       return   wishService.addWish(uid,pid);
     }
+    @RequestMapping("find")
+    public Map findWish(int uid){
+        return  wishService.findWish(uid);
+    }
+    @RequestMapping("del")
+    public  Map delWish(int uid,int pid){
+        return wishService.delWish(uid,pid);
+    }
 }

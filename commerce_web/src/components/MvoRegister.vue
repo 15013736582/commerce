@@ -32,7 +32,7 @@
                             <div class="control-group">
                                 <label class="control-label control-label">Email</label>
                                 <div class="controls control-label">
-                                    <input type="text" name="email">
+                                    <input type="text" name="email" v-model="email">
                                 </div>
                             </div>
                             <div class="control-group">
@@ -75,11 +75,22 @@
         name: "MvoRegister",
         data() {
             return {
-                hint: ""
+                hint: "",
+                email:""
             }
         },
         methods: {
+
             doRegister() {
+                var regEmail=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+                if(this.email==''){
+                    alert("请输入邮箱");
+                    return;
+                }else if(!regEmail.test(this.email)){
+                    alert("邮箱格式不正确");
+                    return;
+                }
+
                 let _this = this;
                 let data = $('#frm').serialize();
                 console.log(data);

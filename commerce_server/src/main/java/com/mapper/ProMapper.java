@@ -3,9 +3,16 @@ package com.mapper;
 import com.pojo.Pro;
 import com.pojo.ProExample;
 import java.util.List;
+
+import com.pojo.WishDetail;
 import org.apache.ibatis.annotations.Param;
 
 public interface ProMapper {
+   List<WishDetail>  findWish(int uid);
+
+
+
+
     long countByExample(ProExample example);
 
     int deleteByExample(ProExample example);
