@@ -20,7 +20,7 @@
                     <li class=""><a @click="getOrder(1)" data-toggle="tab" href="#paid"> 待发货</a></li>
                     <li class=""><a @click="getOrder(2)" data-toggle="tab" href="#shipped">已发货</a></li>
                     <li class=""><a @click="getOrder(3)" data-toggle="tab" href="#complete">已完成</a></li>
-                    <li class=""><a data-toggle="tab" href="#canceled">已取消</a></li>
+                    <li class=""><a @click="getOrder(4)" data-toggle="tab" href="#canceled">已取消</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="AwaitingPayment" class="tab-pane active">
@@ -75,6 +75,7 @@
                                 <th class="hidden-480">订单编号</th>
                                 <th class="hidden-480">订单创建时间</th>
                                 <th>订单状态</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
 
@@ -91,6 +92,10 @@
                                 <td class="hidden-480">{{item.bvoOrder.id}}</td>
                                 <td class="hidden-480">{{item.bvoOrder.createDate}}</td>
                                 <td>{{item.bvoOrder.isPay | dicCover('orderType',dicList)}}</td>
+                                <td>
+                                    <button @click="shipped(item.bvoOrder,2)">发货</button>
+                                    <button @click="shipped(item.bvoOrder,4)">取消</button>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -111,6 +116,7 @@
                                 <th class="hidden-480">订单编号</th>
                                 <th class="hidden-480">订单创建时间</th>
                                 <th>订单状态</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
 
@@ -127,6 +133,10 @@
                                 <td class="hidden-480">{{item.bvoOrder.id}}</td>
                                 <td class="hidden-480">{{item.bvoOrder.createDate}}</td>
                                 <td>{{item.bvoOrder.isPay | dicCover('orderType',dicList)}}</td>
+                                <td>
+                                    <button @click="shipped(item.bvoOrder,3)">完成</button>
+                                    <button @click="shipped(item.bvoOrder,4)">取消</button>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -168,76 +178,40 @@
                         </table>
                     </div>
                     <div id="canceled" class="tab-pane">
-                        <p>
-                        <table id="table_bug_report" class="table table-striped table-bordered table-hover">
+                        <table class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th class="center">
                                     <label><input type="checkbox" class="ace-checkbox-2"><span
                                             class="lbl"></span></label>
                                 </th>
+                                <th>序号</th>
                                 <th>商品标题</th>
-                                <th>价格</th>
+                                <th>单价</th>
+                                <th>总价</th>
                                 <th class="hidden-480">数量</th>
-                                <th>sku</th>
-                                <th>订单编号</th>
+                                <th class="hidden-480">订单编号</th>
                                 <th class="hidden-480">订单创建时间</th>
-
+                                <th>订单状态</th>
                             </tr>
                             </thead>
 
                             <tbody>
-                            <tr>
+                            <tr v-for="(item,index) in orderList" :key="index">
                                 <td class="center">
                                     <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                                 </td>
-                                <td><a href="bvo-goodsdetail.html">base.com</a></td>
-                                <td>$35</td>
-                                <td class="hidden-480">2,595</td>
-                                <td class="hidden-phone">Feb 18</td>
-                                <td class="hidden-480">75684894</td>
-                                <td>
-
-                                </td>
-
+                                <td><a href="bvo-goodsdetail.html">{{index}}</a></td>
+                                <td>{{item.pro.title}}</td>
+                                <td>{{item.pro.price}}</td>
+                                <td>{{item.bvoOrder.price}}</td>
+                                <td class="hidden-480">{{item.bvoOrder.qty}}</td>
+                                <td class="hidden-480">{{item.bvoOrder.id}}</td>
+                                <td class="hidden-480">{{item.bvoOrder.createDate}}</td>
+                                <td>{{item.bvoOrder.isPay | dicCover('orderType',dicList)}}</td>
                             </tr>
-
-
-                            <tr>
-                                <td class="center">
-                                    <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                                </td>
-                                <td><a href="bvo-goodsdetail.html">max.com</a></td>
-                                <td>$60</td>
-                                <td class="hidden-480">4,400</td>
-                                <td class="hidden-phone">Mar 11</td>
-                                <td class="hidden-480">75684894</td>
-                                <td>
-
-                                </td>
-
-                            </tr>
-
-
-                            <tr>
-                                <td class="center">
-                                    <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                                </td>
-                                <td><a href="bvo-goodsdetail.html">best.com</a></td>
-                                <td>$75</td>
-                                <td class="hidden-480">6,500</td>
-                                <td class="hidden-phone">Apr 03</td>
-                                <td class="hidden-480">75684894</td>
-                                <td>
-
-                                </td>
-
-                            </tr>
-
-
                             </tbody>
                         </table>
-                        </p>
                     </div>
                 </div>
             </div>
@@ -273,7 +247,13 @@
                     .then(res => {
                         this.orderList = res.data.orderList;
                     })
-            }
+            },
+            shipped(bvoOrder,isPay){
+                bvoOrder.isPay = isPay;
+                this.$axios.post("/api/bvoOrder/update",$.param(bvoOrder))
+                    .then(res=>{
+                    })
+            },
         },
         mounted() {
             this.getOrder();

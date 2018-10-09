@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -38,5 +39,12 @@ public class BvoOrderControllerImpl {
     @RequestMapping("pay")
     public Map pay(BvoOrder bvoOrder){
         return bvoOrderService.pay(bvoOrder);
+    }
+
+    @RequestMapping("update")
+    public Map update(BvoOrder bvoOrder){
+        Map<String, Object> result = new HashMap<>();
+        bvoOrderService.update(bvoOrder);
+        return result;
     }
 }

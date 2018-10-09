@@ -75,4 +75,5 @@ public class WalletServiceImpl {
     public void update(Wallet wallet){
         walletMapper.updateByPrimaryKeySelective(wallet);
     }
+
 }

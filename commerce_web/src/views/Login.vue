@@ -10,7 +10,7 @@
                 <input type="password" id="inputPassword" name="password" class="form-control">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" value="remember-me"> Remember me
+                        <input type="checkbox" value="remember-me">
                     </label>
                 </div>
                 <button class="btn  btn-primary btn-block" type="button" @click="doLogin">登录</button>

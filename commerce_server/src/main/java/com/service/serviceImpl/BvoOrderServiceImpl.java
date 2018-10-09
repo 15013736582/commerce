@@ -3,6 +3,7 @@ package com.service.serviceImpl;
 import com.dto.ResultState;
 import com.mapper.BvoOrderMapper;
 import com.pojo.*;
+import com.service.BORderItemService;
 import com.service.BvoOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -104,12 +105,20 @@ public class BvoOrderServiceImpl implements BvoOrderService {
         if (wallet.getMoney() < bvoOrder.getPrice()) {
             result.put("state", ResultState.Fail.getState());
             result.put("msg", "余额不足");
+            return result;
         }
         bvoOrder.setId(bvoOrder.getId());
         bvoOrder.setIsPay(1);
         bvoOrderMapper.updateByPrimaryKeySelective(bvoOrder);
         wallet.setMoney(wallet.getMoney()-bvoOrder.getPrice());
         walletService.update(wallet);
+        int proId = boRderItemService.findByOId(bvoOrder.getId()).getpId();
+        Pro pro = proService.findById(proId);
+        int mId = pro.getmId();
+        User mvo =  userService.findById(mId);
+        Wallet mWallet =  walletService.findById(mvo.getWalletId());
+        mWallet.setMoney(mWallet.getMoney()+ bvoOrder.getPrice());
+        walletService.update(mWallet);
         result.put("state", ResultState.SECCESS.getState());
         return result;
     }
