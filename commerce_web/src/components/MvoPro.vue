@@ -36,7 +36,7 @@
                     <td class="center">
                         <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                     </td>
-                    <td>{{p.title}}</td>
+                    <td width="30%"><img :src="'http://qn.limitip.com/'+p.img" style="width: 50px;height: 50px">{{p.title}}</td>
                     <td>{{p.type | dicCover('proType',dicList)}}</td>
                     <td>{{p.price}}</td>
                     <td class="hidden-480">{{p.reverse}}</td>

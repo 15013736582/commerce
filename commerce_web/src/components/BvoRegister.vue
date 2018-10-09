@@ -20,13 +20,13 @@
                             <div class="control-group">
                                 <label class="control-label" >Email<br>邮箱</label>
                                 <div class="controls control-label">
-                                    <input type="text" name="email" >
+                                    <input type="text" name="email" v-model="email">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label control-label">Phone<br>电话</label>
                                 <div class="controls control-label">
-                                    <input type="text" name="phone" >
+                                    <input type="text" name="phone" v-model="phone">
                                 </div>
                             </div>
                         </form>
@@ -46,11 +46,31 @@
         name: "MvoRegister",
         data(){
             return{
-                hint:""
+                hint:"",
+                email:""
             }
         },
         methods:{
+
             doRegister(){
+                var reg=11 && /^((13|14|15|17|18)[0-9]{1}\d{8})$/;
+                if(this.phone==''){
+                    alert("请输入手机号码");
+                    return;
+                }else if(!reg.test(this.phone)){
+                    alert("手机格式不正确");
+                    return;
+                }
+
+                var regEmail=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+                if(this.email==''){
+                    alert("请输入邮箱");
+                    return;
+                }else if(!regEmail.test(this.email)){
+                    alert("邮箱格式不正确");
+                    return;
+                }
+
                 let _this = this;
                 let data = $('#frm').serialize();
                 this.$axios.post("/api/bvo/register",data)

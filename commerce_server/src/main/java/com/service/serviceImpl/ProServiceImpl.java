@@ -135,4 +135,9 @@ public class ProServiceImpl implements ProService {
     public Pro findById(int id){
         return proMapper.selectByPrimaryKey(id);
     }
+
+
+    public List findWish(int uid){
+        return proMapper.findWish(uid);
+    }
 }

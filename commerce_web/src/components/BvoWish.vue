@@ -4,78 +4,72 @@
             <div class="page-header position-relative">
                 <h1 style="color: #2679b5;">借卖方<small><i class="icon-double-angle-right"></i> 心愿单</small></h1>
             </div>
-            <button class="btn btn-success"><i class="icon-trash icon-4x icon-only">delete</i></button>
+            <button class="btn btn-success" @click="delWish()"><i class="icon-trash icon-4x icon-only">delete</i></button>
             <ul>
-                <li class="imglist">
+                <!--222{{wishs[1].title}}-->
+                <li class="imglist" v-for="(wish,index) in wishs" :key="index">
 
-                    <a href="bvo-goodsdetail.html">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                        <img src="image/61X0zlgsL9L._SL1001_.jpg"  alt="" />
+                    <label><input type="checkbox" class="input" id="index"><span class="lbl"></span></label>
+
+                    <router-link :to="{name:'proInfo',params:{proInfo:wishs[index]}}">
+                        <img :src="'http://qn.limitip.com/'+wish.img"  alt="" />
                         <div class="right">
-                            <p>Glass Housing Multi-purpose 12L Portable Convection Oven</p>
-                            <span class="red">$16.00</span>
-                            <p>sku:GM08713</p>
+                            <p>{{wish.title}}</p>
+                            <span class="red">${{wish.price}}</span>
+                            <p>sku:{{wish.sku}}</p>
                             <input type="checkbox" />
                         </div>
-                    </a>
+                    </router-link>
 
                 </li>
-                <li class="imglist">
-                    <a href="bvo-goodsdetail.html">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                        <img src="image/7145urh2rSL._SL1001_.jpg"  alt="" />
-                        <div class="right">
-                            <p>Glass Housing Multi-purpose 12L Portable Convection Oven</p>
-                            <span class="red">$16.00</span>
-                            <p>sku:GM08713</p>
-                            <input type="checkbox" />
-                        </div>
-                    </a>
-                </li>
-                <li class="imglist">
-                    <a href="bvo-goodsdetail.html">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                        <img src="image/71vLlWAjOoL._SL1001_.jpg"  alt="" />
-                        <div class="right">
-                            <p>Glass Housing Multi-purpose 12L Portable Convection Oven</p>
-                            <span class="red">$16.00</span>
-                            <p>sku:GM08713</p>
-                            <input type="checkbox" />
-                        </div>
-                    </a>
-                </li>
-                <li class="imglist">
-                    <a href="bvo-goodsdetail.html">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                        <img src="image/61X0zlgsL9L._SL1001_.jpg"  alt="" />
-                        <div class="right">
-                            <p>Glass Housing Multi-purpose 12L Portable Convection Oven</p>
-                            <span class="red">$16.00</span>
-                            <p>sku:GM08713</p>
-                            <input type="checkbox" />
-                        </div>
-                    </a>
-                </li>
-                <li class="imglist">
-                    <a href="bvo-goodsdetail.html">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                        <img src="image/7145urh2rSL._SL1001_.jpg"  alt="" />
-                        <div class="right">
-                            <p>Glass Housing Multi-purpose 12L Portable Convection Oven</p>
-                            <span class="red">$16.00</span>
-                            <p>sku:GM08713</p>
-                            <input type="checkbox" />
-                        </div>
-                    </a>
-                </li>
+
             </ul>
         </div>
     </div>
 </template>
 
 <script>
+    import {mapGetters, mapActions} from 'vuex'
     export default {
-        name: "BvoWish"
+        name: "BvoWish",
+        data(){
+            return{
+                wishs: [],
+                hint: "",
+
+            }
+
+        },
+        computed: {
+            ...mapGetters([
+                'userInfo'
+            ])
+        },
+        methods:{
+            getWish() {
+                console.log(this.userInfo.id)
+                this.$axios.post("/api/wish/find", $.param({uid: this.userInfo.id}))
+                    .then(res => {
+                        this.wishs = res.data.wishs;
+                    });
+            },
+            delWish(){
+
+                console.log(this.userInfo.id)
+                console.log(this.wishs[index].id)
+                this.$axios.post("/api/wish/del", $.param({uid: this.userInfo.id,pid:this.wishs[index].id}))
+                    .then(res => {
+                        if(res.data.state==0){
+                            console.log(index);
+                            this.wishs.splice(index,1);
+                        }
+
+                    });
+            }
+        },
+        mounted() {
+            this.getWish();
+        }
     }
 </script>
 

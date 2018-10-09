@@ -12,6 +12,7 @@
                     <p>库存：{{proInfo.reverse}}</p>
                     <button class="btn btn-primary" @click="buy"> buy</button>
                     <button class="btn btn-primary" @click="addWish">Add to Wish List</button>
+                    <div>{{hint}}</div>
                 </div>
             </div>
 
@@ -43,7 +44,8 @@
         data(){
             return{
                 dicList:[],
-                wish:{}
+                wish:{},
+                hint:""
             }
         },
         props:[
@@ -74,6 +76,7 @@
                 data=$.param(data);
                 this.$axios.post("/api/wish/add",data)
                     .then(res=>{
+                        this.hint = "操作成功"
                         console.log(res.data)
                     })
 
