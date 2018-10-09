@@ -409,6 +409,94 @@
 </script>
 
 <style scoped>
+    .main{animation:bounce 1s ease 0s 1 both}
+    .clearfix{animation:pulse 1s 0s 1 both}
+    .clearfix{animation:tada 1s 0s 1 both}
+    .clearfix{animation:rubberBand 1s 0s 1 both}
+    @keyframes bounce {
+        from, 20%, 53%, 80%, to {
+            animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transform: translate3d(0,0,0);
+        }
+
+        40%, 43% {
+            animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+            transform: translate3d(0, -30px, 0);
+        }
+
+        70% {
+            animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+            transform: translate3d(0, -15px, 0);
+        }
+
+        90% {
+            transform: translate3d(0,-4px,0);
+        }
+    }
+    @keyframes pulse {
+        from {
+            transform: scale3d(1, 1, 1);
+        }
+
+        50% {
+            transform: scale3d(1.05, 1.05, 1.05);
+        }
+
+        to {
+            transform: scale3d(1, 1, 1);
+        }
+    }
+    @keyframes tada {
+        from {
+            transform: scale3d(1, 1, 1);
+        }
+
+        10%, 20% {
+            transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+        }
+
+        30%, 50%, 70%, 90% {
+            transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+        }
+
+        40%, 60%, 80% {
+            transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+        }
+
+        to {
+            transform: scale3d(1, 1, 1);
+        }
+    }
+    @keyframes rubberBand {
+        from {
+            transform: scale3d(1, 1, 1);
+        }
+
+        30% {
+            transform: scale3d(1.25, 0.75, 1);
+        }
+
+        40% {
+            transform: scale3d(0.75, 1.25, 1);
+        }
+
+        50% {
+            transform: scale3d(1.15, 0.85, 1);
+        }
+
+        65% {
+            transform: scale3d(.95, 1.05, 1);
+        }
+
+        75% {
+            transform: scale3d(1.05, .95, 1);
+        }
+
+        to {
+            transform: scale3d(1, 1, 1);
+        }
+    }
+
     .info div {
         float: right;
     }

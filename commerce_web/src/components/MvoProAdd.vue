@@ -138,6 +138,7 @@
 </script>
 
 <style scoped>
+
     .my {
         width: 30%;
     }
