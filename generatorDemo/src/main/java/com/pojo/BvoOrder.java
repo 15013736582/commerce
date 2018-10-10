@@ -15,15 +15,18 @@ public class BvoOrder {
 
     private Integer uId;
 
+    private Integer state;
+
     private Date createDate;
 
-    public BvoOrder(Integer id, String title, Double price, Integer qty, Integer isPay, Integer uId, Date createDate) {
+    public BvoOrder(Integer id, String title, Double price, Integer qty, Integer isPay, Integer uId, Integer state, Date createDate) {
         this.id = id;
         this.title = title;
         this.price = price;
         this.qty = qty;
         this.isPay = isPay;
         this.uId = uId;
+        this.state = state;
         this.createDate = createDate;
     }
 
@@ -77,6 +80,14 @@ public class BvoOrder {
 
     public void setuId(Integer uId) {
         this.uId = uId;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 
     public Date getCreateDate() {

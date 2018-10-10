@@ -16,14 +16,16 @@
                             <label class="green">钱包账号:</label><input
                                 type="text" name="username">
                         </div>
-                        <div class="mydiv" >
+                        <div class="mydiv">
                             <label class="green">密码:</label><input
                                 type="password" name="password">
                         </div>
-                        <button v-if="userInfo.walletId ==null" type="button" class="btn  btn-success save"
-                                @click="walletRegister" >注册</button>
-                        <button v-if="userInfo.walletId !=null" type="button" class="btn  btn-success save my_btn"
-                                @click="walletLogin" >登陆</button>
+                        <button v-if="userInfo.walletId ==-1" type="button" class="btn  btn-success save"
+                                @click="walletRegister">注册
+                        </button>
+                        <button v-if="userInfo.walletId !=-1" type="button" class="btn  btn-success save my_btn"
+                                @click="walletLogin">登陆
+                        </button>
                     </form>
                     <div>{{hint}}</div>
                 </div>
@@ -31,26 +33,29 @@
         </div>
 
 
-        <div  class="clearfix" v-if="isLogin" >
+        <div class="clearfix" v-if="isLogin">
             <div id="page-content" class="clearfix">
 
                 <div class="Register">
-                    <form >
+                    <form>
                         <input type="hidden" name="userId" :value="userInfo.id">
-                        <div class="mydiv" >
-                            <label class="green" >账号:</label>
+                        <div class="mydiv">
+                            <label class="green">账号:</label>
                             <input type="text" readonly="readonly" name="username" :value="wallet.username">
                         </div>
-                        <div class="mydiv" >
+                        <div class="mydiv">
                             <label class="green">余额:</label>
                             <input type="text" readonly="readonly" name="password" :value="wallet.money">
                         </div>
-                        <button type="button" @click="walletRegister" class="btn  btn-success save" v-if="userInfo.walletId ==null">注册</button>
+                        <button type="button" @click="walletRegister" class="btn  btn-success save"
+                                v-if="userInfo.walletId ==null">注册
+                        </button>
                     </form>
-                    <div class="mydiv" >
-                        <label class="green" >充值:</label>
-                        <input type="text" v-model="addm" >
-                        <button @click="recharge">确定</button>
+                    <div class="mydiv">
+                        <label class="green"></label>
+                        <input type="text" v-model="money">
+                        <button @click="walletOpera(0,0)">充值</button>
+                        <button @click="walletOpera(1,0)">提现</button>
                     </div>
                     <div>{{hint}}</div>
                 </div>
@@ -62,20 +67,21 @@
 
 <script>
     import {mapGetters, mapActions} from 'vuex'
+
     export default {
         name: "BvoWallet",
         data() {
             return {
-                wallet:{
-                    id:null,
-                    username:null,
-                    password:null,
-                    money:0,
-                    createDate:null,
+                wallet: {
+                    id: null,
+                    username: null,
+                    password: null,
+                    money: 0,
+                    createDate: null,
                 },
                 hint: "",
-                isLogin:false,
-                addm:0,
+                isLogin: false,
+                money: 0,
             }
         },
         computed: {
@@ -100,28 +106,32 @@
                         console.log(res.data);
                     })
             },
-            walletLogin(){
+            walletLogin() {
                 let data = $("#rWallet").serialize();
                 this.$axios.post("/api/wallet/login", data)
                     .then(res => {
-                        if(res.data.state == 0){
+                        if (res.data.state == 0) {
                             this.isLogin = true;
                             this.hint = "";
-                        }else {
+                        } else {
                             this.hint = "用户名或者密码错误"
                         }
                     })
             },
-            recharge(){
-                let data = {...this.wallet};
-                data.num = this.addm;
-                this.$axios.post("/api/wallet/recharge", $.param(data))
+            walletOpera(type, status) {
+                let data = {
+                    id: this.userInfo.walletId,
+                    money:this.money,
+                    type:type,
+                    status:status,
+                };
+                this.$axios.post("/api/walletOrder/add", $.param(data))
                     .then(res => {
-                        if(res.data.state == 0){
-                            this.hint = "充值成功";
+                        if (res.data.state == 0) {
+                            this.hint = "申请很OK！";
                             this.wallet.money = parseInt(this.wallet.money) + parseInt(this.addm);
-                        }else {
-                            this.hint = "用户名或者密码错误"
+                        } else {
+                            this.hint = "操作很OK！";
                         }
                     })
             }
@@ -136,17 +146,20 @@
 <style scoped>
 
 
-    .my_btn{
+    .my_btn {
         margin-left: 20%;
     }
-    .Register{
+
+    .Register {
         width: 50%;
-        margin:auto;
+        margin: auto;
     }
-    .mydiv{
+
+    .mydiv {
         margin-bottom: 20px;
 
     }
+
     .green {
         color: #69aa46 !important;
 

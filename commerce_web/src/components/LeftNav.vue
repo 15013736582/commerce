@@ -41,7 +41,7 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link :to="{name:'mvoWallet'}" v-if="userInfo.type==1">
+                    <router-link :to="{name:'bvoWallet'}" v-if="userInfo.type==1">
                         <i class="icon-desktop"></i>
                         <span>品牌商-钱包</span>
                     </router-link>

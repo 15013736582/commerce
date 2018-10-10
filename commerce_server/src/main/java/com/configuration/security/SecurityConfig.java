@@ -50,7 +50,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/mvo/register",
                 "/api/bvo/register",
                 "/api/dic/*",
-                "/html/*"
+                "/index.html",
+                "/css/**",
+                "/fonts/**",
+                "/img/**",
+                "/js/**",
         };
         return urls;
     }

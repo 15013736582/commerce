@@ -91,7 +91,9 @@
 
 
             <!--modal-->
-            <div class="modal fade in hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+
+
+            <div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -115,8 +117,12 @@
                                     <!--用来存放item-->
                                     <div id="thelist" class="uploader-list"></div>
                                     <div style="width: 20%;  margin:20px auto;">
-                                        <div id="filePicker" class="webuploader-container" ><div class="webuploader-pick" style="padding: 3px 5px;">选择图片</div><div id="rt_rt_1bn828lkecjk10911jjk1l811ls1" style="position: absolute; top: 0px; left: 0px; width: 86px; height: 40px; overflow: hidden; bottom: auto; right: auto;"><input type="file" name="file" class="webuploader-element-invisible" multiple="multiple" accept="image/*"><label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label></div></div>
-                                        <button id="ctlBtn" class="btn btn-default" >开始上传</button>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">商品主图</label>
+                                        <img class="img-rounded my_img" v-show="currPro.img != '' && currPro.img != null"
+                                             :src="'http://qn.limitip.com/'+currPro.img"/>
+                                        <input id="file" @change="upLoad($event)" type="file" name="myFile">
                                     </div>
 
                                 </div>
@@ -142,13 +148,6 @@
 </script>
 
 <style scoped>
-    .main{animation:bounce 1s ease 0s 1 both}
-    .clearfix{animation:pulse 1s 0s 1 both}
-    .clearfix{animation:tada 1s 0s 1 both}
-    .clearfix{animation:rubberBand 1s 0s 1 both}
-    .col-md-9{animation:wobble 1.8s ease 0s 1 reverse both}
-    .col-md-9{animation:fadeInRight 1s 0s 1 both}
-    .clearfix{animation:flipInY 1s 0s 1 both}
 
     @keyframes bounce {
         from, 20%, 53%, 80%, to {
