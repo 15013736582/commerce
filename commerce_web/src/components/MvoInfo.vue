@@ -103,29 +103,26 @@
 </script>
 
 <style scoped>
-    #frm{animation:swing 1s 0s 1 both}
-    @keyframes swing {
-        20% {
-            transform: rotate3d(0, 0, 1, 15deg);
+    #frm{animation:boingInUp 1s 0s 1 both}
+    @keyframes boingInUp {
+        0% {
+            opacity: 0;
+            transform-origin: 50% 0%;
+            transform: perspective(800px) rotateX(-90deg);
         }
 
-        40% {
-            transform: rotate3d(0, 0, 1, -10deg);
+        50% {
+            opacity: 1;
+            transform-origin: 50% 0%;
+            transform: perspective(800px) rotateX(50deg);
         }
 
-        60% {
-            transform: rotate3d(0, 0, 1, 5deg);
-        }
-
-        80% {
-            transform: rotate3d(0, 0, 1, -5deg);
-        }
-
-        to {
-            transform: rotate3d(0, 0, 1, 0deg);
+        100% {
+            opacity: 1;
+            transform-origin: 50% 0%;
+            transform: perspective(800px) rotateX(0deg);
         }
     }
-
 
 
 
