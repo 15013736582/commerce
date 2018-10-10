@@ -225,61 +225,50 @@
 </script>
 
 <style scoped>
-    #frm{animation:swing 1s 0s 1 both}
-    .col-md-9{animation:jello 2s 0s 1 both}
-    .clearfix{animation:jello 2s 0s 1 both}
-    @keyframes swing {
-        20% {
-            transform: rotate3d(0, 0, 1, 15deg);
+
+    body{animation:puffIn 1s 0s 1 both}
+    .clearfix{animation:slideUpReturn 1s 0s 1 both}
+    .clearfix{animation:vanishIn 1s 0s 1 both}
+
+    @keyframes puffIn {
+        0% {
+            opacity: 0;
+            transform-origin: 50% 50%;
+            transform: scale(2,2);
+            filter: blur(2px);
         }
 
-        40% {
-            transform: rotate3d(0, 0, 1, -10deg);
-        }
-
-        60% {
-            transform: rotate3d(0, 0, 1, 5deg);
-        }
-
-        80% {
-            transform: rotate3d(0, 0, 1, -5deg);
-        }
-
-        to {
-            transform: rotate3d(0, 0, 1, 0deg);
+        100% {
+            opacity: 1;
+            transform-origin: 50% 50%;
+            transform: scale(1,1);
+            filter: blur(0px);
         }
     }
-    @keyframes jello {
-        from, 11.1%, to {
-            transform: none;
+    @keyframes slideUpReturn {
+        0% {
+            transform-origin: 0 0;
+            transform: translateY(-100%);
         }
 
-        22.2% {
-            transform: skewX(-12.5deg) skewY(-12.5deg);
+        100% {
+            transform-origin: 0 0;
+            transform: translateY(0%);
+        }
+    }
+    @keyframes vanishIn {
+        0% {
+            opacity: 0;
+            transform-origin: 50% 50%;
+            transform: scale(2, 2);
+            filter: blur(90px);
         }
 
-        33.3% {
-            transform: skewX(6.25deg) skewY(6.25deg);
-        }
-
-        44.4% {
-            transform: skewX(-3.125deg) skewY(-3.125deg);
-        }
-
-        55.5% {
-            transform: skewX(1.5625deg) skewY(1.5625deg);
-        }
-
-        66.6% {
-            transform: skewX(-0.78125deg) skewY(-0.78125deg);
-        }
-
-        77.7% {
-            transform: skewX(0.390625deg) skewY(0.390625deg);
-        }
-
-        88.8% {
-            transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+        100% {
+            opacity: 1;
+            transform-origin: 50% 50%;
+            transform: scale(1, 1);
+            filter: blur(0px);
         }
     }
 
