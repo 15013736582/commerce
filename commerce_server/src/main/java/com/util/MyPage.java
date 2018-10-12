@@ -33,6 +33,7 @@ public class MyPage {
         }else {
             this.totalPage = this.totalCount/pageSize+1;
         }
+        this.currPage = 1;
     }
 
     public int getPageSize() {

@@ -91,7 +91,7 @@
         },
         methods: {
             getWallet() {
-                console.log(this.userInfo.id)
+                console.log(this.userInfo.id);
                 this.$axios.post("/api/wallet/find", $.param({userId: this.userInfo.id}))
                     .then(res => {
                         this.wallet = res.data.wallet;
@@ -120,7 +120,7 @@
             },
             walletOpera(type, status) {
                 let data = {
-                    id: this.userInfo.walletId,
+                    wId: this.userInfo.walletId,
                     money:this.money,
                     type:type,
                     status:status,
@@ -129,9 +129,12 @@
                     .then(res => {
                         if (res.data.state == 0) {
                             this.hint = "申请很OK！";
-                            this.wallet.money = parseInt(this.wallet.money) + parseInt(this.addm);
+                            if(type == 1){
+                                this.wallet.money -= this.money;
+                            }
+                            this.getWallet()
                         } else {
-                            this.hint = "操作很OK！";
+                            this.hint = "操作有点问题！";
                         }
                     })
             }

@@ -181,48 +181,48 @@
 <style scoped>
     #frm{animation:boingInUp 1s 0s 1 both}
     #AdminDic{animation:twisterInUp 1s 0s 1 both}
-    @keyframes boingInUp {
-        0% {
-            opacity: 0;
-            transform-origin: 50% 0%;
-            transform: perspective(800px) rotateX(-90deg);
-        }
+    /*@keyframes boingInUp {*/
+        /*0% {*/
+            /*opacity: 0;*/
+            /*transform-origin: 50% 0%;*/
+            /*transform: perspective(800px) rotateX(-90deg);*/
+        /*}*/
 
-        50% {
-            opacity: 1;
-            transform-origin: 50% 0%;
-            transform: perspective(800px) rotateX(50deg);
-        }
+        /*50% {*/
+            /*opacity: 1;*/
+            /*transform-origin: 50% 0%;*/
+            /*transform: perspective(800px) rotateX(50deg);*/
+        /*}*/
 
-        100% {
-            opacity: 1;
-            transform-origin: 50% 0%;
-            transform: perspective(800px) rotateX(0deg);
-        }
-    }
-    @keyframes twisterInUp {
-        0% {
-            opacity: 0;
-            transform-origin: 100% 0;
-            transform: scale(0, 0) rotate(360deg) translateY(100%);
-        }
+        /*100% {*/
+            /*opacity: 1;*/
+            /*transform-origin: 50% 0%;*/
+            /*transform: perspective(800px) rotateX(0deg);*/
+        /*}*/
+    /*}*/
+    /*@keyframes twisterInUp {*/
+        /*0% {*/
+            /*opacity: 0;*/
+            /*transform-origin: 100% 0;*/
+            /*transform: scale(0, 0) rotate(360deg) translateY(100%);*/
+        /*}*/
 
-        30% {
-            transform-origin: 100% 0;
-            transform: scale(0, 0) rotate(360deg) translateY(100%);
-        }
+        /*30% {*/
+            /*transform-origin: 100% 0;*/
+            /*transform: scale(0, 0) rotate(360deg) translateY(100%);*/
+        /*}*/
 
-        100% {
-            opacity: 1;
-            transform-origin: 0 0;
-            transform: scale(1, 1) rotate(0deg) translateY(0);
-        }
-    }
+        /*100% {*/
+            /*opacity: 1;*/
+            /*transform-origin: 0 0;*/
+            /*transform: scale(1, 1) rotate(0deg) translateY(0);*/
+        /*}*/
+    /*}*/
 
 
-    to {
-            opacity: 1;
-            transform: none;
-        }
+    /*to {*/
+            /*opacity: 1;*/
+            /*transform: none;*/
+        /*}*/
 
 </style>

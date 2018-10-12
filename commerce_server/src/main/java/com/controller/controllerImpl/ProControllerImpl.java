@@ -1,5 +1,6 @@
 package com.controller.controllerImpl;
 
+import com.dto.ResultState;
 import com.pojo.Pro;
 import com.service.serviceImpl.ProServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -41,5 +43,13 @@ public class ProControllerImpl {
     @RequestMapping("findByPname")
     public  Map findByPname(String title){
         return  proService.findByPname(title);
+    }
+
+    @RequestMapping("getPage")
+    public Map getPage(int userId){
+        Map<String, Object> result = new HashMap<>();
+        result.put("state", ResultState.SECCESS.getState());
+        result.put("page",proService.getPage(userId));
+        return result;
     }
 }

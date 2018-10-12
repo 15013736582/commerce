@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.dto.ConstantQiniu;
 import com.dto.ResultState;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.google.gson.Gson;
 import com.mapper.ProMapper;
 import com.pojo.Pro;
@@ -16,6 +18,7 @@ import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
 import com.service.ProService;
+import com.util.MyPage;
 import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.annotations.Results;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,11 +101,14 @@ public class ProServiceImpl implements ProService {
         proMapper.updateByPrimaryKeySelective(pro);
     }
 
-    public List findByUserId(int userId) {
+    public List findByUserId(int userId,MyPage page) {
+
         ProExample ex = new ProExample();
         ProExample.Criteria cr = ex.createCriteria();
         cr.andMIdEqualTo(userId);
-        return proMapper.selectByExample(ex);
+        PageHelper.startPage(page.getCurrPage(), page.getPageSize());
+        List list =  proMapper.selectByExample(ex);
+        return list;
     }
 
     public Map add(Pro pro){
@@ -130,6 +136,17 @@ public class ProServiceImpl implements ProService {
         result.put("state", ResultState.SECCESS.getState());
         result.put("proList",list);
         return  result;
+    }
+
+    public MyPage getPage(int userId){
+        MyPage myPage = new MyPage();
+        ProExample ex = new ProExample();
+        ProExample.Criteria cr = ex.createCriteria();
+        cr.andMIdEqualTo(userId);
+        myPage.setTotalCount((int) proMapper.countByExample(ex));
+        myPage.setPageSize(6);
+        myPage.init();
+        return myPage;
     }
 
     public Pro findById(int id){

@@ -14,6 +14,7 @@
                     <th>账户名</th>
                     <th>业务类型</th>
                     <th class="hidden-480">金额</th>
+                    <th>描述</th>
                     <th class="hidden-phone">申请时间</th>
                     <th>状态</th>
                     <th>操作</th>
@@ -21,70 +22,24 @@
                 </thead>
 
                 <tbody>
-
-                <tr>
+                <tr v-for="(o,index) in orders" :key="index" >
                     <td class="center">
                         <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                     </td>
-                    <td>LOh</td>
-                    <td>充值</td>
-                    <td class="hidden-480">$3,330</td>
-                    <td class="hidden-phone">Feb 12</td>
-                    <td class="state">等待审核</td>
-                    <td>
+                    <td>{{o.user.username}}</td>
+                    <td>{{o.type | dicCover('walletType',dicList)}}</td>
+                    <td class="hidden-480">${{o.money}}</td>
+                    <td>{{o.desp}}</td>
+                    <td class="hidden-phone">{{o.createDate}}</td>
+                    <td class="state">{{o.status | dicCover('walletStatus',dicList)}}</td>
 
-                        <a class="aa" data-toggle="modal" data-target="#myModal">审核</a>
-
+                    <!--<td >-->
+                        <!--已审核-->
+                    <!--</td>-->
+                    <td v-if="o.status == 0">
+                        <a @click="check(index)" class="aa" data-toggle="modal" data-target="#myModal">审核</a>
                     </td>
-                </tr>
-
-
-                <tr>
-                    <td class="center">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                    </td>
-                    <td>LOh</td>
-                    <td>提现</td>
-                    <td class="hidden-480">$3,330</td>
-                    <td class="hidden-phone">Feb 12</td>
-                    <td class="state">等待审核</td>
-                    <td>
-
-                        <a class="aa" data-toggle="modal" data-target="#myModal">审核</a>
-
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td class="center">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                    </td>
-                    <td>LOh</td>
-                    <td>充值</td>
-                    <td class="hidden-480">$3,330</td>
-                    <td class="hidden-phone">Feb 12</td>
-                    <td class="state">等待审核</td>
-                    <td>
-
-                        <a class="aa" data-toggle="modal" data-target="#myModal">审核</a>
-
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td class="center">
-                        <label><input type="checkbox" class="input"><span class="lbl"></span></label>
-                    </td>
-                    <td>LOh</td>
-                    <td>提现</td>
-                    <td class="hidden-480">$3,330</td>
-                    <td class="hidden-phone">Feb 12</td>
-                    <td class="state">等待审核</td>
-                    <td>
-                        <a class="aa" data-toggle="modal" data-target="#myModal">审核</a>
-                    </td>
+                    <td v-else></td>
                 </tr>
                 </tbody>
             </table>
@@ -101,13 +56,13 @@
                             <h4 class="modal-title" id="myModalLabel">审核</h4>
                         </div>
                         <div class="modal-body">
-                            <form class="form-horizontal">
+                            <form id="frm" class="form-horizontal">
                                 <div style="text-align: center">
                                     <label style="display: inline-block;margin-right: 20px">
-                                        <input name="form-field-radio" type="radio"><span class="lbl"> 通过</span>
+                                        <input name="status" value="1"   type="radio" ><span class="lbl"> 通过</span>
                                     </label>
                                     <label style="display: inline-block">
-                                        <input name="form-field-radio" type="radio"><span class="lbl"> 不通过</span>
+                                        <input name="status" value="2" type="radio" ><span class="lbl"> 不通过</span>
                                     </label>
                                 </div>
 
@@ -119,20 +74,25 @@
                                     <div style="width: 20%;  margin:20px auto;">
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label">商品主图</label>
-                                        <img class="img-rounded my_img" v-show="currPro.img != '' && currPro.img != null"
-                                             :src="'http://qn.limitip.com/'+currPro.img"/>
+                                        <label class="control-label"> </label>
+                                        <img class="img-rounded my_img" v-show="currOrder.img != '' && currOrder.img != null"
+                                             :src="'http://qn.limitip.com/'+currOrder.img"/>
                                         <input id="file" @change="upLoad($event)" type="file" name="myFile">
                                     </div>
 
                                 </div>
                                 <small>如不通过，请填写原因：</small>
-                                <textarea style="width: 90%" class="span12" id="form-field-8" placeholder="Default Text"></textarea>
+                                <textarea style="width: 90%" class="span12" id="form-field-8" name="desp" placeholder="Default Text"></textarea>
+                                <input type="hidden" name="id" :value="currOrder.id" />
+                                <input type="hidden" name="img" :value="currOrder.img" />
+                                <input type="hidden" name="wId" :value="currOrder.wId" />
+                                <input type="hidden" name="type" :value="currOrder.type" />
+                                <input type="hidden" name="money" :value="currOrder.money" />
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">保存</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="doCheck">保存</button>
                         </div>
                     </div>
                 </div>
@@ -143,11 +103,64 @@
 
 <script>
     export default {
-        name: "AdminWalletController"
+        name: "AdminWalletController",
+        data(){
+            return{
+                dicList: [],
+                orders:[],
+                currOrder:{}
+            }
+        },
+        methods:{
+            getDic() {
+                this.$axios.post("/api/dic/all")
+                    .then(res => {
+                        this.dicList = res.data.dicList;
+                    })
+            },
+            getOrders(){
+                this.$axios.post("/api/walletOrder/findAll")
+                    .then(res=>{
+                        console.log(res.data);
+                        this.orders = res.data.orders;
+                    })
+            },
+            upLoad(event) {
+                let file = event.target.files[0];
+                let data = new FormData();
+                data.append("proImg", file);
+                this.$axios.post("/api/pro/upload", data)
+                    .then(res => {
+                        this.currOrder.img = res.data.imgSrc;
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            },
+            check(index){
+                this.currOrder = {...this.orders[index]};
+            },
+            doCheck(){
+                let date = $("#frm").serialize();
+                this.$axios.post("/api/walletOrder/update",date)
+                    .then(res=>{
+                        this.getOrders()
+                    })
+            }
+        },
+        mounted(){
+            this.getDic();
+            this.getOrders();
+        }
     }
 </script>
 
 <style scoped>
+
+    .my_img{
+        width: 100px;
+        height: 100px;
+    }
 
     @keyframes bounce {
         from, 20%, 53%, 80%, to {

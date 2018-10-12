@@ -6,7 +6,7 @@
     <groupId>commerce_server</groupId>
     <artifactId>commerce_server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>tar</packaging>
 
     <name>commerce_server</name>
     <description>Demo project for Spring Boot</description>
@@ -137,6 +137,13 @@
             <artifactId>qiniu-java-sdk</artifactId>
             <version>[7.2.0, 7.2.99]</version>
         </dependency>
+
+        <!--分页插件-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.3</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -144,6 +151,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.CbeCommerceApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
         <resources>

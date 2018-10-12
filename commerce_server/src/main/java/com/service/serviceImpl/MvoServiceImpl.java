@@ -7,6 +7,7 @@ import com.mapper.WalletMapper;
 import com.pojo.*;
 import com.service.MvoService;
 import com.service.UserService;
+import com.util.MyPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -79,10 +80,10 @@ public class MvoServiceImpl implements MvoService {
      * @param userId
      * @return
      */
-    public Map findProAll(int userId){
+    public Map findProAll(int userId, MyPage myPage){
         Map<String, Object> result = new HashMap<>();
         result.put("state", ResultState.SECCESS);
-        result.put("list",proService.findByUserId(userId));
+        result.put("list",proService.findByUserId(userId,myPage));
         return result;
     }
 

@@ -1,10 +1,12 @@
 package com.controller.controllerImpl;
 
+import com.github.pagehelper.Page;
 import com.pojo.Mvo;
 import com.pojo.Pro;
 import com.pojo.User;
 import com.service.serviceImpl.MvoOrderServiceImpl;
 import com.service.serviceImpl.MvoServiceImpl;
+import com.util.MyPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,8 +52,8 @@ public class MvoControllerImpl {
     }
 
     @RequestMapping("findProByUserId")
-    public Map findProByUserId(int userId) {
-        return mvoService.findProAll(userId);
+    public Map findProByUserId(int userId, MyPage myPage) {
+        return mvoService.findProAll(userId,myPage);
     }
 
     @RequestMapping("updatePro")

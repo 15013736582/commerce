@@ -12,9 +12,12 @@
             <form id="findByPname" class="form-search">
                 商品标题：
                 <input type="text" class="input-medium search-query" name="title">
-                <button type="button" @click="findByPname"  class="btn btn-purple btn-small">Search <i
+                <button type="button" @click="findByPname" class="btn btn-purple btn-small">Search <i
                         class="icon-search icon-on-right"></i></button>
             </form>
+            <router-link :to="{name:'mvoProAdd'}">
+                <button class="btn btn-primary">新增</button>
+            </router-link>
             <table id="table_bug_report" class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr>
@@ -36,7 +39,8 @@
                     <td class="center">
                         <label><input type="checkbox" class="input"><span class="lbl"></span></label>
                     </td>
-                    <td width="30%"><img :src="'http://qn.limitip.com/'+p.img" style="width: 50px;height: 50px">{{p.title}}</td>
+                    <td width="30%"><img :src="'http://qn.limitip.com/'+p.img" style="width: 50px;height: 50px">{{p.title}}
+                    </td>
                     <td>{{p.type | dicCover('proType',dicList)}}</td>
                     <td>{{p.price}}</td>
                     <td class="hidden-480">{{p.reverse}}</td>
@@ -51,15 +55,29 @@
                         <div class="inline position-relative">
                             <button class="btn btn-mini btn-info" data-toggle="modal" data-target="#myModal"
                                     @click="update(index)"><i class="icon-edit"></i></button>
-                            <button class="btn btn-mini btn-danger" @click="dele(index)"><i class="icon-trash"></i></button>
+                            <button class="btn btn-mini btn-danger" @click="dele(index)"><i class="icon-trash"></i>
+                            </button>
                         </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <router-link :to="{name:'mvoProAdd'}">
-                <button class="btn btn-primary">新增</button>
-            </router-link>
+            <nav class="in">
+                <ul class="pagination">
+                    <li class="disabled">
+                        <a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a>
+                    </li>
+                    <li :class="{active:page.currPage == index+1}" v-for="(page,index) in page.totalPage">
+                        <a href="javascript:;" @click="getPro(index+1)">{{index+1}}
+                            <span class="sr-only">(current)</span></a></li>
+                    <!--<li><a href="#">2 <span class="sr-only"></span></a></li>-->
+                    <!--<li><a href="#">3 <span class="sr-only"></span></a></li>-->
+                    <!--<li><a href="#">4 <span class="sr-only"></span></a></li>-->
+                    <!--<li><a href="#">5 <span class="sr-only"></span></a></li>-->
+                    <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span> </a></li>
+                </ul>
+            </nav>
+
         </div>
 
         <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
@@ -154,6 +172,14 @@
                 proList: [],
                 currPro: {},
                 dicList: [],
+                page: {
+                    currPage: 1,
+                    data: null,
+                    pageSize: 6,
+                    totalCount: 13,
+                    totalPage: 3,
+                }
+
             }
         },
         computed: {
@@ -162,8 +188,15 @@
             ])
         },
         methods: {
-            getPro() {
-                this.$axios.post("/api/mvo/findProByUserId", $.param({userId: this.userInfo.id}))
+            getPro(index) {
+                this.page.currPage = index;
+                this.$axios.post("/api/mvo/findProByUserId", $.param(
+                    {
+                        userId: this.userInfo.id,
+                        currPage:this.page.currPage,
+                        pageSize: this.page.pageSize
+                    })
+                )
                     .then(res => {
                         this.proList = res.data.list;
                     })
@@ -174,12 +207,12 @@
                         this.dicList = res.data.dicList;
                     })
             },
-            dele(index){
-                this.$axios.post("/api/mvo/delPro",$.param({proId:this.proList[index].id}))
-                    .then(res=>{
-                        if(res.data.state == 0){
+            dele(index) {
+                this.$axios.post("/api/mvo/delPro", $.param({proId: this.proList[index].id}))
+                    .then(res => {
+                        if (res.data.state == 0) {
                             console.log(index);
-                            this.proList.splice(index,1);
+                            this.proList.splice(index, 1);
                         }
                     })
             },
@@ -188,9 +221,9 @@
                 console.log(this.currPro)
             },
 
-            doUpdate(){
-                this.$axios.post("/api/mvo/updatePro",$.param(this.currPro))
-                    .then(res=>{
+            doUpdate() {
+                this.$axios.post("/api/mvo/updatePro", $.param(this.currPro))
+                    .then(res => {
                         this.getPro()
                     })
             },
@@ -206,45 +239,61 @@
                         console.log(error)
                     })
             },
-            findByPname(){
-                let data=$("#findByPname").serialize();
+            findByPname() {
+                let data = $("#findByPname").serialize();
 
-                this.$axios.post("/api/pro/findByPname",data)
+                this.$axios.post("/api/pro/findByPname", data)
                     .then(res => {
                         console.log(res.data);
                         this.proList = res.data.proList;
                         console.log(data)
                     })
             },
+            getPage() {
+                this.$axios.post("/api/pro/getPage", $.param({userId: this.userInfo.id}))
+                    .then(res => {
+                        this.page = res.data.page;
+                    })
+            }
         },
         mounted() {
-            this.getPro();
+            this.getPro(1);
             this.getDic();
+            this.getPage();
         }
     }
 </script>
 
 <style scoped>
 
-    body{animation:puffIn 1s 0s 1 both}
-    .clearfix{animation:slideUpReturn 1s 0s 1 both}
-    .clearfix{animation:vanishIn 1s 0s 1 both}
+    body {
+        animation: puffIn 1s 0s 1 both
+    }
+
+    .clearfix {
+        animation: slideUpReturn 1s 0s 1 both
+    }
+
+    .clearfix {
+        animation: vanishIn 1s 0s 1 both
+    }
 
     @keyframes puffIn {
         0% {
             opacity: 0;
             transform-origin: 50% 50%;
-            transform: scale(2,2);
+            transform: scale(2, 2);
             filter: blur(2px);
         }
 
         100% {
             opacity: 1;
             transform-origin: 50% 50%;
-            transform: scale(1,1);
+            transform: scale(1, 1);
             filter: blur(0px);
         }
     }
+
     @keyframes slideUpReturn {
         0% {
             transform-origin: 0 0;
@@ -256,6 +305,7 @@
             transform: translateY(0%);
         }
     }
+
     @keyframes vanishIn {
         0% {
             opacity: 0;
@@ -271,7 +321,6 @@
             filter: blur(0px);
         }
     }
-
 
     .my_img {
         width: 200px;
